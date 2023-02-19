@@ -171,7 +171,7 @@ const Navbar = () => {
 
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
 
-                        <Box component="div" noWrap sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Box component="div"  sx={{ display: 'flex', alignItems: 'center' }}>
                             <Typography
                                 variant="h6"
                                 sx={{ marginRight: 2, marginLeft: 2 }}
