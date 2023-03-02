@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import { menus } from "./DashboardSidebarNavigation";
 
 export default function DashboardSidebar() {
-  
+
 
     const [open, setOpen] = useState(true);
-    
+
     return (
 
         <section className={`bg-[#0e0e0e] min-h-screen ${open ? "w-72" : "w-16"} duration-500 text-gray-100 px-4`}>
