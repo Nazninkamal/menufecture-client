@@ -7,9 +7,9 @@ import DashboardSidebar from "./DashBoardSidebar";
 export default function DashboardLayout() {
 
     return (
-        <section className="flex gap-6">
+        <section className="flex">
             <DashboardSidebar />
-            <div className="m-3 text-xl text-gray-900 font-semibold">
+            <div className="m-3 text-xl text-gray-900 font-semibold w-full">
                 <Outlet />
             </div>
         </section>
