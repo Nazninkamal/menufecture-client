@@ -8,7 +8,7 @@ const DragAndDropFileUploader = () => {
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
     return (
-        <div {...getRootProps()} className=' h-60 border-8 border-dotte '>
+        <div {...getRootProps()} className=' h-60 border-8 border-dashed '>
             <input {...getInputProps()} accept="/.glb*" />
             {
                 isDragActive ?
