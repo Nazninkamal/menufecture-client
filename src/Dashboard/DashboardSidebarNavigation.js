@@ -3,7 +3,7 @@ import { MdOutlineDashboard } from "react-icons/md";
 import { RiSettings4Line } from "react-icons/ri";
 import { TbReportAnalytics } from "react-icons/tb";
 import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai";
-import { FiMessageSquare, FiFolder, FiShoppingCart } from "react-icons/fi";
+import { FiMessageSquare, FiFolder, FiShoppingCart ,FiLogOut} from "react-icons/fi";
 
 export const menus = [
     { name: "Dashboard", link: "/", icon: MdOutlineDashboard },
@@ -15,4 +15,5 @@ export const menus = [
     { name: "Cart", link: "/", icon: FiShoppingCart },
     { name: "Saved", link: "/", icon: AiOutlineHeart, margin: true },
     { name: "Setting", link: "/", icon: RiSettings4Line },
+    { name: "Logout", link: "/", icon: FiLogOut },
 ];

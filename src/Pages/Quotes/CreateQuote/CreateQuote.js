@@ -4,9 +4,11 @@ import DragAndDropFileUploader from '../../../Components/DragAndDropFIleUploader
 const CreateQuote = () => {
     return (
         <div>
-            <h2>Upload Your CAD Files</h2>
+            <div className=' text-center'>
+                <h2 className=' text-4xl py-12'>Upload Your CAD Files</h2>
+            </div>
 
-            <DragAndDropFileUploader/>
+            <DragAndDropFileUploader />
         </div>
     );
 };

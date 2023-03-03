@@ -6,7 +6,7 @@ import Projects from "../Pages/Projects/Projects";
 import CreateQuote from "../Pages/Quotes/CreateQuote/CreateQuote";
 import Quotes from "../Pages/Quotes/Quotes/Quotes";
 import Services from "../Pages/Quotes/Services/Services";
-import User from "../Pages/User/User";
+
 
 
 export const routers = createBrowserRouter([
@@ -43,12 +43,7 @@ export const routers = createBrowserRouter([
                 path: "/newProject",
                 element: <NewProject />
             },
-            {
-                path: '/user',
-                element: <User />
-            },
-
-
+            
         ]
     }
 

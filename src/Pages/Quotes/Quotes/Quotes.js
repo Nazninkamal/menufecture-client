@@ -4,15 +4,14 @@ import Card from '../../../Components/Cards/Card';
 import { IoMdAddCircle } from 'react-icons/io'
 const Quotes = () => {
     return (
-        <div>
-            <Card>
-                <Link to="/quotes/services/123456789">
-                    <IoMdAddCircle className='mx-auto w-20 h-20' />
+        <div div className='w-64 h-64 '>
+            <Link to="/quotes/services/123456789">
+                <Card>
+                    <IoMdAddCircle className='mx-auto w-20 h-20 text-indigo-500' />
+                    <h5 className="mb-2 text-base font-semibold tracking-tight text-gray-900 dark:text-white text-center">Create your new <br /> Quote</h5>
 
-                    <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white text-center">Create your new Quote</h5>
-
-                </Link>
-            </Card>
+                </Card>
+            </Link>
         </div>
     );
 };
