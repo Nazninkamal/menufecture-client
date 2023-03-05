@@ -6,13 +6,15 @@ import Projects from "../Pages/Projects/Projects";
 import CreateQuote from "../Pages/Quotes/CreateQuote/CreateQuote";
 import Quotes from "../Pages/Quotes/Quotes/Quotes";
 import Services from "../Pages/Quotes/Services/Services";
+import AuthLayout from "../Pages/User/Authentication/AuthLayout/AuthLayout";
+import PrivateRoute from "./PrivateRoute";
 
 
 
 export const routers = createBrowserRouter([
     {
         path: "/",
-        element: <DashboardLayout />,
+        element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
         children: [
             {
                 path: "/",
@@ -43,8 +45,13 @@ export const routers = createBrowserRouter([
                 path: "/newProject",
                 element: <NewProject />
             },
-            
+
+
         ]
+    },
+    {
+        path: "/login",
+        element: <AuthLayout />,
     }
 
 ]);
