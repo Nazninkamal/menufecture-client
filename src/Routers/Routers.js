@@ -1,7 +1,7 @@
 import { createBrowserRouter, } from "react-router-dom";
 import DashboardHome from "../Dashboard/DashboardHome";
 import DashboardLayout from "../Dashboard/DashboardLayout";
-import NewProject from "../Pages/Projects/NewProject";
+import CreateProject from "../Pages/Projects/CreateProject";
 import Projects from "../Pages/Projects/Projects";
 import Configure from "../Pages/Quotes/Configure/Configure";
 import CreateQuote from "../Pages/Quotes/CreateQuote/CreateQuote";
@@ -48,8 +48,8 @@ export const routers = createBrowserRouter([
 
             },
             {
-                path: "/newProject",
-                element: <NewProject />
+                path: "/create-project",
+                element: <CreateProject />
             },
 
 

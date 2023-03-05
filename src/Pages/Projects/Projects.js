@@ -18,10 +18,10 @@ const Projects = () => {
             <SharedBar pageName={"Please Create Your Cusmize Projct Here"} />
 
             <div className=' p-5'>
-                <div className='grid grid-rows-3 grid-flow-col gap-4'>
-                    <div className='row-span-2 col-span-2 self-auto'>
+                <div className='grid grid-cols-10 gap-5'>
+                    <div className=' col-span-2'>
                         <Card>
-                            <Link to="/newProject">
+                            <Link to="/create-project">
                                 <IoMdAddCircle className='mx-auto w-20 h-20 text-indigo-500' />
 
                                 <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white text-center">Create your projects</h5>
@@ -40,7 +40,7 @@ const Projects = () => {
                     {/* projects  */}
                     {
                         projects?.result?.projects.map(project =>
-                            <div key={project?._id} className='row-span-2 col-span-2 self-auto'>
+                            <div key={project?._id} className='col-span-2'>
                                 <Card>
                                     <Link to={`/quotes/${project?._id}`}>
                                         <AiOutlineFundProjectionScreen className='mx-auto w-20 h-20 text-indigo-500' />

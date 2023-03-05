@@ -1,18 +1,18 @@
 import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { BsFillCloudUploadFill } from "react-icons/bs";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 const DragAndDropFileUploader = () => {
     const onDrop = useCallback(acceptedFiles => {
         console.log(acceptedFiles);
     }, [])
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
-
+    const { id } = useParams();
     const history = useNavigate();
 
     const handleNavigate = () => {
-        history('/quotes/123456')
+        history(`/quotes/${id}`)
     }
     return (
         <div>

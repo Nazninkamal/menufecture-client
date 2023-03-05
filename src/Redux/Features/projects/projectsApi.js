@@ -10,6 +10,16 @@ export const projectsApi = createApi({
         getMyProjects: builder.query({
             query: (page) => ({
                 url: `/get-my-projects?page=${page}&limit=10`,
+                method: 'GET',
+                headers: { 'Authorization': token },
+            }),
+            providesTags: ['projects']
+        }),
+        createProject: builder.mutation({
+            query: (data) => ({
+                url: `/create-project`,
+                method: 'POST',
+                body: data,
                 headers: { 'Authorization': token },
             }),
             providesTags: ['projects']
@@ -20,4 +30,4 @@ export const projectsApi = createApi({
     })
 })
 
-export const { useGetMyProjectsQuery } = projectsApi;
+export const { useGetMyProjectsQuery, useCreateProjectMutation } = projectsApi;
