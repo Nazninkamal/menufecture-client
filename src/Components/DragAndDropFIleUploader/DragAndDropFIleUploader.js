@@ -1,24 +1,53 @@
-import React, { useCallback } from 'react';
+import axios from 'axios';
+import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { BsFillCloudUploadFill } from "react-icons/bs";
 import { useNavigate, useParams } from 'react-router-dom';
+import { token } from '../../Utility/Token/token';
+
 const DragAndDropFileUploader = () => {
-    const onDrop = useCallback(acceptedFiles => {
-        console.log(acceptedFiles);
-    }, [])
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
     const { id } = useParams();
+    const [file, setFile] = useState({})
     const history = useNavigate();
 
-    const handleNavigate = () => {
-        history(`/quotes/${id}`)
+    const onDrop = useCallback(acceptedFiles => {
+        setFile(acceptedFiles[0])
+    }, [])
+
+
+
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+
+
+
+
+
+
+    const handleCreateQuote = async () => {
+        const formData = new FormData();
+        formData.append("threeDFile", file);
+
+        const res = await axios.post(`http://localhost:5000/api/v1/quotes/create-a-quote/${id}`, formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': token
+                },
+                body: formData
+            }
+        )
+        if (res.status === 200) {
+            history(`/quotes/${id}`)
+        }
+
+
     }
     return (
         <div>
-            <div {...getRootProps()} className=' h-96 border-2 border-dashed border-blue-500 cursor-pointer'>
+            <div {...getRootProps()} className={` ${isDragActive && 'bg-emerald-500 text-slate-50'} h-96 border-2 border-dashed border-blue-500 cursor-pointer`}>
                 <div className=' flex justify-evenly py-6 '>
-                    <BsFillCloudUploadFill className=' text-7xl text-blue-500' />
+                    <BsFillCloudUploadFill className={` text-7xl text-blue-500 ${isDragActive && 'text-yellow-400'}`} />
                 </div>
                 <input {...getInputProps()} accept="/.glb*" />
 
@@ -38,9 +67,11 @@ const DragAndDropFileUploader = () => {
             </div>
             <div className=' flex justify-center'>
                 <button
-                    onClick={handleNavigate}
+                    onClick={handleCreateQuote}
                     className=' py-3 px-6 w-44 rounded-lg text-slate-50 text-sm bg-gradient-to-r from-cyan-500 to-blue-500 mt-3 '>Continue</button>
             </div>
+
+    
         </div>
     )
 }

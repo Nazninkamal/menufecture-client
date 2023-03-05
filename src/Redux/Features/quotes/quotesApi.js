@@ -14,10 +14,25 @@ export const quotesApi = createApi({
             }),
             providesTags: ['quotes']
         }),
+        createQuotes: builder.mutation({
+            query: (threeDFile) =>
+            ({
+                url: `/create-a-quote/${'63fb2c1d315bb8c10634678e'}`,
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': token
+
+                },
+                body: threeDFile,
+            })
+            ,
+            providesTags: ['quotes']
+        }),
 
 
 
     })
 })
 
-export const { useGetMyQuotesQuery } = quotesApi;
+export const { useGetMyQuotesQuery, useCreateQuotesMutation } = quotesApi;
