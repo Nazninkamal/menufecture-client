@@ -3,6 +3,7 @@ import DashboardHome from "../Dashboard/DashboardHome";
 import DashboardLayout from "../Dashboard/DashboardLayout";
 import NewProject from "../Pages/Projects/NewProject";
 import Projects from "../Pages/Projects/Projects";
+import Configure from "../Pages/Quotes/Configure/Configure";
 import CreateQuote from "../Pages/Quotes/CreateQuote/CreateQuote";
 import Quotes from "../Pages/Quotes/Quotes/Quotes";
 import Services from "../Pages/Quotes/Services/Services";
@@ -29,6 +30,11 @@ export const routers = createBrowserRouter([
             {
                 path: "/quotes/:id",
                 element: <Quotes />,
+
+            },
+            {
+                path: "/quote/configure/:id",
+                element: <Configure />,
 
             },
             {
