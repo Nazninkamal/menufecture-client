@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Card from '../../../Components/Cards/Card';
 import { IoMdAddCircle } from 'react-icons/io'
@@ -6,8 +6,8 @@ import { BsChatLeftQuoteFill } from 'react-icons/bs'
 import { useGetMyQuotesQuery } from '../../../Redux/Features/quotes/quotesApi';
 const Quotes = () => {
     const { id } = useParams();
-    console.log(id);
-    const { data: quotes } = useGetMyQuotesQuery({ id });
+
+    const { data: quotes } = useGetMyQuotesQuery({ id }, { refetchOnMountOrArgChange: true });
 
     return (
         <div div className=' grid grid-cols-10 gap-5 '>

@@ -12,11 +12,12 @@ export const menus = [
     { name: "Dashboard", link: "/", icon: MdOutlineDashboard },
     { name: "User", link: "/user", icon: AiOutlineUser },
     { name: "Project", link: "/projects", icon: TbReportAnalytics },
-    { name: "messages", link: "/", icon: FiMessageSquare },
-    { name: "analytics", link: "/", icon: TbReportAnalytics, margin: true },
-    { name: "File Manager", link: "/", icon: FiFolder },
-    { name: "Cart", link: "/", icon: FiShoppingCart },
-    { name: "Saved", link: "/", icon: AiOutlineHeart, margin: true },
-    { name: "Setting", link: "/", icon: RiSettings4Line },
+    { name: "Feedback", link: "/feedback", icon: TbReportAnalytics },
+    // { name: "messages", link: "/", icon: FiMessageSquare },
+    // { name: "analytics", link: "/", icon: TbReportAnalytics, margin: true },
+    // { name: "File Manager", link: "/", icon: FiFolder },
+    // { name: "Cart", link: "/", icon: FiShoppingCart },
+    // { name: "Saved", link: "/", icon: AiOutlineHeart, margin: true },
+    // { name: "Setting", link: "/", icon: RiSettings4Line },
    
 ];

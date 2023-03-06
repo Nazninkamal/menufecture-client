@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import DragAndDropFileUploader from '../../../Components/DragAndDropFIleUploader/DragAndDropFIleUploader';
-
+import Image from '../../../Assets/Images/download.png'
 const CreateQuote = () => {
+
+// let url=window.URL.createObjectURL(Image)
+
+
+
+
     return (
         <div>
             <div className=' text-center'>

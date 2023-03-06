@@ -1,18 +1,30 @@
 import axios from 'axios';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { BsFillCloudUploadFill } from "react-icons/bs";
+import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import { createQuote } from '../../Redux/Features/quotes/quotesSlice';
 import { token } from '../../Utility/Token/token';
 
 const DragAndDropFileUploader = () => {
 
     const { id } = useParams();
     const [file, setFile] = useState({})
+    const [extError, setExtError] = useState('')
     const history = useNavigate();
 
+    const dispatch = useDispatch();
+
+
     const onDrop = useCallback(acceptedFiles => {
+
+        if (acceptedFiles[0].name.indexOf(".glb") === -1) {
+            return setExtError('Supported only three D printing glb file')
+        }
+
         setFile(acceptedFiles[0])
+        setExtError('')
     }, [])
 
 
@@ -23,26 +35,25 @@ const DragAndDropFileUploader = () => {
 
 
 
-
     const handleCreateQuote = async () => {
+        if (!file) {
+            return
+        }
         const formData = new FormData();
         formData.append("threeDFile", file);
+        dispatch(createQuote({ formData, id }))
+            .then(res => {
 
-        const res = await axios.post(`http://localhost:5000/api/v1/quotes/create-a-quote/${id}`, formData,
-            {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Authorization': token
-                },
-                body: formData
+                if (res.payload.status === 200) {
+                    history(`/quotes/${id}`)
+                }
             }
-        )
-        if (res.status === 200) {
-            history(`/quotes/${id}`)
-        }
-
-
+            )
     }
+
+
+
+
     return (
         <div>
             <div {...getRootProps()} className={` ${isDragActive && 'bg-emerald-500 text-slate-50'} h-96 border-2 border-dashed border-blue-500 cursor-pointer`}>
@@ -57,7 +68,13 @@ const DragAndDropFileUploader = () => {
                         <p className=' text-base'>Drag and drop your 3D Printing files anywhere</p>
                         or
                         <p className=' text-base'>You can also browse your computer</p>
-                        <p className='text-sm'>We accept the following CAD files for 3D printing: MESH (.stl), STEP (.stp/.step), SOLIDWORKS (.sldprt), or IGES (.igs/.iges).</p>
+                        <p className='text-sm'>We accept the following CAD files for 3D printing: (.glb) .</p>
+                        {
+                            file.name && <p className=' text-sm text-green-400'><span>Selected file:</span> {file?.name}</p>
+                        }
+                        {
+                            extError && <p className=' text-red-500 text-sm'>{extError}</p>
+                        }
                         <p className=' text-xs '>Maximum File Size: 125 MB</p>
                     </div>
 
@@ -71,7 +88,7 @@ const DragAndDropFileUploader = () => {
                     className=' py-3 px-6 w-44 rounded-lg text-slate-50 text-sm bg-gradient-to-r from-cyan-500 to-blue-500 mt-3 '>Continue</button>
             </div>
 
-    
+
         </div>
     )
 }

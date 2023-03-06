@@ -4,6 +4,7 @@ import { productsApi } from '../Features/products/productApi';
 import { projectsApi } from '../Features/projects/projectsApi';
 import { quotesApi } from '../Features/quotes/quotesApi';
 import AuthSlice from '../Features/User/AuthSlice';
+import createQuoteSlice from '../Features/quotes/quotesSlice';
 import { userApi } from '../Features/User/userApi';
 
 
@@ -16,7 +17,8 @@ const store = configureStore({
         [userApi.reducerPath]: userApi.reducer,
         [projectsApi.reducerPath]: projectsApi.reducer,
         [quotesApi.reducerPath]: quotesApi.reducer,
-        auth: AuthSlice
+        auth: AuthSlice,
+        quote:createQuoteSlice
 
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }).concat(productsApi.middleware, userApi.middleware, projectsApi.middleware, quotesApi.middleware),
