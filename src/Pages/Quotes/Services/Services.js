@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
+import BackButton from '../../../Components/Buttons/BackButton';
 import ServicesCard from '../../../Components/Cards/ServicesCard';
 
 const Services = () => {
@@ -8,6 +9,7 @@ const Services = () => {
     console.log(id);
     return (
         <React.Fragment>
+            <BackButton/>
             <div className=' h-screen flex justify-center items-center'>
 
                 <div>

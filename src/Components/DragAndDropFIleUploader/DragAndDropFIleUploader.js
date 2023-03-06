@@ -1,11 +1,10 @@
-import axios from 'axios';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { BsFillCloudUploadFill } from "react-icons/bs";
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { createQuote } from '../../Redux/Features/quotes/quotesSlice';
-import { token } from '../../Utility/Token/token';
+
 
 const DragAndDropFileUploader = () => {
 
