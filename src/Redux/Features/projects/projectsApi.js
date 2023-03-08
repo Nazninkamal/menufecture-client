@@ -5,7 +5,7 @@ import { token } from '../../../Utility/Token/token';
 export const projectsApi = createApi({
     reducerPath: 'projectsApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api/v1/projects' }),
-    tagTypes: ['projects'],
+    tagTypes: ['Projects'],
     endpoints: (builder) => ({
         getMyProjects: builder.query({
             query: (page) => ({
@@ -13,7 +13,15 @@ export const projectsApi = createApi({
                 method: 'GET',
                 headers: { 'Authorization': token },
             }),
-            providesTags: ['projects']
+            providesTags: ['Projects']
+        }),
+        getSingleMyProjects: builder.query({
+            query: ({ id }) => ({
+                url: `/get-single-project/${id}`,
+                method: 'GET',
+                headers: { 'Authorization': token },
+            }),
+            providesTags: ['Projects']
         }),
         createProject: builder.mutation({
             query: (data) => ({
@@ -22,7 +30,24 @@ export const projectsApi = createApi({
                 body: data,
                 headers: { 'Authorization': token },
             }),
-            providesTags: ['projects']
+            invalidatesTags: ['Projects']
+        }),
+        updateProject: builder.mutation({
+            query: ({ projectName, id }) => ({
+                url: `/update-project/${id}`,
+                method: 'PATCH',
+                body: { projectName },
+                headers: { 'Authorization': token },
+            }),
+            invalidatesTags: ['Projects']
+        }),
+        deleteProject: builder.mutation({
+            query: ({ id }) => ({
+                url: `/delete-project/${id}`,
+                method: 'DELETE',
+                headers: { 'Authorization': token },
+            }),
+            invalidatesTags: ['Projects']
         }),
 
 
@@ -30,4 +55,4 @@ export const projectsApi = createApi({
     })
 })
 
-export const { useGetMyProjectsQuery, useCreateProjectMutation } = projectsApi;
+export const { useGetMyProjectsQuery, useGetSingleMyProjectsQuery, useCreateProjectMutation, useUpdateProjectMutation, useDeleteProjectMutation } = projectsApi;

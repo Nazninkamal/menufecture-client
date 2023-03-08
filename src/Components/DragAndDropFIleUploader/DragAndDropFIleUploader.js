@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { BsFillCloudUploadFill } from "react-icons/bs";
 import { useDispatch } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { createQuote } from '../../Redux/Features/quotes/quotesSlice';
 
 
@@ -16,6 +16,18 @@ const DragAndDropFileUploader = () => {
     const dispatch = useDispatch();
 
 
+    function useQuery() {
+        const { search } = useLocation();
+
+        return React.useMemo(() => new URLSearchParams(search), [search]);
+    }
+
+
+
+    let query = useQuery();
+    const type = query.get("type")
+
+console.log(type);
     const onDrop = useCallback(acceptedFiles => {
 
         if (acceptedFiles[0].name.indexOf(".glb") === -1) {
@@ -40,6 +52,9 @@ const DragAndDropFileUploader = () => {
         }
         const formData = new FormData();
         formData.append("threeDFile", file);
+        formData.append("type", type);
+
+
         dispatch(createQuote({ formData, id }))
             .then(res => {
 

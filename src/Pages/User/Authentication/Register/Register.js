@@ -8,11 +8,15 @@ import { useDispatch, useSelector } from 'react-redux'
 
 
 const SignupSchema = yup.object().shape({
-    fullName: yup.string().required(),
+    fullName: yup.string().required('Name is a required field'),
     email: yup.string().required(),
     password: yup.string().required(),
     confirmPassword: yup.string().required(),
-
+    company: yup.string().required(),
+    country: yup.string().required('Phone Number is a required field'),
+    phoneNumber: yup.string().required(),
+    postalCode: yup.string().required('Postal Code is a required field'),
+    language: yup.string().required(),
 });
 
 
@@ -30,7 +34,7 @@ const Register = () => {
     });
 
     const dispatch = useDispatch();
-    const { isSuccess } = useSelector(state => state.auth)
+    const { isSuccess, isError } = useSelector(state => state.auth)
 
     const [pass1, pass2] = watch(['password', 'confirmPassword'])
 
@@ -51,13 +55,11 @@ const Register = () => {
 
 
 
-    const onSubmit = async ({ password, confirmPassword, fullName, email }) => {
-        const newData = { fullName, email, password }
+    const onSubmit = (data) => {
 
+        dispatch(registration(data))
 
-        dispatch(registration(newData))
-
-
+        console.log(data);
     };
 
 
@@ -80,9 +82,10 @@ const Register = () => {
                         Name
                     </label>
                     <input
-                        // onChange={nameChange}
+
                         {...register("fullName")}
                         type="name"
+                        placeholder='Your full Name'
                         className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                     <p className="text-red-500">{errors.fullName?.message}</p>
@@ -100,10 +103,111 @@ const Register = () => {
 
                         {...register("email")}
                         type="email"
+                        placeholder='Your Email'
                         className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                     <p className="text-red-500">{errors.email?.message}</p>
                 </div>
+
+                <div className="mb-2">
+                    <label
+
+
+                        className="block text-sm font-semibold text-gray-800"
+                    >
+                        Company
+                    </label>
+                    <input
+                        {...register("company")}
+
+                        type="text"
+                        placeholder='Your Company'
+                        className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                    />
+                    <p className="text-red-500 text-sm">{errors.company?.message}</p>
+                </div>
+                <div className="mb-2">
+                    <label
+
+                        className="block text-sm font-semibold text-gray-800"
+                    >
+                        Country
+                    </label>
+                    <select  {...register("country")}
+                        className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                        <option value=""
+                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                        >No select country</option>
+                        <option value="Bangladesh"
+                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                        >Bangladesh</option>
+                        <option value="India"
+                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                        >India</option>
+                        <option value="Pakishtan"
+                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                        >Pakishtan</option>
+                    </select>
+                    <p className="text-red-500 text-sm">{errors.country?.message}</p>
+                </div>
+                <div className="mb-2">
+                    <label
+
+                        className="block text-sm font-semibold text-gray-800"
+                    >
+                        Phone Number
+                    </label>
+                    <input
+                        {...register("phoneNumber")}
+
+                        type="text"
+                        placeholder='Phone Number'
+                        className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                    />
+                    <p className="text-red-500 text-sm">{errors.phoneNumber?.message}</p>
+                </div>
+
+                <div className="mb-2">
+                    <label
+
+                        className="block text-sm font-semibold text-gray-800"
+                    >
+                        Postal Code
+                    </label>
+                    <input
+                        {...register("postalCode")}
+
+                        type="text"
+                        placeholder='Postal Code'
+                        className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                    />
+                    <p className="text-red-500 text-sm">{errors.postalCode?.message}</p>
+                </div>
+
+
+                <div className="mb-2">
+                    <label
+
+                        className="block text-sm font-semibold text-gray-800"
+                    >
+                        Language
+                    </label>
+                    <select  {...register("language")}
+                        className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                        <option value="Bangla"
+                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                        >Bangla</option>
+                        <option value="Hindi"
+                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                        >Hindi</option>
+                        <option value="Urdu"
+                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                        >Urdu</option>
+                    </select>
+                    <p className="text-red-500 text-sm">{errors.language?.message}</p>
+                </div>
+
+
                 <div className="mb-2">
                     <label
 
@@ -116,6 +220,7 @@ const Register = () => {
                         {...register("password")}
 
                         type="password"
+                        placeholder='Password'
                         className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                     <p className="text-red-500">{errors.password?.message}</p>
@@ -131,6 +236,7 @@ const Register = () => {
                         {...register("confirmPassword")}
 
                         type="password"
+                        placeholder='Confirm Password'
                         className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                     <p className="text-red-500">{errors.confirmPassword?.message}</p>

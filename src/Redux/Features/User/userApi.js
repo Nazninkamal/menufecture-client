@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { token } from '../../../Utility/Token/token';
 
 
 export const userApi = createApi({
@@ -22,13 +23,14 @@ export const userApi = createApi({
             }),
             providesTags: ['user']
         }),
-        loginUser: builder.mutation({
+        changePassword: builder.mutation({
             query: (data) => ({
-                url: `/login`,
-                method: 'POST',
+                url: `/update-password`,
+                method: 'PATCH',
+                headers: { 'Authorization': token },
                 body: data
             }),
-            providesTags: ['user']
+            invalidatesTags: ['user']
         }),
         registerUser: builder.mutation({
             query: (data) => ({
@@ -36,10 +38,10 @@ export const userApi = createApi({
                 method: 'POST',
                 body: data
             }),
-            providesTags: ['user']
+            invalidatesTags: ['user']
         }),
 
     })
 })
 
-export const { useLoginUserMutation, useRegisterUserMutation, useGetAllUsersQuery, useGetMeQuery } = userApi;
+export const { useChangePasswordMutation,  useGetAllUsersQuery, useGetMeQuery } = userApi;
