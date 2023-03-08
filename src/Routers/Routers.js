@@ -1,13 +1,15 @@
 import { createBrowserRouter, } from "react-router-dom";
 import DashboardHome from "../Dashboard/DashboardHome";
 import DashboardLayout from "../Dashboard/DashboardLayout";
-import CreateProject from "../Pages/Projects/CreateProject";
+import CreateProjectForm from "../Pages/Projects/CreateProjectForm";
 import Projects from "../Pages/Projects/Projects";
 import Configure from "../Pages/Quotes/Configure/Configure";
 import CreateQuote from "../Pages/Quotes/CreateQuote/CreateQuote";
 import Quotes from "../Pages/Quotes/Quotes/Quotes";
 import Services from "../Pages/Quotes/Services/Services";
 import AuthLayout from "../Pages/User/Authentication/AuthLayout/AuthLayout";
+import Profile from "../Pages/User/Profile/Profile";
+import NoteFoundPage from "../Utility/404/NoteFoundPage";
 import PrivateRoute from "./PrivateRoute";
 
 
@@ -49,7 +51,11 @@ export const routers = createBrowserRouter([
             },
             {
                 path: "/create-project",
-                element: <CreateProject />
+                element: <CreateProjectForm />
+            },
+            {
+                path: "/profile",
+                element: <Profile />
             },
 
 
@@ -58,6 +64,10 @@ export const routers = createBrowserRouter([
     {
         path: "/login",
         element: <AuthLayout />,
-    }
+    },
+    {
+        path: "*",
+        element: <NoteFoundPage />,
+    },
 
 ]);

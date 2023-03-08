@@ -28,7 +28,7 @@ export const userApi = createApi({
                 method: 'POST',
                 body: data
             }),
-            providesTags: ['user']
+            invalidatesTags: ['user']
         }),
         registerUser: builder.mutation({
             query: (data) => ({
@@ -36,7 +36,7 @@ export const userApi = createApi({
                 method: 'POST',
                 body: data
             }),
-            providesTags: ['user']
+            invalidatesTags: ['user']
         }),
 
     })

@@ -1,82 +1,45 @@
-import React, { useEffect } from 'react';
-import * as yup from "yup";
-import { useNavigate } from 'react-router-dom';
-import { useCreateProjectMutation } from '../../Redux/Features/projects/projectsApi';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import BackButton from '../../Components/Buttons/BackButton';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { IoMdAddCircle } from 'react-icons/io';
+import Card from '../../Components/Cards/Card';
 
-
-const SignupSchema = yup.object().shape({
-    projectName: yup.string().required(),
-
-
-});
-
-const NewProject = () => {
-    const history = useNavigate();
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors }
-    } = useForm({
-        resolver: yupResolver(SignupSchema)
-    });
-
-    const [createProject, { data, isError, isSuccess }] = useCreateProjectMutation();
-
-    console.log(data?.result?._id);
-
-    useEffect(() => {
-        if (isSuccess) {
-            history(`/quotes/${data?.result?._id}`)
-        }
-    }, [isSuccess, history, data?.result?._id])
-
-    const handleCreateProject = ({ projectName }) => {
-        createProject({ projectName })
-
-    }
+const CreateProject = () => {
     return (
+        <div className=' col-span-10 sm:col-span-5 md:col-span-2 '>
+            <Card>
+
+                <div className=' p-5 h-64 flex justify-center items-center'>
+                    <div>
+                        <Link to="/create-project">
+                            <IoMdAddCircle className='mx-auto w-20 h-20 text-indigo-500' />
 
 
-        <div>
-            <BackButton />
-            <div className=' flex  justify-center  items-center h-screen'>
+                            <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white text-center">Create your projects</h5>
 
-                <div>
-                    <div className=' text-center'>
-                        <h1 className=' pb-8 font-serif font-light uppercase  text-gray-500'>Name you projects</h1>
+                            <p className="mb-3 font-normal text-sm text-gray-500 dark:text-gray-400 text-center">
+                                Go to this step by step guideline process on how to create your customize project
+                            </p>
+                        </Link>
+                        <div className='text-center'>
+                            <a href="/#" className="inline-flex items-center text-blue-600 hover:underline">
+                                <h6 >See our guideline</h6>
+                                <svg className="w-5 h-5 ml-2" fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+
+                                    <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z">
+
+                                    </path>
+                                    <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
-                    <form onSubmit={handleSubmit(handleCreateProject)}>
-                        <div className="relative  w-115">
-
-
-                            <input
-                                {...register("projectName")}
-                                type="text"
-                                id="floating_filled" className="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                            <label className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Project name</label>
-                            <p className="text-red-500 text-xs">{errors.projectName?.message}</p>
-                        </div>
-
-                        <p className=' mt-5 text-center text-xs text-gray-500 mb-2'>Examples: Insulin Pump, Quadcopter, Fixture</p>
-
-                        <div className=' text-center'>
-                            <button
-
-                                type='submit'
-
-                                className=' py-3 px-6 w-44 rounded-lg text-slate-50 text-sm bg-gradient-to-r from-cyan-500 to-blue-500 mt-3 '>Continue</button>
-                        </div>
-                    </form>
                 </div>
-            </div>
+
+            </Card>
         </div>
-
-
     );
 };
 
-export default NewProject;
+export default CreateProject;
