@@ -8,6 +8,7 @@ import CreateQuote from "../Pages/Quotes/CreateQuote/CreateQuote";
 import Quotes from "../Pages/Quotes/Quotes/Quotes";
 import Services from "../Pages/Quotes/Services/Services";
 import AuthLayout from "../Pages/User/Authentication/AuthLayout/AuthLayout";
+import User from "../Pages/User/User";
 import PrivateRoute from "./PrivateRoute";
 
 
@@ -20,6 +21,11 @@ export const routers = createBrowserRouter([
             {
                 path: "/",
                 element: <DashboardHome />,
+
+            },
+            {
+                path: "/user",
+                element: <User />,
 
             },
             {
