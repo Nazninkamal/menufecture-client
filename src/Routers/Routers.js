@@ -8,7 +8,9 @@ import CreateQuote from "../Pages/Quotes/CreateQuote/CreateQuote";
 import Quotes from "../Pages/Quotes/Quotes/Quotes";
 import Services from "../Pages/Quotes/Services/Services";
 import AuthLayout from "../Pages/User/Authentication/AuthLayout/AuthLayout";
+import Password from "../Pages/User/Profile/Password";
 import Profile from "../Pages/User/Profile/Profile";
+import ProfileUpdateForm from "../Pages/User/Profile/ProfileUpdateForm";
 import NoteFoundPage from "../Utility/404/NoteFoundPage";
 import PrivateRoute from "./PrivateRoute";
 
@@ -55,7 +57,18 @@ export const routers = createBrowserRouter([
             },
             {
                 path: "/profile",
-                element: <Profile />
+                element: <Profile />,
+                children: [
+                    {
+                        path: '/profile',
+                        element: <ProfileUpdateForm />
+                    },
+                    {
+                        path: '/profile/password',
+                        element: <Password />
+                    },
+                   
+                ]
             },
 
 
