@@ -6,12 +6,12 @@ module.exports = {
   ],
   theme: {
     extend: {
-      spacing: {
-        '100': '28rem',
-        '105': '32rem',
-        '110': '36rem',
-        '115': '40rem',
-      }
+      // spacing: {
+      //   '100': '28rem',
+      //   '105': '32rem',
+      //   '110': '36rem',
+      //   '115': '40rem',
+      // }
     },
     plugins: [],
   }
