@@ -4,7 +4,7 @@ import { token } from '../../../Utility/Token/token';
 
 
 const initialState = {
-    isLoading: true,
+    isLoading: false,
     isError: false,
     error: '',
 

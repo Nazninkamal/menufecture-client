@@ -14,6 +14,26 @@ export const quotesApi = createApi({
             }),
             providesTags: ['quotes']
         }),
+        getMySingleQuotes: builder.query({
+            query: ({ id }) => ({
+                url: `/get-my-single-quote/${id}`,
+                headers: { 'Authorization': token },
+            }),
+            providesTags: ['quotes']
+        }),
+
+
+        updateMySingleQuotes: builder.mutation({
+            query: ({ id, configure }) => ({
+                url: `/update-my-quote/${id}`,
+                method: 'PATCH',
+                headers: { 'Authorization': token },
+                body: configure
+            }),
+            invalidatesTags: ['quotes']
+        }),
+
+
         createQuotes: builder.mutation({
             query: (threeDFile) =>
             ({
@@ -27,7 +47,7 @@ export const quotesApi = createApi({
                 body: threeDFile,
             })
             ,
-            providesTags: ['quotes']
+            invalidatesTags: ['quotes']
         }),
 
 
@@ -35,4 +55,4 @@ export const quotesApi = createApi({
     })
 })
 
-export const { useGetMyQuotesQuery, useCreateQuotesMutation } = quotesApi;
+export const { useGetMyQuotesQuery, useGetMySingleQuotesQuery, useUpdateMySingleQuotesMutation, useCreateQuotesMutation } = quotesApi;

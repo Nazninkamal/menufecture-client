@@ -1,11 +1,20 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { Loading } from '../../../Components/Buttons/LoadingButton';
+import { useGetMeQuery } from '../../../Redux/Features/User/userApi';
 
 const ProfileDetails = () => {
-  const {user} =useSelector(state=>state?.auth);
+
+  const {data:userData,isLoading}=useGetMeQuery();
+
+const user=userData?.result;
+
+
+
   return (
-    <div className='pt-16'>
-      <div className="overflow-hidden bg-white shadow sm:rounded-lg ">
+    <div className='pt-16 h-screen overflow-y-auto flex justify-center items-center '>
+      {
+        isLoading?<Loading/>:
+        <div className=" bg-white shadow sm:rounded-lg w-full">
         <div className="px-4 py-5 sm:px-6">
           <h3 className="text-base font-semibold leading-6 text-gray-900">Your Profile Details</h3>
           <p className="mt-1 max-w-2xl text-sm text-gray-500">Personal details and contact info</p>
@@ -60,6 +69,7 @@ const ProfileDetails = () => {
           </dl>
         </div>
       </div>
+      }
     </div>
   )
 };

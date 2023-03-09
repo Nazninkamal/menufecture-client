@@ -34,7 +34,8 @@ const Register = () => {
     });
 
     const dispatch = useDispatch();
-    const { isSuccess, isError } = useSelector(state => state.auth)
+
+    const { isSuccess } = useSelector(state => state.auth)
 
     const [pass1, pass2] = watch(['password', 'confirmPassword'])
 
@@ -59,7 +60,6 @@ const Register = () => {
 
         dispatch(registration(data))
 
-        console.log(data);
     };
 
 

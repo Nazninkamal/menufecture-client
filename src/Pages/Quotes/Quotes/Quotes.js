@@ -11,7 +11,7 @@ const Quotes = () => {
 
     const { data: quotes } = useGetMyQuotesQuery({ id }, { refetchOnMountOrArgChange: true });
 
-    console.log(quotes);
+  
 
     return (
         <div>

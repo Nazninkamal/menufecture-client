@@ -1,7 +1,7 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { BsFillCloudUploadFill } from "react-icons/bs";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { createQuote } from '../../Redux/Features/quotes/quotesSlice';
 
@@ -14,6 +14,9 @@ const DragAndDropFileUploader = () => {
     const history = useNavigate();
 
     const dispatch = useDispatch();
+    const { isLoading} = useSelector(state => state?.quote);
+
+
 
 
     function useQuery() {
@@ -27,7 +30,7 @@ const DragAndDropFileUploader = () => {
     let query = useQuery();
     const type = query.get("type")
 
-console.log(type);
+
     const onDrop = useCallback(acceptedFiles => {
 
         if (acceptedFiles[0].name.indexOf(".glb") === -1) {
@@ -65,7 +68,11 @@ console.log(type);
             )
     }
 
-
+    useEffect(() => {
+        if (isLoading) {
+            <h1>Loading...</h1>
+        }
+    }, [isLoading])
 
 
     return (

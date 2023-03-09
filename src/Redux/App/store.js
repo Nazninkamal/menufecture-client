@@ -6,6 +6,7 @@ import { quotesApi } from '../Features/quotes/quotesApi';
 import AuthSlice from '../Features/User/AuthSlice';
 import createQuoteSlice from '../Features/quotes/quotesSlice';
 import { userApi } from '../Features/User/userApi';
+import configureSlice from '../Features/quotes/configureSlice';
 
 
 
@@ -18,7 +19,8 @@ const store = configureStore({
         [projectsApi.reducerPath]: projectsApi.reducer,
         [quotesApi.reducerPath]: quotesApi.reducer,
         auth: AuthSlice,
-        quote:createQuoteSlice
+        quote:createQuoteSlice,
+        configure:configureSlice
 
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }).concat(productsApi.middleware, userApi.middleware, projectsApi.middleware, quotesApi.middleware),
