@@ -11,7 +11,7 @@ const user=userData?.result;
 
 
   return (
-    <div className='pt-16 h-screen overflow-y-auto flex justify-center items-center '>
+    <div className='pt-16  '>
       {
         isLoading?<Loading/>:
         <div className=" bg-white shadow sm:rounded-lg w-full">
