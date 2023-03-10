@@ -24,15 +24,10 @@ const MaterialInfo = () => {
   const { id } = useParams();
   const { data:configureData } = useGetMySingleQuotesQuery({ id });
   const [updateQuote] = useUpdateMySingleQuotesMutation();
-
-
-
-
-
-
+  const dispatch=useDispatch();
   const [quantity, setQuantity] = useState(undefined);
-
-
+const [singleResolution,setSingleResolution]=useState({});
+const [singleSLA,setSingleSLA]=useState({});
 
   const {
     register,
@@ -48,10 +43,15 @@ const MaterialInfo = () => {
 
 
 
-  const singleSLA = SLA?.find(s => s?.material === material);
+  
+  useEffect(()=>{
+    const singleSLA = SLA?.find(s => s?.material === material);
   const singleResolution = singleSLA?.resolution?.find(s => s?.title === resolution);
+  setSingleResolution(singleResolution);
+  setSingleSLA(singleSLA)
 
-  const dispatch=useDispatch();
+},[material,resolution]);
+  
  
 
 
