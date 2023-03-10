@@ -1,56 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import { useForm } from "react-hook-form";
 import { ImPlus, ImMinus } from 'react-icons/im'
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+
 import { SLA } from './MaterialsData/MaterialsData';
 import { useDispatch } from 'react-redux';
 import { createConfigure } from '../../../Redux/Features/quotes/configureSlice';
 import { useParams } from 'react-router-dom';
 import { useGetMySingleQuotesQuery, useUpdateMySingleQuotesMutation } from '../../../Redux/Features/quotes/quotesApi';
 
-const MaterialInfo = () => {
+const MaterialInfo = ({register,watch,reset,errors}) => {
 
 
-  const SignupSchema = yup.object().shape({
-    material: yup.string().required('Material is a required field'),
-    resolution: yup.string().required('Resolution is a required field'),
-    orientation: yup.string().required('Orientation is a required field'),
-    finish: yup.string().required('Finish is a required field'),
 
-
-  });
 
   const { id } = useParams();
   const { data:configureData } = useGetMySingleQuotesQuery({ id });
-  const [updateQuote] = useUpdateMySingleQuotesMutation();
+  const [updateQuote] = useUpdateMySingleQuotesMutation({ id });
   const dispatch=useDispatch();
   const [quantity, setQuantity] = useState(undefined);
-const [singleResolution,setSingleResolution]=useState({});
-const [singleSLA,setSingleSLA]=useState({});
+/* const [singleResolution,setSingleResolution]=useState({});
+const [singleSLA,setSingleSLA]=useState({}); */
 
-  const {
-    register,
-    watch,
-    reset,
-    formState: { errors }
-  } = useForm({
-    resolver: yupResolver(SignupSchema)
-  });
-
+ 
 
   const [material, resolution, orientation, finish] = watch(['material', 'resolution', 'orientation', 'finish']);
 
 
 
   
-  useEffect(()=>{
+
     const singleSLA = SLA?.find(s => s?.material === material);
   const singleResolution = singleSLA?.resolution?.find(s => s?.title === resolution);
-  setSingleResolution(singleResolution);
-  setSingleSLA(singleSLA)
+  
 
-},[material,resolution]);
+
   
  
 
@@ -90,9 +72,11 @@ const [singleSLA,setSingleSLA]=useState({});
 
 
 
+ 
+
 
   return (
-    <form >
+    
 
       <div className="w-full rounded-lg shadow-md lg:max-w-100 xl:w-100 p-5" >
         <h1>1. Material and Finish.</h1>
@@ -239,7 +223,7 @@ const [singleSLA,setSingleSLA]=useState({});
       </div>
 
 
-    </form>
+ 
 
 
   );

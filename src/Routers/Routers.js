@@ -14,6 +14,7 @@ import Profile from "../Pages/User/Profile/Profile";
 import ProfileUpdateForm from "../Pages/User/Profile/ProfileUpdateForm";
 import NoteFoundPage from "../Utility/404/NoteFoundPage";
 import PrivateRoute from "./PrivateRoute";
+import ApplyForSupplierFrom from "../Pages/User/Profile/ApplyForSupplier";
 
 
 
@@ -72,6 +73,10 @@ export const routers = createBrowserRouter([
                     {
                         path: '/profile/details/update',
                         element: <ProfileUpdateForm />
+                    },
+                    {
+                        path: '/profile/applyForSupplier',
+                        element: <ApplyForSupplierFrom />
                     },
 
                 ]

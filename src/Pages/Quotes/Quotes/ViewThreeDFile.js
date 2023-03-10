@@ -26,7 +26,7 @@ const ViewThreeDFile = ({ file, OrbitControl }) => {
 
         {OrbitControl && <OrbitControls />}
 
-        <sphereGeometry />
+        {/* <sphereGeometry /> */}
 
         <Scene />
         <Environment preset="warehouse" />
