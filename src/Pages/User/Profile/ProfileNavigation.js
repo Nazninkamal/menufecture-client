@@ -34,7 +34,7 @@ const ProfileNavigation = () => {
                             `${isActive && activeClassName} text-sm p-2 duration-500`
                         }
                     >
-                      Update Details
+                        Update Details
                     </span>
                 )}
             </NavLink>
@@ -47,6 +47,18 @@ const ProfileNavigation = () => {
                         }
                     >
                         Password Change
+                    </span>
+                )}
+            </NavLink>
+            <NavLink to='/profile/applyForSupplier' className="pr-4">
+
+                {({ isActive }) => (
+                    <span
+                        className={
+                            `${isActive && activeClassName} text-sm p-2 duration-500`
+                        }
+                    >
+                        Apply For Supplier
                     </span>
                 )}
             </NavLink>

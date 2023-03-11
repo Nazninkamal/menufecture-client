@@ -5,6 +5,7 @@ import SharedBar from '../../../Components/SharedBar/SharedBar';
 import MaterialInfo from './MaterialInfo';
 import QuotePrinting from './QuotePrinting';
 import * as yup from "yup";
+import { useParams } from 'react-router-dom';
 const Configure = () => {
 
     const SignupSchema = yup.object().shape({
@@ -25,11 +26,16 @@ const Configure = () => {
     } = useForm({
         resolver: yupResolver(SignupSchema)
     });
+  
 
 
-    const onSubmit = (data) => {
-        console.log(data);
+    const onSubmit = () => {
+       
+       
     }
+
+
+
     return (
         <>
             <SharedBar pageName={"Configure Part"} />
@@ -39,7 +45,7 @@ const Configure = () => {
                 <div className="grid gap-3 lg:grid-cols-2 md:grid-cols-2 xl:grid-cols-2 my-10 mx-5 w-full">
                     <MaterialInfo register={register} watch={watch} reset={reset} errors={errors} />
                    
-                    <QuotePrinting onSubmit={onSubmit} />
+                    <QuotePrinting onclick={onSubmit} />
                 </div>
             </form>
         </>
