@@ -62,6 +62,9 @@ const MaterialInfo = ({ register, watch, reset, errors }) => {
     quantity: singleSLA?.material && quantity,
     id: id
   }
+
+
+  
   useEffect(() => {
 
     dispatch(createConfigure(configure))

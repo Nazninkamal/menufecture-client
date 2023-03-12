@@ -4,6 +4,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { registration } from '../../../../Redux/Features/User/AuthSlice';
 import { useDispatch, useSelector } from 'react-redux'
+import { countryListAllIsoData } from '../../../../Utility/CountryList/CountryList';
+import { languages_list } from '../../../../Utility/CountryList/Languagelist';
 
 
 
@@ -138,15 +140,13 @@ const Register = () => {
                         <option value=""
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         >No select country</option>
-                        <option value="Bangladesh"
+                        {countryListAllIsoData?.map((country,index) => <option key={index} value={country?.name}
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                        >Bangladesh</option>
-                        <option value="India"
-                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                        >India</option>
-                        <option value="Pakishtan"
-                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                        >Pakishtan</option>
+                        >{country?.name}</option>
+
+                        )}
+
+
                     </select>
                     <p className="text-red-500 text-sm">{errors.country?.message}</p>
                 </div>
@@ -194,15 +194,14 @@ const Register = () => {
                     </label>
                     <select  {...register("language")}
                         className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
-                        <option value="Bangla"
+                        {languages_list?.map((country,index) => <option key={index} value={country?.name}
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                        >Bangla</option>
-                        <option value="Hindi"
-                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                        >Hindi</option>
-                        <option value="Urdu"
-                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                        >Urdu</option>
+                        >{country?.name}</option>
+
+                        )}
+
+
+
                     </select>
                     <p className="text-red-500 text-sm">{errors.language?.message}</p>
                 </div>

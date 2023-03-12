@@ -5,6 +5,8 @@ import * as yup from "yup";
 import { useApplyForSupplierMutation, useGetApplyForSupplierQuery, useGetMeQuery, useMakeAddApplyForSupplierMutation } from '../../../Redux/Features/User/userApi';
 import { Loading } from '../../../Components/Buttons/LoadingButton';
 import { toast } from 'react-hot-toast';
+import { countryListAllIsoData } from '../../../Utility/CountryList/CountryList';
+import { languages_list } from '../../../Utility/CountryList/Languagelist';
 
 
 
@@ -42,12 +44,12 @@ const ApplyForSupplierFrom = () => {
 
     const [applyForSupplier, { isLoading: isLoadingApplyForSupplier, isSuccess: isSuccessApplyForSupplier, isError: isErrorApplyForSupplier, error }] = useApplyForSupplierMutation();
 
-const {data:getApplySupplier}=useGetApplyForSupplierQuery();
-const [makeAddSupplier]=useMakeAddApplyForSupplierMutation();
+    const { data: getApplySupplier } = useGetApplyForSupplierQuery();
+    const [makeAddSupplier] = useMakeAddApplyForSupplierMutation();
 
-const handleMakeSupplier=(email)=>{
-    makeAddSupplier(email);
-}
+    const handleMakeSupplier = (email) => {
+        makeAddSupplier(email);
+    }
 
 
     console.log(getApplySupplier?.result?.supplier);
@@ -156,20 +158,16 @@ const handleMakeSupplier=(email)=>{
                                 Country
                             </label>
                             <select  {...register("country")}
-                                disabled
+                               
                                 className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 text-sm">
                                 <option value=""
 
                                 >No select country</option>
-                                <option value="Bangladesh"
+                                {countryListAllIsoData?.map((country, index) => <option key={index} value={country?.name}
+                                    className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                >{country?.name}</option>
 
-                                >Bangladesh</option>
-                                <option value="India"
-
-                                >India</option>
-                                <option value="Pakishtan"
-
-                                >Pakishtan</option>
+                                )}
                             </select>
                             <p className="text-red-500 text-sm">{errors.country?.message}</p>
                         </div>
@@ -218,15 +216,11 @@ const handleMakeSupplier=(email)=>{
                             <select  {...register("language")}
 
                                 className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 text-sm">
-                                <option value="Bangla"
+                                {languages_list?.map((country, index) => <option key={index} value={country?.name}
+                                    className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                >{country?.name}</option>
 
-                                >Bangla</option>
-                                <option value="Hindi"
-
-                                >Hindi</option>
-                                <option value="Urdu"
-
-                                >Urdu</option>
+                                )}
                             </select>
                             <p className="text-red-500 text-sm">{errors.language?.message}</p>
                         </div>
