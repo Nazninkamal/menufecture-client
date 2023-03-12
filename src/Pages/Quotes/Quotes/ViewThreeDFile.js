@@ -22,11 +22,11 @@ const ViewThreeDFile = ({ file, OrbitControl }) => {
 
   return (
     <Suspense fallback={<Loading />}>
-      <Canvas frameloop="always" legacy={true} scale={52}>
+      <Canvas  legacy={true} scale={52}>
 
         {OrbitControl && <OrbitControls />}
 
-        {/* <sphereGeometry /> */}
+    
 
         <Scene />
         <Environment preset="warehouse" />

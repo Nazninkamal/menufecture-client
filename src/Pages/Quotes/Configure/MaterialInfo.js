@@ -1,76 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ImPlus, ImMinus } from 'react-icons/im'
 
 import { SLA } from './MaterialsData/MaterialsData';
-import { useDispatch } from 'react-redux';
-import { createConfigure } from '../../../Redux/Features/quotes/configureSlice';
-import { useParams } from 'react-router-dom';
+
+
+import { useGetMySingleQuotesQuery } from '../../../Redux/Features/quotes/quotesApi';
 
 
 
-const MaterialInfo = ({ register, watch, reset, errors }) => {
+const MaterialInfo = ({ register, watch, errors, reset, id, setQuantity, quantity, singleSLA }) => {
 
 
-
-
-  const { id } = useParams();
-
-
-  const dispatch = useDispatch();
-  const [quantity, setQuantity] = useState(1);
-  const [singleResolution, setSingleResolution] = useState({});
-  const [singleSLA, setSingleSLA] = useState({});
-
-
-  const res = JSON?.parse(localStorage?.getItem("configure"))?.find(con => con?.id === id);
-
-  const handleCLick = () => {
-    console.log(res);
-  }
-
-
-  const [material, resolution, orientation, finish] = watch(['material', 'resolution', 'orientation', 'finish']);
+  const { data } = useGetMySingleQuotesQuery({ id });
 
 
 
 
 
-
-
+  const resetAsyncForm = useCallback(async () => {
+    await reset(data?.result)
+    await setQuantity(data?.result?.quantity)
+  }, [reset, data?.result, setQuantity]);
 
 
   useEffect(() => {
-    const singleSLA = SLA?.find(s => s?.material === material);
-    const singleResolution = singleSLA?.resolution?.find(s => s?.title === resolution);
-    setSingleSLA(singleSLA);
-    setSingleResolution(singleResolution);
-
-  }, [material, resolution]);
-
-
-
-
-
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const configure = {
-    material: singleSLA?.material,
-    resolution: singleSLA?.material && singleResolution?.title,
-    price: singleSLA?.material && parseInt(Number(singleResolution?.price)) * quantity,
-    orientation: singleSLA?.material && orientation,
-    finish: singleSLA?.material && finish,
-    quantity: singleSLA?.material && quantity,
-    id: id
-  }
-
-
-  
-  useEffect(() => {
-
-    dispatch(createConfigure(configure))
-    
-
-  }, [configure, dispatch,id])
+    resetAsyncForm();
+  }, [resetAsyncForm])
 
 
 
@@ -84,7 +39,7 @@ const MaterialInfo = ({ register, watch, reset, errors }) => {
     <div className="w-full rounded-lg shadow-md lg:max-w-100 xl:w-100 p-5" >
       <h1>1. Material and Finish.</h1>
       <p className='text-sm'>3D Printing selections for: 1 Part</p>
-      <button type='button' onClick={handleCLick}>CLick</button>
+
       <div className='flex  justify-between mt-5  text-sm'>
         <p className='text-base mt-3'>Material</p>
 
@@ -94,7 +49,7 @@ const MaterialInfo = ({ register, watch, reset, errors }) => {
           <div className="mb-2">
 
             <select
-              {...register("material")}
+              {...register("material", { required: true })}
 
               className="block  w-56 px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 text-sm ">
 
@@ -117,6 +72,8 @@ const MaterialInfo = ({ register, watch, reset, errors }) => {
               }
 
             </select>
+
+
             <p className="text-red-500">{errors.material?.message}</p>
           </div>
 
@@ -133,7 +90,7 @@ const MaterialInfo = ({ register, watch, reset, errors }) => {
           <div className="mb-2">
 
             <select
-              {...register("resolution")}
+              {...register("resolution", { required: true })}
               disabled={!singleSLA && !watch("input-a")}
               className="block w-56 px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 text-sm  ">
 
@@ -167,7 +124,7 @@ const MaterialInfo = ({ register, watch, reset, errors }) => {
           {/*************************** Finish   ***************************/}
           <div className="mb-2">
             <select
-              {...register("finish")}
+              {...register("finish", { required: true })}
               disabled={!singleSLA && !watch("input-a")}
               className="block w-56 px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 text-sm  ">
               <option value=""
@@ -190,7 +147,7 @@ const MaterialInfo = ({ register, watch, reset, errors }) => {
           {/*************************** Orientation    ***************************/}
           <div className="mb-2">
             <select
-              {...register("orientation")}
+              {...register("orientation", { required: true })}
               disabled={!singleSLA && !watch("input-a")}
               className="block w-56 px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 text-sm  ">
               <option value=""
@@ -222,7 +179,7 @@ const MaterialInfo = ({ register, watch, reset, errors }) => {
                 }
               }}
               type="button"
-              // disabled={!singleSLA && !watch("input-a")}
+              disabled={!singleSLA && !watch("input-a")}
               className='block text-center  mx-2 px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40'>
               <ImMinus />
             </button>
@@ -246,7 +203,12 @@ const MaterialInfo = ({ register, watch, reset, errors }) => {
           </div>
         </div>
       </div>
+
     </div>
+
+
+
+
 
 
 

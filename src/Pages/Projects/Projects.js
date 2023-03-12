@@ -17,7 +17,7 @@ const Projects = () => {
 
 
     const [isModal, setModal] = useState(false);
-    const [id, setId] = useState(false);
+    const [id, setId] = useState('');
 
 
 
@@ -31,7 +31,7 @@ const Projects = () => {
         setModal(true)
     }
 
-    console.log(id);
+  
     return (
         <div>
 
