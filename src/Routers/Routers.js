@@ -18,6 +18,8 @@ import ApplyForSupplierFrom from "../Pages/User/Profile/ApplyForSupplier";
 import UserHomePage from "../Pages/User/UserHomePage/UserHomePage";
 import SupplierHomePage from "../Pages/Supplier/SupplierHomePage/SupplierHomePage";
 import AdminHomePage from "../Pages/Admin/AdminHomePage/AdminHomePage";
+import SupplierRequest from "../Pages/Admin/SupplierRequest/SupplierRequest";
+import QuoteRequest from "../Pages/Supplier/QuoteRequest/QuoteRequest";
 
 
 
@@ -39,6 +41,16 @@ export const routers = createBrowserRouter([
             {
                 path: "/adminDashboard",
                 element: <AdminHomePage />,
+
+            },
+            {
+                path: "/supplierRequiest",
+                element: <SupplierRequest />,
+
+            },
+            {
+                path: "/quoteRequiest",
+                element: <QuoteRequest />,
 
             },
            

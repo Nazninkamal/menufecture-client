@@ -3,7 +3,7 @@ import React from 'react';
 const QuoteRequest = () => {
     return (
         <div>
-            QuoteRequest
+            QuoteRequest arrives here
         </div>
     );
 };
