@@ -16,11 +16,11 @@ const CreateProject = () => {
 
                             <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white text-center">Create your projects</h5>
 
-                            <p className="mb-3 font-normal text-sm text-gray-500 dark:text-gray-400 text-center">
+                            {/* <p className="mb-3 font-normal text-sm text-gray-500 dark:text-gray-400 text-center">
                                 Go to this step by step guideline process on how to create your customize project
-                            </p>
+                            </p> */}
                         </Link>
-                        <div className='text-center'>
+                        {/* <div className='text-center'>
                             <a href="/#" className="inline-flex items-center text-blue-600 hover:underline">
                                 <h6 >See our guideline</h6>
                                 <svg className="w-5 h-5 ml-2" fill="currentColor"
@@ -33,7 +33,7 @@ const CreateProject = () => {
                                     <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
                                 </svg>
                             </a>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
 
