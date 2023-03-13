@@ -18,6 +18,7 @@ import ApplyForSupplierFrom from "../Pages/User/Profile/ApplyForSupplier";
 import UserHomePage from "../Pages/User/UserHomePage/UserHomePage";
 import SupplierHomePage from "../Pages/Supplier/SupplierHomePage/SupplierHomePage";
 import AdminHomePage from "../Pages/Admin/AdminHomePage/AdminHomePage";
+import OrderReviewQuote from "../Pages/Quotes/Configure/ReviewQuote/OrderReviewQuote";
 
 
 
@@ -41,7 +42,7 @@ export const routers = createBrowserRouter([
                 element: <AdminHomePage />,
 
             },
-           
+
             {
                 path: "/projects",
                 element: <Projects />,
@@ -72,6 +73,10 @@ export const routers = createBrowserRouter([
                 element: <CreateProjectForm />
             },
             {
+                path: '/profile/OrderReviewQuote/:id',
+                element: <OrderReviewQuote />
+            },
+            {
                 path: "/profile",
                 element: <Profile />,
                 children: [
@@ -92,6 +97,7 @@ export const routers = createBrowserRouter([
                         element: <ApplyForSupplierFrom />
                     },
 
+                    
                 ]
             },
 
