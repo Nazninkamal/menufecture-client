@@ -15,6 +15,7 @@ import ProfileUpdateForm from "../Pages/User/Profile/ProfileUpdateForm";
 import NoteFoundPage from "../Utility/404/NoteFoundPage";
 import PrivateRoute from "./PrivateRoute";
 import ApplyForSupplierFrom from "../Pages/User/Profile/ApplyForSupplier";
+import UserHomePage from "../Pages/User/UserHomePage/UserHomePage";
 
 
 
@@ -25,7 +26,7 @@ export const routers = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <DashboardHome />,
+                element: <UserHomePage />,
 
             },
            
