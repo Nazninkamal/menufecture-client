@@ -19,7 +19,6 @@ const ProjectRename = ({ setModal, id }) => {
         register,
         handleSubmit,
         reset,
-
         formState: { errors }
     } = useForm({
         resolver: yupResolver(RenameProjectSchema),

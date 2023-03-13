@@ -15,6 +15,7 @@ import ProfileUpdateForm from "../Pages/User/Profile/ProfileUpdateForm";
 import NoteFoundPage from "../Utility/404/NoteFoundPage";
 import PrivateRoute from "./PrivateRoute";
 import ApplyForSupplierFrom from "../Pages/User/Profile/ApplyForSupplier";
+import OrderReviewQuote from "../Pages/Quotes/Configure/ReviewQuote/OrderReviewQuote";
 
 
 
@@ -28,7 +29,7 @@ export const routers = createBrowserRouter([
                 element: <DashboardHome />,
 
             },
-           
+
             {
                 path: "/projects",
                 element: <Projects />,
@@ -59,6 +60,10 @@ export const routers = createBrowserRouter([
                 element: <CreateProjectForm />
             },
             {
+                path: '/profile/OrderReviewQuote/:id',
+                element: <OrderReviewQuote />
+            },
+            {
                 path: "/profile",
                 element: <Profile />,
                 children: [
@@ -79,6 +84,7 @@ export const routers = createBrowserRouter([
                         element: <ApplyForSupplierFrom />
                     },
 
+                    
                 ]
             },
 

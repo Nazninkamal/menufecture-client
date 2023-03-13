@@ -30,7 +30,7 @@ const Quotes = () => {
     }, [isSuccess])
 
     const handleDeleteProject = (id) => {
-        console.log(id);
+
         deleteQuote({ id })
     }
 
@@ -90,15 +90,15 @@ const Quotes = () => {
 
                         )
                     }
-                    <div className=' flex justify-center'>
-                        <Modal isModal={isModal} setModal={setModal}>
-                            <QuoteRename setModal={{ setModal, quiteId }} /* quiteId={quiteId} */ />
-                        </Modal>
-                    </div>
+
                 </div>
 
             </div>
-
+            <div className=' flex justify-center'>
+                <Modal isModal={isModal} setModal={setModal}>
+                    <QuoteRename setModal={{ setModal, quiteId }} /* quiteId={quiteId} */ />
+                </Modal>
+            </div>
         </div>
     );
 };
