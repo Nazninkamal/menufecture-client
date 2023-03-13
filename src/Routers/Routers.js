@@ -20,6 +20,7 @@ import AdminHomePage from "../Pages/Admin/AdminHomePage/AdminHomePage";
 import OrderReviewQuote from "../Pages/Quotes/Configure/ReviewQuote/OrderReviewQuote";
 import SupplierRequest from "../Pages/Admin/SupplierRequest/SupplierRequest";
 import QuoteRequest from "../Pages/Supplier/QuoteRequest/QuoteRequest";
+import AllOrder from "../Pages/Supplier/Order/AllOrder";
 
 
 
@@ -52,6 +53,11 @@ export const routers = createBrowserRouter([
             {
                 path: "/quoteRequiest",
                 element: <QuoteRequest />,
+
+            },
+            {
+                path: "/allOrder",
+                element: <AllOrder />,
 
             },
            
