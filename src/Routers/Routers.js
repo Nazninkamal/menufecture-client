@@ -1,5 +1,4 @@
 import { createBrowserRouter, } from "react-router-dom";
-import DashboardHome from "../Dashboard/DashboardHome";
 import DashboardLayout from "../Dashboard/DashboardLayout";
 import CreateProjectForm from "../Pages/Projects/CreateProjectForm";
 import Projects from "../Pages/Projects/Projects";
@@ -19,6 +18,8 @@ import UserHomePage from "../Pages/User/UserHomePage/UserHomePage";
 import SupplierHomePage from "../Pages/Supplier/SupplierHomePage/SupplierHomePage";
 import AdminHomePage from "../Pages/Admin/AdminHomePage/AdminHomePage";
 import OrderReviewQuote from "../Pages/Quotes/Configure/ReviewQuote/OrderReviewQuote";
+import SupplierRequest from "../Pages/Admin/SupplierRequest/SupplierRequest";
+import QuoteRequest from "../Pages/Supplier/QuoteRequest/QuoteRequest";
 
 
 
@@ -43,6 +44,17 @@ export const routers = createBrowserRouter([
 
             },
 
+            {
+                path: "/supplierRequiest",
+                element: <SupplierRequest />,
+
+            },
+            {
+                path: "/quoteRequiest",
+                element: <QuoteRequest />,
+
+            },
+           
             {
                 path: "/projects",
                 element: <Projects />,

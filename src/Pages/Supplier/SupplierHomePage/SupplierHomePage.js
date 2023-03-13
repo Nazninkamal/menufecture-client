@@ -1,12 +1,17 @@
 import React from 'react';
-import Cards from '../../User/UserHomePage/Cards';
+import SharedBar from '../../../Components/SharedBar/SharedBar';
+import Table from '../../User/UserHomePage/Table';
+import SupplierCards from './SupplierCards';
 
 const SupplierHomePage = () => {
     return (
-        <div>
-           
-         
-        </div>
+        <>
+          <SharedBar pageName={"Supplier Dashboard"} />
+         <div className='my-5'>
+         <SupplierCards/>
+         <Table/>
+         </div>
+        </>
     );
 };
 

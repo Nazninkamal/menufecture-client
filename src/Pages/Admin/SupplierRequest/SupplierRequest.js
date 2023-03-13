@@ -3,7 +3,7 @@ import React from 'react';
 const SupplierRequest = () => {
     return (
         <div>
-            SupplierRequest
+            SupplierRequest arrives here
         </div>
     );
 };
