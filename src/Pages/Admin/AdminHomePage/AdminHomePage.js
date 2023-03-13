@@ -1,9 +1,10 @@
 import React from 'react';
+import UserSupplierInfo from './UserSupplierInfo';
 
 const AdminHomePage = () => {
     return (
-        <div>
-            <h1>Admin home page</h1>
+        <div className='mt-5'>
+           <UserSupplierInfo/>
         </div>
     );
 };

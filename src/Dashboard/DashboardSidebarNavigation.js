@@ -10,12 +10,14 @@ import { TbReportAnalytics } from "react-icons/tb";
 export const menus = [
     { name: "Dashboard", link: "/", icon: MdOutlineDashboard },
     { name: "Project", link: "/projects", icon: TbReportAnalytics },
-    { name: "Feedback", link: "/feedback", icon: TbReportAnalytics },
-    // { name: "messages", link: "/", icon: FiMessageSquare },
+    { name: "Supplier Dashboard", link: "/supplierDashboard", icon: MdOutlineDashboard },
+    { name: "Admin Dashboard", link: "/adminDashboard", icon: MdOutlineDashboard },
     // { name: "analytics", link: "/", icon: TbReportAnalytics, margin: true },
     // { name: "File Manager", link: "/", icon: FiFolder },
     // { name: "Cart", link: "/", icon: FiShoppingCart },
     // { name: "Saved", link: "/", icon: AiOutlineHeart, margin: true },
     // { name: "Setting", link: "/", icon: RiSettings4Line },
+        // { name: "Feedback", link: "/feedback", icon: TbReportAnalytics },
+
 
 ];

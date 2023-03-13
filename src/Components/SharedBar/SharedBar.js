@@ -7,5 +7,5 @@ const SharedBar = ({pageName}) => {
         </div>
     );
 };
-
 export default SharedBar;
+

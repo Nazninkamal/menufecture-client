@@ -16,6 +16,8 @@ import NoteFoundPage from "../Utility/404/NoteFoundPage";
 import PrivateRoute from "./PrivateRoute";
 import ApplyForSupplierFrom from "../Pages/User/Profile/ApplyForSupplier";
 import UserHomePage from "../Pages/User/UserHomePage/UserHomePage";
+import SupplierHomePage from "../Pages/Supplier/SupplierHomePage/SupplierHomePage";
+import AdminHomePage from "../Pages/Admin/AdminHomePage/AdminHomePage";
 
 
 
@@ -27,6 +29,16 @@ export const routers = createBrowserRouter([
             {
                 path: "/",
                 element: <UserHomePage />,
+
+            },
+            {
+                path: "/supplierDashboard",
+                element: <SupplierHomePage />,
+
+            },
+            {
+                path: "/adminDashboard",
+                element: <AdminHomePage />,
 
             },
            
