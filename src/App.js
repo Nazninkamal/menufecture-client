@@ -15,7 +15,7 @@ function App() {
   }, [dispatch])
 
   return (
-    <div >
+    <div className='App'>
 
       <RouterProvider router={routers} />
       <Toaster />
