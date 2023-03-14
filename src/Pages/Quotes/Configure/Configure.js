@@ -7,8 +7,9 @@ import QuotePrinting from './QuotePrinting';
 import * as yup from "yup";
 import { useParams } from 'react-router-dom';
 import { useGetMySingleQuotesQuery, useUpdateMySingleQuotesMutation } from '../../../Redux/Features/quotes/quotesApi';
-import { Loading } from '../../../Components/Buttons/LoadingButton';
+
 import { SLA } from './MaterialsData/MaterialsData';
+
 const Configure = () => {
 
     const SignupSchema = yup.object().shape({
@@ -107,6 +108,7 @@ const Configure = () => {
                     />
                 </div>
             </form>
+           
         </>
     );
 };
