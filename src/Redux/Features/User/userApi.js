@@ -11,7 +11,7 @@ export const userApi = createApi({
             query: () => ({
                 url: `/get-all-users`,
                 method: 'GET',
-
+                headers: { 'Authorization': `Bearer ${localStorage?.getItem("token")}` },
             }),
             providesTags: ['user']
         }),

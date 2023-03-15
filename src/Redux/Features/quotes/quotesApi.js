@@ -14,6 +14,13 @@ export const quotesApi = createApi({
             }),
             providesTags: ['quotes']
         }),
+        getMyAllQuotes: builder.query({
+            query: () => ({
+                url: `/get-my-all-quotes`,
+                headers: { 'Authorization': token },
+            }),
+            providesTags: ['quotes']
+        }),
 
         getMySingleQuotes: builder.query({
             query: ({ id }) => ({
@@ -61,7 +68,8 @@ export const quotesApi = createApi({
 
 
 
+
     })
 })
 
-export const { useGetMyQuotesQuery, useGetMySingleQuotesQuery, useUpdateMySingleQuotesMutation, useDeleteMySingleQuotesMutation, useCreateQuotesMutation } = quotesApi;
+export const { useGetMyQuotesQuery, useGetMySingleQuotesQuery, useUpdateMySingleQuotesMutation, useDeleteMySingleQuotesMutation, useCreateQuotesMutation,useGetMyAllQuotesQuery } = quotesApi;

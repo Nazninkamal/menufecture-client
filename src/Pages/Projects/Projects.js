@@ -3,7 +3,7 @@ import { AiOutlineFundProjectionScreen } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import Card from '../../Components/Cards/Card';
 import { useDeleteProjectMutation, useGetMyProjectsQuery } from '../../Redux/Features/projects/projectsApi';
-import Dropdown from '../../Components/Dropdown/Dropdown';
+import {Dropdown1} from '../../Components/Dropdown/Dropdown';
 import SharedBar from '../../Components/SharedBar/SharedBar';
 import CreateProject from './CreateProject';
 import Modal from '../../Components/Modal/Modal';
@@ -54,7 +54,7 @@ const Projects = () => {
 
 
 
-                                        <Dropdown menus={
+                                        <Dropdown1 menus={
                                             [
                                                 { title: 'Rename', action: () => selectId(project?._id) },
                                                 { title: 'delete', action: () => handleDeleteProject(project?._id) },

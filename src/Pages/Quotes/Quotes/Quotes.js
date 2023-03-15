@@ -6,7 +6,7 @@ import { useDeleteMySingleQuotesMutation, useGetMyQuotesQuery } from '../../../R
 import ViewThreeDFile from './ViewThreeDFile';
 import BackButton from '../../../Components/Buttons/BackButton';
 import SharedBar from '../../../Components/SharedBar/SharedBar'
-import Dropdown from '../../../Components/Dropdown/Dropdown';
+import {Dropdown1} from '../../../Components/Dropdown/Dropdown';
 import Modal from '../../../Components/Modal/Modal';
 import QuoteRename from './QuoteRename';
 const Quotes = () => {
@@ -57,7 +57,7 @@ const Quotes = () => {
                         quotes?.result?.map(quote =>
 
                             <div key={quote?._id} className='col-span-10 sm:col-span-5 md:col-span-2  h-64 '>
-                                <Dropdown
+                                <Dropdown1
 
                                     menus={
                                         [

@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+
 import { BsThreeDotsVertical } from 'react-icons/bs';
 
-const Dropdown = ({ menus }) => {
+import { Menu, Transition } from '@headlessui/react'
+import { Fragment, useEffect, useRef, useState } from 'react'
+
+
+
+export const Dropdown1 = ({ menus }) => {
     const [openDropdown, setOpenDropdown] = useState(false);
     return (
         <div className=' relative' onClick={() => setOpenDropdown(!openDropdown)}>
@@ -28,4 +33,3 @@ const Dropdown = ({ menus }) => {
     );
 };
 
-export default Dropdown;
