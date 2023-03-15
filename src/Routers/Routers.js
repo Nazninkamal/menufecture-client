@@ -46,12 +46,12 @@ export const routers = createBrowserRouter([
             },
 
             {
-                path: "/supplierRequiest",
+                path: "/supplierRequest",
                 element: <SupplierRequest />,
 
             },
             {
-                path: "/quoteRequiest",
+                path: "/quoteRequest",
                 element: <QuoteRequest />,
 
             },

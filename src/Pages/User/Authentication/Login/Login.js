@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useDispatch } from 'react-redux';
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate,useLocation } from "react-router-dom";
 import { login } from '../../../../Redux/Features/User/AuthSlice';
-
+import { toast } from 'react-hot-toast';
 
 const SignupSchema = yup.object().shape({
     email: yup.string().required(),
@@ -27,8 +27,15 @@ const Login = () => {
 
 
     const dispatch = useDispatch();
+    const user = useSelector(state => state?.auth)
+
 
     const navigate = useNavigate();
+    const location = useLocation();
+
+console.log(user);
+
+
     const onSubmit = (data) => {
         dispatch(login(data))
             .then(res => {
@@ -36,13 +43,27 @@ const Login = () => {
                     localStorage.setItem("token", res?.payload?.data?.result?.token);
                     localStorage.setItem("user", JSON.stringify(res?.payload?.data?.result?.user));
                     reset();
-                    navigate('/')
+                    // navigate('/')
+                    navigate(location?.state?.from || '/')
                 }
+                
             })
 
     }
 
 
+    // error handling ------------------
+    useEffect(() => {
+        if (user.isLoading) {
+            toast.loading("Loading...", { id: "login" })
+        }
+        if (user.isError) {
+            toast.error('Wrong Password ,please try again!', { id: "login" })
+        }
+        if (user?.user?.email) {
+            toast.success("Login Success", { id: "login" })
+        }
+    }, [user.isLoading, user.isError, user?.user?.email, user.error])
 
 
 

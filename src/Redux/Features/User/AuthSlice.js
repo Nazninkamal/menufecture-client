@@ -103,10 +103,7 @@ const authSlice = createSlice({
         }).addCase(getMe.rejected, (state, action) => {
             state.isLoading = false;
             state.user = null;
-            state.isError = true;
-            state.error = action.error.message;
-
-        })
+                  })
     }
 })
 export const { logout } = authSlice.actions
