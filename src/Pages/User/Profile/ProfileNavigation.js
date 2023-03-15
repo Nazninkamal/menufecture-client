@@ -50,7 +50,7 @@ const ProfileNavigation = () => {
                     </span>
                 )}
             </NavLink>
-            <NavLink to='/profile/applyForSupplier' className="pr-4">
+            {user?.role === "user" && <NavLink to='/profile/applyForSupplier' className="pr-4">
 
                 {({ isActive }) => (
                     <span
@@ -61,7 +61,7 @@ const ProfileNavigation = () => {
                         Apply For Supplier
                     </span>
                 )}
-            </NavLink>
+            </NavLink>}
 
         </div>
     );

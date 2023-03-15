@@ -26,54 +26,61 @@ const Configure = () => {
         handleSubmit,
         watch,
         reset,
-        formState: { errors }
+        formState: {isDirty, dirtyFields ,errors }
     } = useForm({
         resolver: yupResolver(SignupSchema)
     });
     const [quantity, setQuantity] = useState(1);
 
     const { id } = useParams();
-
-    const [updateQuote, { isLoading: isLoadingUpdateQuote, isSuccess, isError, error }] = useUpdateMySingleQuotesMutation();
+    const { data } = useGetMySingleQuotesQuery({ id });
+    const [updateQuote, { isLoading: isLoadingUpdateQuote}] = useUpdateMySingleQuotesMutation();
     const [singleResolution, setSingleResolution] = useState({});
     const [singleSLA, setSingleSLA] = useState({});
     const [material, resolution, orientation, finish] = watch(['material', 'resolution', 'orientation', 'finish']);
 
 
 
-
-    useEffect(() => {
+    const setMaterialCallBack = useCallback(async () => {
         const singleSLA = SLA?.find(s => s?.material === material);
-        const singleResolution = singleSLA?.resolution?.find(s => s?.title === resolution);
+        const singleResolution = await singleSLA?.resolution?.find(s => s?.title === resolution);
         setSingleSLA(singleSLA);
         setSingleResolution(singleResolution);
+    }, [material, resolution])
 
-    }, [material, resolution]);
+    useEffect(() => {
+
+        setMaterialCallBack()
+    }, [setMaterialCallBack]);
 
 
 
     // handle on change for state --------------------
 
     const handleOnchange = useCallback(
-        () => {
+        async () => {
             const configure = {
-                material: material || singleSLA?.material,
+                material: singleSLA?.material || data?.result?.material,
                 resolution: singleSLA?.material ? singleResolution?.title : '',
                 price: singleSLA?.material ? parseInt(Number(singleResolution?.price)) * quantity : null,
                 orientation: singleSLA?.material ? orientation : '',
                 finish: singleSLA?.material ? finish : '',
                 quantity: singleSLA?.material ? quantity : 1,
             }
-            updateQuote({ id, configure })
+            await updateQuote({ id, configure })
         },
-        [updateQuote, finish, id, orientation, quantity, singleResolution?.price, singleResolution?.title, singleSLA?.material, material],
-    )
+        [updateQuote, finish, id, orientation, quantity, singleResolution?.price, singleResolution?.title, singleSLA?.material,  data?.result?.material],
+    );
 
 
-    useEffect(() => {
-        handleOnchange()
-    }, [handleOnchange])
+     useEffect(() => {
+      
+        if(isDirty||quantity){
+            handleOnchange()
+        }
+     }, [handleOnchange,isDirty,quantity])
 
+     
 
     // submit for Request handler -----------------------
 
@@ -108,7 +115,7 @@ const Configure = () => {
                     />
                 </div>
             </form>
-           
+
         </>
     );
 };

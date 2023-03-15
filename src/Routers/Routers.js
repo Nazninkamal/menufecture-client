@@ -21,6 +21,9 @@ import OrderReviewQuote from "../Pages/Quotes/Configure/ReviewQuote/OrderReviewQ
 import SupplierRequest from "../Pages/Admin/SupplierRequest/SupplierRequest";
 import QuoteRequest from "../Pages/Supplier/QuoteRequest/QuoteRequest";
 import AllOrder from "../Pages/Supplier/Order/AllOrder";
+import AdminRoute from "./AdminRoute";
+import SupplierRoute from "./SupplierRoute";
+import UserRoute from "./UserRoute";
 
 
 
@@ -41,58 +44,58 @@ export const routers = createBrowserRouter([
             },
             {
                 path: "/adminDashboard",
-                element: <AdminHomePage />,
+                element: <AdminRoute><AdminHomePage /></AdminRoute>,
 
             },
 
             {
                 path: "/supplierRequest",
-                element: <SupplierRequest />,
+                element: <AdminRoute><SupplierRequest /></AdminRoute>,
 
             },
             {
                 path: "/quoteRequest",
-                element: <QuoteRequest />,
+                element: <SupplierRoute><QuoteRequest /></SupplierRoute>,
 
             },
             {
                 path: "/allOrder",
-                element: <AllOrder />,
+                element: <SupplierRoute><AllOrder /></SupplierRoute>,
 
             },
-           
+
             {
                 path: "/projects",
-                element: <Projects />,
+                element: <UserRoute><Projects /></UserRoute>,
 
             },
             {
                 path: "/quotes/:id",
-                element: <Quotes />,
+                element: <UserRoute><Quotes /></UserRoute>,
 
             },
             {
                 path: "/quote/configure/:id",
-                element: <Configure />,
+                element: <UserRoute><Configure /></UserRoute>,
 
             },
             {
                 path: "/quotes/services/:id",
-                element: <Services />,
+                element: <UserRoute><Services /></UserRoute>,
 
             },
             {
                 path: "/quotes/create/:id",
-                element: <CreateQuote />,
+                element: <UserRoute><CreateQuote /></UserRoute>,
 
             },
             {
                 path: "/create-project",
-                element: <CreateProjectForm />
+                element: <UserRoute><CreateProjectForm /></UserRoute>
             },
             {
                 path: '/profile/OrderReviewQuote/:id',
-                element: <OrderReviewQuote />
+                element: <UserRoute><OrderReviewQuote /></UserRoute>
             },
             {
                 path: "/profile",
@@ -112,10 +115,10 @@ export const routers = createBrowserRouter([
                     },
                     {
                         path: '/profile/applyForSupplier',
-                        element: <ApplyForSupplierFrom />
+                        element: <UserRoute><ApplyForSupplierFrom /></UserRoute>
                     },
 
-                    
+
                 ]
             },
 
