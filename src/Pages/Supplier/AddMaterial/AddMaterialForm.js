@@ -65,8 +65,7 @@ const AddMaterialForm = () => {
 
 
     return (
-        <div>
-
+        <>
 
             <Modal2 setIsOpen={setIsOpen} isOpen={isOpen}>
                 {/* --------------------------------------------------------------------------------- */}
@@ -176,7 +175,7 @@ const AddMaterialForm = () => {
 
             </Modal2>
 
-        </div>
+        </>
     );
 };
 
