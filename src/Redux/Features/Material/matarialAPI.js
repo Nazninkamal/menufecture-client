@@ -23,8 +23,16 @@ export const materialApi = createApi({
             }),
             providesTags: ['material']
         }),
+        deleteMaterials: builder.mutation({
+            query: ({ id }) => ({
+                url: `/delete-material/${id}`,
+                method: 'DELETE',
+                headers: { 'Authorization': token },
+            }),
+            invalidatesTags: ['material']
+        }),
 
     })
 })
 
-export const { useCreateMaterialsMutation,useGetMaterialsQuery } = materialApi;
+export const { useCreateMaterialsMutation, useGetMaterialsQuery, useDeleteMaterialsMutation } = materialApi;

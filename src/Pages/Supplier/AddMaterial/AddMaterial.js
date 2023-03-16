@@ -1,14 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AddMaterialForm from './AddMaterialForm';
 import SharedBar from '../../../Components/SharedBar/SharedBar';
-import { useGetMaterialsQuery } from '../../../Redux/Features/Material/matarialAPI';
+import { useDeleteMaterialsMutation, useGetMaterialsQuery } from '../../../Redux/Features/Material/matarialAPI';
+import Dropdown3 from '../../../Components/Dropdown/Dropdown3';
+import { toast } from 'react-hot-toast';
 
 const AddMaterial = () => {
 
     const { data } = useGetMaterialsQuery();
 
-  
 
+
+
+    const [deleteMaterial, { isLoading, isError, error, isSuccess }] = useDeleteMaterialsMutation();
+
+
+    const handleDelete = (id) => {
+
+        deleteMaterial({ id })
+    }
+
+    useEffect(() => {
+        if (isLoading) {
+            toast.loading('Loading..', { id: 'material' })
+        }
+        if (isError) {
+            toast.error(error, { id: 'material' })
+        }
+        if (isSuccess) {
+            toast.success('Delete success', { id: 'material' })
+        }
+    }, [isLoading, isError, error, isSuccess]);
 
 
     return (
@@ -77,11 +99,7 @@ const AddMaterial = () => {
                                             </td>
 
                                             <td className="px-3 py-2">
-                                                <button type="button" title="Open details" className="p-1 rounded-full dark:text-gray-600 hover:dark:bg-gray-700 focus:dark:bg-gray-700">
-                                                    <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
-                                                        <path d="M12 6a2 2 0 110-4 2 2 0 010 4zm0 8a2 2 0 110-4 2 2 0 010 4zm-2 6a2 2 0 104 0 2 2 0 00-4 0z"></path>
-                                                    </svg>
-                                                </button>
+                                                <Dropdown3 handleDelete={() => handleDelete(data?._id)} />
                                             </td>
                                         </tr>
                                     ))
