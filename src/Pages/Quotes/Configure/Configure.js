@@ -8,7 +8,8 @@ import * as yup from "yup";
 import { useParams } from 'react-router-dom';
 import { useGetMySingleQuotesQuery, useUpdateMySingleQuotesMutation } from '../../../Redux/Features/quotes/quotesApi';
 
-import { SLA } from './MaterialsData/MaterialsData';
+// import { SLA } from './MaterialsData/MaterialsData';
+import { useGetMaterialsQuery } from '../../../Redux/Features/Material/matarialAPI';
 
 const Configure = () => {
 
@@ -26,7 +27,7 @@ const Configure = () => {
         handleSubmit,
         watch,
         reset,
-        formState: {isDirty, dirtyFields ,errors }
+        formState: { isDirty,  errors }
     } = useForm({
         resolver: yupResolver(SignupSchema)
     });
@@ -34,19 +35,20 @@ const Configure = () => {
 
     const { id } = useParams();
     const { data } = useGetMySingleQuotesQuery({ id });
-    const [updateQuote, { isLoading: isLoadingUpdateQuote}] = useUpdateMySingleQuotesMutation();
+    const [updateQuote, { isLoading: isLoadingUpdateQuote }] = useUpdateMySingleQuotesMutation();
     const [singleResolution, setSingleResolution] = useState({});
     const [singleSLA, setSingleSLA] = useState({});
     const [material, resolution, orientation, finish] = watch(['material', 'resolution', 'orientation', 'finish']);
 
-
+    const { data: materials } = useGetMaterialsQuery()
+    const SLA = materials?.result;
 
     const setMaterialCallBack = useCallback(async () => {
         const singleSLA = SLA?.find(s => s?.material === material);
         const singleResolution = await singleSLA?.resolution?.find(s => s?.title === resolution);
         setSingleSLA(singleSLA);
         setSingleResolution(singleResolution);
-    }, [material, resolution])
+    }, [material, resolution,SLA])
 
     useEffect(() => {
 
@@ -69,18 +71,18 @@ const Configure = () => {
             }
             await updateQuote({ id, configure })
         },
-        [updateQuote, finish, id, orientation, quantity, singleResolution?.price, singleResolution?.title, singleSLA?.material,  data?.result?.material],
+        [updateQuote, finish, id, orientation, quantity, singleResolution?.price, singleResolution?.title, singleSLA?.material, data?.result?.material],
     );
 
 
-     useEffect(() => {
-      
-        if(isDirty||quantity){
+    useEffect(() => {
+
+        if (isDirty || quantity) {
             handleOnchange()
         }
-     }, [handleOnchange,isDirty,quantity])
+    }, [handleOnchange, isDirty, quantity])
 
-     
+
 
     // submit for Request handler -----------------------
 

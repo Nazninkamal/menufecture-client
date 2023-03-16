@@ -24,6 +24,7 @@ import AllOrder from "../Pages/Supplier/Order/AllOrder";
 import AdminRoute from "./AdminRoute";
 import SupplierRoute from "./SupplierRoute";
 import UserRoute from "./UserRoute";
+import AddMaterial from "../Pages/Supplier/AddMaterial/AddMaterial";
 
 
 
@@ -61,6 +62,11 @@ export const routers = createBrowserRouter([
             {
                 path: "/allOrder",
                 element: <SupplierRoute><AllOrder /></SupplierRoute>,
+
+            },
+            {
+                path: "/addMaterial",
+                element: <SupplierRoute><AddMaterial /></SupplierRoute>,
 
             },
 

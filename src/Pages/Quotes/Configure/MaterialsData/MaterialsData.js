@@ -204,25 +204,5 @@ export const SLA = [
             }
         ]
     }
-    /* {
-        material: "MicroFine Green™ (ABS-Like Micro Resolution)",
-        MicroRes: 8432.48
-    },
-    {
-        material: "MicroFine Gray™ (ABS-Like Micro Resolution)",
-        MicroRes: 8432.48
-    },
-    {
-        material: "PC-Like Advanced High Temp Translucent Amber (Accura 5530)",
-        HighRes: 2569.96,
-        NormalRes: 1234.48,
-    },
-    {
-        material: "True Silicone White (Parts sourced from Europe)",
-        NormalRes: "Request ",
-    },
-    {
-        material: "True Silicone Black (Parts sourced from Europe)",
-        NormalRes: "Request ",
-    }, */
+    
 ]

@@ -1,5 +1,6 @@
 import { MdOutlineDashboard } from "react-icons/md";
 import { TbReportAnalytics } from "react-icons/tb";
+import { SiMaterialdesignicons } from "react-icons/si";
 
 export const userMenus = [
     { name: "Dashboard", link: "/", icon: MdOutlineDashboard, role: 'user' },
@@ -17,6 +18,7 @@ export const supplierMenus = [
     { name: "Supplier Dashboard", link: "/supplierDashboard", icon: MdOutlineDashboard, role: 'supplier' },
     { name: "Quote Request", link: "/quoteRequest", icon: TbReportAnalytics, role: 'supplier' },
     { name: "All Order", link: "/allOrder", icon: TbReportAnalytics, role: 'supplier' },
+    { name: "Add Material", link: "/addMaterial", icon: SiMaterialdesignicons, role: 'supplier' },
 
 
 ];
