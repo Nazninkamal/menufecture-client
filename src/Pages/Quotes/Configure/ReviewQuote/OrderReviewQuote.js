@@ -16,7 +16,7 @@ const OrderReviewQuote = () => {
     const { isLoading, isError, error } = useSelector((state) => state.quote);
     const { data: quote } = useGetMySingleQuotesQuery({ id });
 
-    console.log(quote?.result);
+  
 
     const dispatch = useDispatch();
     const handleDownload = () => {

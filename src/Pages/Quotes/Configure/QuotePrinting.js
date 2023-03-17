@@ -7,7 +7,7 @@ const QuotePrinting = () => {
     const { id } = useParams();
     const { data, isLoading } = useGetMySingleQuotesQuery({ id });
 
-    console.log(data);
+   
     return (
         <div className="w-full rounded-lg shadow-md lg:max-w-100 xl:w-100 p-5 flex flex-col justify-between" >
 

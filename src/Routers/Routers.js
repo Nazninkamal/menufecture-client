@@ -26,6 +26,7 @@ import SupplierRoute from "./SupplierRoute";
 import UserRoute from "./UserRoute";
 import AddMaterial from "../Pages/Supplier/AddMaterial/AddMaterial";
 import MyOrder from "../Pages/MyOrder/MyOrder";
+import DashboardHome from "../Dashboard/DashboardHome";
 
 
 
@@ -36,10 +37,10 @@ export const routers = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <UserHomePage />,
+                element: <DashboardHome />,
 
             },
-            {
+            /* {
                 path: "/supplierDashboard",
                 element: <SupplierHomePage />,
 
@@ -48,7 +49,7 @@ export const routers = createBrowserRouter([
                 path: "/adminDashboard",
                 element: <AdminRoute><AdminHomePage /></AdminRoute>,
 
-            },
+            }, */
 
             {
                 path: "/supplierRequest",

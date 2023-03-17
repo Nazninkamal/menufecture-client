@@ -33,7 +33,7 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-console.log(user);
+
 
 
     const onSubmit = (data) => {

@@ -109,6 +109,7 @@ const Configure = () => {
                         quantity={quantity}
                         singleSLA={singleSLA}
                         isLoadingUpdateQuote={isLoadingUpdateQuote}
+                        SLA={SLA}
                     />
 
                     <QuotePrinting

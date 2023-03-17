@@ -7,7 +7,7 @@ const MyOrder = () => {
 
     const orders = myQuotes?.result.filter((quote) => quote?.orderStatus === "order" || quote?.orderStatus === "payment");
 
-    console.log(orders);
+   
     return (
         <div className=' h-screen overflow-y-auto'>
             <SharedBar pageName="My Order" />
@@ -46,7 +46,7 @@ const MyOrder = () => {
                 <tbody>
                     {
                         orders?.map((data => (
-                            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <tr key={data?._id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {data?.material}
                                 </th>

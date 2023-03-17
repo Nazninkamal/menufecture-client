@@ -1,19 +1,16 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { ImPlus, ImMinus } from 'react-icons/im'
 
-import { SLA } from './MaterialsData/MaterialsData';
 
 
 import { useGetMySingleQuotesQuery } from '../../../Redux/Features/quotes/quotesApi';
 
 
 
-const MaterialInfo = ({ register, watch, errors, reset, id, setQuantity, quantity, singleSLA }) => {
+const MaterialInfo = ({ register, watch, errors, reset, id, setQuantity, quantity, singleSLA ,SLA}) => {
 
 
   const { data } = useGetMySingleQuotesQuery({ id });
-
-
 
 
 
@@ -59,7 +56,7 @@ const MaterialInfo = ({ register, watch, errors, reset, id, setQuantity, quantit
               >I don't know what material</option>
               {
 
-                SLA.map((sal, i) =>
+                SLA?.map((sal, i) =>
                   sal?.material && <option key={i} value={sal?.material}
                     className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white  border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   >
