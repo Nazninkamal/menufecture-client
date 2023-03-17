@@ -19,7 +19,7 @@ const Services = () => {
                     </div>
                     <div className=' flex justify-center flex-wrap  gap-5'>
                         <ServicesCard >
-                            <Link to={`/quotes/create/${id}?type=CAD`} >
+                            <Link to={`/quotes/create/${id}?type=3D Printing`} >
                                 <div className=' flex justify-evenly'>
                                     <svg className=' w-24' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 94.4 106.96" ><path fill="#E5E7E5" d="M59.07 26.6v8.23L48.2 38.05v31.18h-2V38.05l-10.87-3.22V26.6H1.35v42.63h91.7V26.6z"></path><path fill="#A8A8AB" d="M78.01 18.35H59.07v8.25h33.98zM16.39 18.35L1.35 26.6h33.98v-8.25z"></path><path fill="#343842" d="M47.2 1.43L16.37 18.35h18.96v16.48l10.87 3.22v31.18h2V38.05l10.87-3.22V18.35h18.96z"></path><g fill="#343842"><path d="M24.861 63.526l.59-1.91 4.3 1.329-.59 1.91zM31.558 65.59l.591-1.912 4.3 1.33-.591 1.91z"></path></g><g fill="#343842"><path d="M30.776 52.918l1.46-1.367 3.076 3.284-1.46 1.367zM36.356 58.881l1.46-1.367 3.076 3.284-1.46 1.368z"></path></g><g fill="#343842"><path d="M65.217 62.91l4.31-1.296.576 1.915-4.31 1.296zM58.282 64.99l4.309-1.297.576 1.915-4.308 1.297z"></path></g><g fill="#343842"><path d="M59.146 54.841l3.076-3.284 1.46 1.367-3.076 3.284zM53.58 60.795l3.075-3.285 1.46 1.367-3.076 3.285z"></path></g><g><path fill="#409DCA" d="M58.13 77.38h34.92v-8.15H1.35v8.15h35.17v2H1.35v1.06l13.16 7.23h16.14v2h-12.5l29.05 15.94 29.05-15.94h-12.5v-2h16.14l13.16-7.23v-1.06H58.13z"></path><path fill="#E5E7E5" d="M1.35 77.38h35.18v2H1.35zM14.51 87.67l3.64 2h12.5v-2zM63.75 89.67h12.5l3.64-2H63.75zM58.13 77.38h34.92v2H58.13z"></path></g></svg>
                                 </div>

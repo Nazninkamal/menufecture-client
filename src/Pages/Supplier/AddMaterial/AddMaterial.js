@@ -37,9 +37,6 @@ const AddMaterial = () => {
         <div className='h-screen overflow-y-auto pb-20'>
             <SharedBar pageName="Add Material" />
 
-
-
-
             <div>
                 <div className="container p-2 mx-auto sm:p-4 dark:text-gray-100">
                     <div className=' flex justify-between'>

@@ -25,6 +25,7 @@ import AdminRoute from "./AdminRoute";
 import SupplierRoute from "./SupplierRoute";
 import UserRoute from "./UserRoute";
 import AddMaterial from "../Pages/Supplier/AddMaterial/AddMaterial";
+import MyOrder from "../Pages/MyOrder/MyOrder";
 
 
 
@@ -93,6 +94,11 @@ export const routers = createBrowserRouter([
             {
                 path: "/quotes/create/:id",
                 element: <UserRoute><CreateQuote /></UserRoute>,
+
+            },
+            {
+                path: "/quotes/my-oder",
+                element: <UserRoute><MyOrder /></UserRoute>,
 
             },
             {

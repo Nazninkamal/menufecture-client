@@ -27,7 +27,7 @@ const Configure = () => {
         handleSubmit,
         watch,
         reset,
-        formState: { isDirty,  errors }
+        formState: { isDirty, errors }
     } = useForm({
         resolver: yupResolver(SignupSchema)
     });
@@ -48,7 +48,7 @@ const Configure = () => {
         const singleResolution = await singleSLA?.resolution?.find(s => s?.title === resolution);
         setSingleSLA(singleSLA);
         setSingleResolution(singleResolution);
-    }, [material, resolution,SLA])
+    }, [material, resolution, SLA])
 
     useEffect(() => {
 
@@ -87,7 +87,7 @@ const Configure = () => {
     // submit for Request handler -----------------------
 
     const onSubmit = (data) => {
-        const configure = { status: 'pending' }
+        const configure = { status: 'pending', orderStatus: 'order' }
         updateQuote({ id, configure })
 
     }

@@ -9,7 +9,7 @@ const Cards = () => {
    const { data: quotes } = useGetMyAllQuotesQuery();
    const { data: projects } = useGetMyProjectsQuery();
 
-   console.log(projects);
+   ;
 
    return (
       <div className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 gap-3">
