@@ -33,15 +33,15 @@ const Projects = () => {
 
   
     return (
-        <div>
+        <div className=' h-screen overflow-y-auto'>
 
-            <SharedBar pageName={"Please Create Your Cusmize Projct Here"} />
+            <SharedBar pageName={"Please Create Your Customize Project Here"} />
 
             <div className=' p-5'>
                 <div className='grid grid-cols-10 gap-5'>
-                    {/* Create project  */}
+               
                     <CreateProject />
-                    {/* projects  */}
+                
 
                     {
                         projects?.result?.projects.map(project =>

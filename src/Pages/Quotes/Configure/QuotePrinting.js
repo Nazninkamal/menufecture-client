@@ -18,7 +18,7 @@ const QuotePrinting = () => {
 
                     <div className='col-span-6 sm:col-span-6 md:col-span-6 lg:col-span-3  flex justify-center'>
                         {
-                            isLoading ? null : <ViewThreeDFile OrbitControl={true} file={data?.result?.threeDFile?.fileURL} />
+                            isLoading ? null : <ViewThreeDFile  file={data?.result?.threeDFile?.fileURL} />
                         }
                     </div>
 
@@ -29,9 +29,9 @@ const QuotePrinting = () => {
                             <hr />
                             <h1>Resolution: {data?.result?.resolution} {isLoading && "Loading..."}</h1>
                             <hr />
-                            <h1>Orientation: {data?.result?.orientation} {isLoading && "Loading..."}</h1>
-                            <hr />
                             <h1>Finish: {data?.result?.finish} {isLoading && "Loading..."}</h1>
+                            <hr />
+                            <h1>Orientation: {data?.result?.orientation} {isLoading && "Loading..."}</h1>
                             <hr />
                             <h1>Quantity: {data?.result?.quantity} {isLoading && "Loading..."}</h1>
                             <hr />
@@ -48,7 +48,7 @@ const QuotePrinting = () => {
             </div>
 
 
-            <div className='  flex justify-around border p-6 gap-5'>
+            <div className='  lg:flex justify-around border p-6 gap-5'>
                 {data?.result?.status ? <button
 
                     type='button'

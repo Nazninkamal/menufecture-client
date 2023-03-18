@@ -12,8 +12,8 @@ const initialState = {
 export const registration = createAsyncThunk(
     "auth/registration",
     async (data) => {
-        
         const response = await axios.post("http://localhost:5000/api/v1/users/registration", data);
+        console.log(response);
         return response;
 
     }

@@ -6,7 +6,7 @@ import { useDeleteMySingleQuotesMutation, useGetMyQuotesQuery } from '../../../R
 import ViewThreeDFile from './ViewThreeDFile';
 import BackButton from '../../../Components/Buttons/BackButton';
 import SharedBar from '../../../Components/SharedBar/SharedBar'
-import {Dropdown1} from '../../../Components/Dropdown/Dropdown';
+import { Dropdown1 } from '../../../Components/Dropdown/Dropdown';
 import Modal from '../../../Components/Modal/Modal';
 import QuoteRename from './QuoteRename';
 const Quotes = () => {
@@ -35,9 +35,9 @@ const Quotes = () => {
     }
 
     return (
-        <div>
+        <div className=' h-screen overflow-y-auto'>
             <BackButton />
-            <SharedBar />
+            <SharedBar pageName="Please Create Your Customize Quote Here" />
             <div className='pt-7'>
                 <div className='grid grid-cols-10 gap-5 '>
                     <div className='col-span-10 sm:col-span-5 md:col-span-2 '>
@@ -74,7 +74,7 @@ const Quotes = () => {
                                                 <div className=' flex justify-center items-center'>
 
                                                     <div>
-                                                        <div className=' text-center'>
+                                                        <div className=' text-center cursor-default'>
                                                             <ViewThreeDFile file={quote?.threeDFile?.fileURL} />
                                                         </div>
 

@@ -5,7 +5,7 @@ import DragAndDropFileUploader from '../../../Components/DragAndDropFIleUploader
 const CreateQuote = () => {
 
     return (
-        <div>
+        <div className=' h-screen overflow-y-auto'>
             <BackButton />
             <div className=' text-center'>
                 <h2 className=' text-4xl py-12'>Upload Your CAD Files</h2>

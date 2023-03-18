@@ -8,7 +8,7 @@ export default function DashboardLayout() {
         <React.Fragment>
             <section className="flex flex-grow">
                 <DashboardSidebar />
-                <div className="px-3 text-xl text-gray-900 font-semibold w-full">
+                <div className="px-3 text-xl text-gray-900 font-semibold h-screen w-full overflow-y-hidden">
                     <Outlet />
                 </div>
             </section>

@@ -42,9 +42,9 @@ const CreateProjectForm = () => {
     return (
 
 
-        <div>
+        <div >
             <BackButton />
-            <div className=' flex  justify-center  items-center h-screen'>
+            <div className=' flex  justify-center  items-center h-screen   overflow-y-auto'>
 
                 <div>
                     <div className=' text-center'>

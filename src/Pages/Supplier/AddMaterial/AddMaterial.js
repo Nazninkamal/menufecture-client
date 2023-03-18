@@ -34,7 +34,7 @@ const AddMaterial = () => {
 
 
     return (
-        <div className='h-screen overflow-y-auto pb-20'>
+        <div className=' h-screen overflow-y-auto'>
             <SharedBar pageName="Add Material" />
 
             <div>
@@ -43,7 +43,7 @@ const AddMaterial = () => {
                         <h2 className="mb-4 text-2xl font-semibold leading-tight">Materials and Resolutions</h2>
                         <AddMaterialForm />
                     </div>
-                    <div className="overflow-x-auto">
+                    <div className="">
                         <table className="w-full p-6 text-xs text-left whitespace-nowrap">
 
                             <thead>

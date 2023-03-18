@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useApplyForSupplierMutation, useGetApplyForSupplierQuery, useGetMeQuery, useMakeAddApplyForSupplierMutation } from '../../../Redux/Features/User/userApi';
+import { useApplyForSupplierMutation, useGetMeQuery } from '../../../Redux/Features/User/userApi';
 import { Loading } from '../../../Components/Buttons/LoadingButton';
 import { toast } from 'react-hot-toast';
 import { countryListAllIsoData } from '../../../Utility/CountryList/CountryList';
@@ -29,9 +29,7 @@ const ApplyForSupplierFrom = () => {
     const {
         register,
         handleSubmit,
-        setError,
         reset,
-        watch,
         formState: { errors }
     } = useForm({
         resolver: yupResolver(SupplierSchema)
@@ -44,15 +42,7 @@ const ApplyForSupplierFrom = () => {
 
     const [applyForSupplier, { isLoading: isLoadingApplyForSupplier, isSuccess: isSuccessApplyForSupplier, isError: isErrorApplyForSupplier, error }] = useApplyForSupplierMutation();
 
-    const { data: getApplySupplier } = useGetApplyForSupplierQuery();
-    const [makeAddSupplier] = useMakeAddApplyForSupplierMutation();
-
-    const handleMakeSupplier = (email) => {
-        makeAddSupplier(email);
-    }
-
-
-    console.log(getApplySupplier?.result?.supplier);
+    
 
 
     useEffect(() => {
@@ -65,7 +55,7 @@ const ApplyForSupplierFrom = () => {
 
     const onSubmit = (data) => {
         applyForSupplier(data)
-        console.log(data);
+      
 
     };
 

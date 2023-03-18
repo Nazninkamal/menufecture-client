@@ -3,8 +3,8 @@ import UserSupplierInfo from './UserSupplierInfo';
 
 const AdminHomePage = () => {
     return (
-        <div className='mt-5'>
-           <UserSupplierInfo/>
+        <div className='h-screen overflow-y-auto'>
+            <UserSupplierInfo />
         </div>
     );
 };

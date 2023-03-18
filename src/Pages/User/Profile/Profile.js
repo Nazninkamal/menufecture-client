@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 
 const Profile = () => {
     return (
-        <div>
+        <div className=' h-screen overflow-y-auto'>
             <ProfileNavigation />
             <Outlet />
         </div>

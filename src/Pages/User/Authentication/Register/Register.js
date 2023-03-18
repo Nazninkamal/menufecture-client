@@ -6,6 +6,7 @@ import { registration } from '../../../../Redux/Features/User/AuthSlice';
 import { useDispatch, useSelector } from 'react-redux'
 import { countryListAllIsoData } from '../../../../Utility/CountryList/CountryList';
 import { languages_list } from '../../../../Utility/CountryList/Languagelist';
+import { toast } from 'react-hot-toast';
 
 
 
@@ -37,7 +38,7 @@ const Register = () => {
 
     const dispatch = useDispatch();
 
-    const { isSuccess } = useSelector(state => state.auth)
+    const { isSuccess, isError, error, isLoading } = useSelector(state => state.auth)
 
     const [pass1, pass2] = watch(['password', 'confirmPassword'])
 
@@ -50,19 +51,30 @@ const Register = () => {
         }
     }, [pass1, pass2, setError])
 
-    useEffect(() => {
-        if (isSuccess) {
-            reset()
-        }
-    }, [isSuccess, reset])
-
-
 
     const onSubmit = (data) => {
 
+       
         dispatch(registration(data))
 
     };
+
+    useEffect(() => {
+        if (isSuccess) {
+            toast.success("Signup is Successfully, Please check your email for conform your register.", { id: "register" })
+            reset()
+        }
+        if (isError) {
+            toast.error(error, { id: "register" })
+        }
+        if (isLoading) {
+            toast.loading("Loading...", { id: "register" })
+        }
+    }, [isSuccess, isError, error, isLoading, reset])
+
+
+
+  
 
 
 
@@ -140,7 +152,7 @@ const Register = () => {
                         <option value=""
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         >No select country</option>
-                        {countryListAllIsoData?.map((country,index) => <option key={index} value={country?.name}
+                        {countryListAllIsoData?.map((country, index) => <option key={index} value={country?.name}
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         >{country?.name}</option>
 
@@ -194,7 +206,7 @@ const Register = () => {
                     </label>
                     <select  {...register("language")}
                         className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
-                        {languages_list?.map((country,index) => <option key={index} value={country?.name}
+                        {languages_list?.map((country, index) => <option key={index} value={country?.name}
                             className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         >{country?.name}</option>
 

@@ -16,7 +16,7 @@ const OrderReviewQuote = () => {
     const { isLoading, isError, error } = useSelector((state) => state.quote);
     const { data: quote } = useGetMySingleQuotesQuery({ id });
 
-  
+
 
     const dispatch = useDispatch();
     const handleDownload = () => {
@@ -38,7 +38,7 @@ const OrderReviewQuote = () => {
     }, [isLoading, isError, error])
 
     return (
-        <div>
+        <div className=' h-screen overflow-y-auto'>
 
             <SharedBar pageName="Quote Review" />
             <div className='border shadow mt-8'>

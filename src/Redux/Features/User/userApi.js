@@ -59,11 +59,20 @@ export const userApi = createApi({
             providesTags: ['user']
         }),
         makeAddApplyForSupplier: builder.mutation({
-            query: ({ email }) => ({
+            query: (data) => ({
                 url: `/makeAddApplyForSupplier`,
                 method: 'PATCH',
                 headers: { 'Authorization': token },
-                body: email
+                body: data
+            }),
+            invalidatesTags: ['user']
+        }),
+        deleteApplyForSupplier: builder.mutation({
+            query: (data) => ({
+                url: `/deleteApplyForSupplier`,
+                method: 'DELETE',
+                headers: { 'Authorization': token },
+                body: data
             }),
             invalidatesTags: ['user']
         }),
@@ -71,4 +80,4 @@ export const userApi = createApi({
     })
 })
 
-export const { useChangePasswordMutation, useGetAllUsersQuery, useGetMeQuery, useChangeProfileDetailsMutation, useApplyForSupplierMutation, useGetApplyForSupplierQuery, useMakeAddApplyForSupplierMutation } = userApi;
+export const { useChangePasswordMutation, useGetAllUsersQuery, useGetMeQuery, useChangeProfileDetailsMutation, useApplyForSupplierMutation, useGetApplyForSupplierQuery, useMakeAddApplyForSupplierMutation,useDeleteApplyForSupplierMutation } = userApi;

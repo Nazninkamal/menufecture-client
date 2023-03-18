@@ -10,7 +10,7 @@ const Services = () => {
     return (
         <React.Fragment>
             <BackButton />
-            <div className=' h-screen flex justify-center items-center'>
+            <div className=' h-screen  overflow-y-auto flex justify-center items-center'>
 
                 <div>
                     <div className=' text-center mb-14 text-gray-500'>

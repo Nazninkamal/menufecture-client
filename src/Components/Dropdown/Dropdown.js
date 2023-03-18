@@ -1,9 +1,6 @@
 
 import { BsThreeDotsVertical } from 'react-icons/bs';
-
-import { Menu, Transition } from '@headlessui/react'
-import { Fragment, useEffect, useRef, useState } from 'react'
-
+import {  useState } from 'react'
 
 
 export const Dropdown1 = ({ menus }) => {

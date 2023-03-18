@@ -7,23 +7,27 @@ import { useGetMySingleQuotesQuery } from '../../../Redux/Features/quotes/quotes
 
 
 
-const MaterialInfo = ({ register, watch, errors, reset, id, setQuantity, quantity, singleSLA ,SLA}) => {
+const MaterialInfo = ({ register, watch, errors, reset, id, setQuantity, quantity, singleSLA, SLA }) => {
 
 
   const { data } = useGetMySingleQuotesQuery({ id });
 
 
+/*   const resetAsyncForm = useCallback(async () => {
+    reset(data?.result)
+    setQuantity(data?.result?.quantity)
+}, [reset, data?.result, setQuantity]);
+ */
 
-  const resetAsyncForm = useCallback(async () => {
-    await reset(data?.result)
-    await setQuantity(data?.result?.quantity)
-  }, [reset, data?.result, setQuantity]);
+useEffect(() => {
+   reset(data?.result)
+   setQuantity(data?.result?.quantity)
+  //  resetAsyncForm();
+}, [data?.result,reset,setQuantity])
+ 
 
 
-  useEffect(() => {
-    resetAsyncForm();
-  }, [resetAsyncForm])
-
+  
 
 
 

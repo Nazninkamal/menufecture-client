@@ -5,11 +5,9 @@ import { useGetAllUsersQuery } from '../../../Redux/Features/User/userApi';
 const UserSupplierInfo = () => {
     const { data: users } = useGetAllUsersQuery();
 
-
-
     return (
-        <div>
-            <SharedBar pageName={"Admin Dashboad"} />
+        <div className=' h-screen overflow-y-auto'>
+            <SharedBar pageName={"Admin Dashboard"} />
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
 

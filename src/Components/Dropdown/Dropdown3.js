@@ -8,9 +8,9 @@ export default function Dropdown3({ handleDelete }) {
 
     return (
         <div className="">
-            <Menu as="div" className="">
+            <Menu as="div" className=" relative">
                 <div>
-                    <Menu.Button as='button' className="i">
+                    <Menu.Button as='button' className="">
 
                         <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
                             <path d="M12 6a2 2 0 110-4 2 2 0 010 4zm0 8a2 2 0 110-4 2 2 0 010 4zm-2 6a2 2 0 104 0 2 2 0 00-4 0z"></path>
@@ -26,7 +26,7 @@ export default function Dropdown3({ handleDelete }) {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                 >
-                    <Menu.Items className="absolute  right-20 mt-2 w-56  divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="absolute  right-20 -mt-12 w-56  divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                         <div className="px-1 py-1 ">
                             <Menu.Item>
                                 {({ active }) => (

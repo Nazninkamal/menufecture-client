@@ -31,10 +31,19 @@ const Configure = () => {
     } = useForm({
         resolver: yupResolver(SignupSchema)
     });
-    const [quantity, setQuantity] = useState(1);
-
+    
     const { id } = useParams();
+    
     const { data } = useGetMySingleQuotesQuery({ id });
+    
+    const [quantity, setQuantity] = useState(data?.result?.quantity)||1;
+
+
+
+
+
+
+
     const [updateQuote, { isLoading: isLoadingUpdateQuote }] = useUpdateMySingleQuotesMutation();
     const [singleResolution, setSingleResolution] = useState({});
     const [singleSLA, setSingleSLA] = useState({});
@@ -44,7 +53,7 @@ const Configure = () => {
     const SLA = materials?.result;
 
     const setMaterialCallBack = useCallback(async () => {
-        const singleSLA = SLA?.find(s => s?.material === material);
+        const singleSLA = await SLA?.find(s => s?.material === material);
         const singleResolution = await singleSLA?.resolution?.find(s => s?.title === resolution);
         setSingleSLA(singleSLA);
         setSingleResolution(singleResolution);
@@ -61,26 +70,39 @@ const Configure = () => {
 
     const handleOnchange = useCallback(
         async () => {
-            const configure = {
-                material: singleSLA?.material || data?.result?.material,
-                resolution: singleSLA?.material ? singleResolution?.title : '',
-                price: singleSLA?.material ? parseInt(Number(singleResolution?.price)) * quantity : null,
-                orientation: singleSLA?.material ? orientation : '',
-                finish: singleSLA?.material ? finish : '',
-                quantity: singleSLA?.material ? quantity : 1,
+
+            if (quantity || isDirty) {
+                const configure = {
+                    material: singleSLA?.material || data?.result?.material || material,
+                    resolution: singleSLA?.material ? singleResolution?.title : resolution,
+                    price: singleSLA?.material ? parseInt(Number(singleResolution?.price)) * quantity : null,
+                    orientation: singleSLA?.material ? orientation : '',
+                    finish: singleSLA?.material ? finish : '',
+                    quantity: singleSLA?.material ? quantity : 1,
+                }
+
+
+                await updateQuote({ id, configure })
             }
-            await updateQuote({ id, configure })
         },
-        [updateQuote, finish, id, orientation, quantity, singleResolution?.price, singleResolution?.title, singleSLA?.material, data?.result?.material],
+        [updateQuote, finish, id, orientation, quantity, singleResolution?.price, singleResolution?.title, singleSLA?.material, data?.result?.material, isDirty, material,resolution],
     );
 
 
     useEffect(() => {
 
-        if (isDirty || quantity) {
+        if (isDirty) {
+
             handleOnchange()
         }
-    }, [handleOnchange, isDirty, quantity])
+        if (quantity) {
+            handleOnchange()
+        }
+
+    }, [handleOnchange, quantity, isDirty])
+
+
+
 
 
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Order = () => {
     return (
-        <div>
+        <div className=' h-screen overflow-y-auto'>
             All order arrives here
         </div>
     );
