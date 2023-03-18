@@ -2,10 +2,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 const initialState = {
     user: null,
-    isLoading: false,
+    isLoading: true,
     isError: false,
     error: '',
-    
+
 }
 
 
@@ -52,7 +52,10 @@ const authSlice = createSlice({
     reducers: {
         logout: (state) => {
             state.user = null
-        }
+        },
+        loading: (state) => {
+            state.isLoading = false;
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(registration.pending, (state) => {
@@ -102,8 +105,8 @@ const authSlice = createSlice({
         }).addCase(getMe.rejected, (state, action) => {
             state.isLoading = false;
             state.user = null;
-                  })
+        })
     }
 })
-export const { logout } = authSlice.actions
+export const { logout, loading } = authSlice.actions
 export default authSlice.reducer;
