@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { login } from '../../../../Redux/Features/User/AuthSlice';
 import { toast } from 'react-hot-toast';
 
@@ -43,10 +43,9 @@ const Login = () => {
                     localStorage.setItem("token", res?.payload?.data?.result?.token);
                     localStorage.setItem("user", JSON.stringify(res?.payload?.data?.result?.user));
                     reset();
-                    // navigate('/')
                     navigate(location?.state?.from || '/')
                 }
-                
+
             })
 
     }
@@ -58,7 +57,7 @@ const Login = () => {
             toast.loading("Loading...", { id: "login" })
         }
         if (user.isError) {
-            toast.error('Wrong Password ,please try again!', { id: "login" })
+            toast.error(user.error, { id: "login" })
         }
         if (user?.user?.email) {
             toast.success("Login Success", { id: "login" })

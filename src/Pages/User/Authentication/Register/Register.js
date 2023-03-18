@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { countryListAllIsoData } from '../../../../Utility/CountryList/CountryList';
 import { languages_list } from '../../../../Utility/CountryList/Languagelist';
 import { toast } from 'react-hot-toast';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 
 
@@ -35,10 +36,11 @@ const Register = () => {
     } = useForm({
         resolver: yupResolver(SignupSchema)
     });
-
+    const user = useSelector(state => state?.auth)
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const location = useLocation();
 
-    const { isSuccess, isError, error, isLoading } = useSelector(state => state.auth)
 
     const [pass1, pass2] = watch(['password', 'confirmPassword'])
 
@@ -54,27 +56,37 @@ const Register = () => {
 
     const onSubmit = (data) => {
 
-       
+
         dispatch(registration(data))
+            .then(res => {
+                if (res.payload.status === 200) {
+                    toast.success(res.payload.data.message, { id: "register" })
+                    reset();
+                    navigate(location?.state?.from || '/login');
+                }
+                else {
+                    toast.error(user.error, { id: "register" })
+                }
+            })
 
     };
 
-    useEffect(() => {
-        if (isSuccess) {
-            toast.success("Signup is Successfully, Please check your email for conform your register.", { id: "register" })
-            reset()
-        }
-        if (isError) {
-            toast.error(error, { id: "register" })
-        }
-        if (isLoading) {
-            toast.loading("Loading...", { id: "register" })
-        }
-    }, [isSuccess, isError, error, isLoading, reset])
+    /*  useEffect(() => {
+         if (isSuccess) {
+             toast.success("Signup is Successfully, Please check your email for conform your register.", { id: "register" })
+             reset()
+         }
+         if (isError) {
+             toast.error(error, { id: "register" })
+         }
+         if (isLoading) {
+             toast.loading("Loading...", { id: "register" })
+         }
+     }, [isSuccess, isError, error, isLoading, reset])
+  */
 
 
 
-  
 
 
 
