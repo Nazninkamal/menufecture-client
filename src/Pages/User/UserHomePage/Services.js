@@ -38,7 +38,7 @@ function Services() {
         <LineChart chartData={userData} />
       </div>
 
-    <div className="w-100 lg:m-auto  bg-white px-20 py-5" >
+    <div className="w-100 lg:m-auto  bg-white lg:px-20 py-5" >
     <p className="mb-5 text-center">Carbon Dioxide Increase</p>
         <PieChart chartData={userData} />
       </div>
