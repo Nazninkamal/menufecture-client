@@ -74,7 +74,7 @@ const Quotes = () => {
                                                 <div className=' flex justify-center items-center'>
 
                                                     <div>
-                                                        <div className=' text-center cursor-default'>
+                                                        <div className=' text-center'>
                                                             <ViewThreeDFile file={quote?.threeDFile?.fileURL} />
                                                         </div>
 
