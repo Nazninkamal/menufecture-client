@@ -35,7 +35,7 @@ const Projects = () => {
     return (
         <div className=' h-screen overflow-y-auto'>
 
-            <SharedBar pageName={"Please Create Your Customize Project Here"} />
+            <SharedBar pageName={"Create Your Project"} />
 
             <div className=' p-5'>
                 <div className='grid grid-cols-10 gap-5'>

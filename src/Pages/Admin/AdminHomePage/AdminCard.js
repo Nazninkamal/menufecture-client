@@ -1,9 +1,11 @@
 import React from 'react';
 import { useGetAllUsersQuery } from '../../../Redux/Features/User/userApi';
 
-const SupplierCards = () => {
+const AdminCard = () => {
    const { data: user } = useGetAllUsersQuery();
 
+
+   
    return (
       <div className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 gap-3">
 
@@ -13,7 +15,7 @@ const SupplierCards = () => {
             </svg>
 
             <div>
-               <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">Get Order</p>
+               <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">Orders</p>
                <p className="mb-3 font-extrabold	 ">5 </p>
             </div>
          </div>
@@ -26,7 +28,7 @@ const SupplierCards = () => {
             </svg>
 
             <div>
-               <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">Get Quote</p>
+               <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">Supplier</p>
                <p className="mb-3 font-extrabold">7</p>
             </div>
          </div>
@@ -39,7 +41,7 @@ const SupplierCards = () => {
             </svg>
 
             <div>
-               <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">Customer</p>
+               <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">Clients</p>
                <p className="mb-3 font-extrabold">{user?.result.length}</p>
             </div>
          </div>
@@ -61,4 +63,4 @@ const SupplierCards = () => {
    );
 };
 
-export default SupplierCards;
+export default AdminCard;

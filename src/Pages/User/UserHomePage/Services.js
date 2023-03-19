@@ -1,45 +1,49 @@
-import React from 'react';
+import { useState } from "react";
+import { UserData } from "../../Carts/Data";
+import LineChart from "../../Carts/LineChart";
+import PieChart from "../../Carts/PieChart";
 
-const services = () => {
+
+function Services() {
+  const [userData, setUserData] = useState({
+    labels: UserData.map((data) => data.year),
+    datasets: [
+      {
+        label: "Users Gained",
+        data: UserData.map((data) => data.userGain),
+        backgroundColor: [
+          "rgba(75,192,192,1)",
+          "#ecf0f1",
+          "#50AF95",
+          "#f3ba2f",
+          "#2a71d0",
+        ],
+        borderColor: "black",
+        borderWidth: 2,
+      },
+    ],
+  });
+
+  // IF YOU SEE THIS COMMENT: I HAVE GOOD EYESIGHT
+
   return (
-    <div className='lg:px-10'>
-      <p className='my-5'>Why XYZ is better for others</p>
+    <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-10 mt-10">
+      {/* <div style={{ width: "100%" }}>
+        <BarCharts chartData={userData} />
+      </div> */}
+      
+      <div className="w-100 bg-white ">
+      <p className="mb-5 text-center">User Gained(last 4 years)</p>
 
+        <LineChart chartData={userData} />
+      </div>
 
-
-      <div className="mb-1 text-base font-medium text-blue-700 dark:text-blue-500">Time Savings</div>
-      <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4 dark:bg-gray-700">
-        <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: "75%" }}></div>
+    <div className="w-100 lg:m-auto  bg-white px-20 py-5" >
+    <p className="mb-5 text-center">Carbon Dioxide Increase</p>
+        <PieChart chartData={userData} />
       </div>
-      <div className="mb-1 text-base font-medium dark:text-white">Energy Savings</div>
-      <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4 dark:bg-gray-700">
-        <div className="bg-gray-600 h-2.5 rounded-full dark:bg-gray-300" style={{ width: "85%" }}></div>
-      </div>
-      <div className="mb-1 text-base font-medium text-red-700 dark:text-red-500">Reduce Co2 Gas</div>
-      <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4 dark:bg-gray-700">
-        <div className="bg-red-600 h-2.5 rounded-full dark:bg-red-500" style={{ width: "45%" }}></div>
-      </div>
-      <div className="mb-1 text-base font-medium text-green-700 dark:text-green-500">Budget Friendly</div>
-      <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4 dark:bg-gray-700">
-        <div className="bg-green-600 h-2.5 rounded-full dark:bg-green-500" style={{ width: "85%" }}></div>
-      </div>
-      <div className="mb-1 text-base font-medium text-yellow-700 dark:text-yellow-500">Super Fast Delivery </div>
-      <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4 dark:bg-gray-700">
-        <div className="bg-yellow-400 h-2.5 rounded-full" style={{ width: "100%" }}></div>
-      </div>
-      <div className="mb-1 text-base font-medium text-indigo-700 dark:text-indigo-500">Simple Order Process</div>
-      <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4 dark:bg-gray-700">
-        <div className="bg-indigo-600 h-2.5 rounded-full dark:bg-indigo-500" style={{ width: "45%" }}></div>
-      </div>
-      {/* <div className="mb-1 text-base font-medium text-purple-700 dark:text-purple-500">Purple</div>
-<div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-  <div className="bg-purple-600 h-2.5 rounded-full dark:bg-purple-500" style={{width: "45%"}}></div>
-</div> */}
-
-
     </div>
   );
-};
+}
 
-
-export default services;
+export default Services;

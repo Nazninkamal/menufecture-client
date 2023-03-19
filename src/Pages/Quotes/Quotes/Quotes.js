@@ -37,7 +37,7 @@ const Quotes = () => {
     return (
         <div className=' h-screen overflow-y-auto'>
             <BackButton />
-            <SharedBar pageName="Please Create Your Customize Quote Here" />
+            <SharedBar pageName="Create Your Quote" />
             <div className='pt-7'>
                 <div className='grid grid-cols-10 gap-5 '>
                     <div className='col-span-10 sm:col-span-5 md:col-span-2 '>

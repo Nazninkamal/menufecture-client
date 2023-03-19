@@ -7,13 +7,13 @@ const UserSupplierInfo = () => {
 
     return (
         <div className=' h-screen overflow-y-auto'>
-            <SharedBar pageName={"Admin Dashboard"} />
+       
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg ">
 
                 <div className="px-4 py-5 sm:px-6 bg-white mt-5">
-                    <h3 className="text-base font-semibold leading-6 text-gray-900">Your User</h3>
-                    <p className="mt-1 max-w-2xl text-sm text-gray-500">A list of all users in your website including their name, email, country and role</p>
+                    <h3 className="text-base font-semibold leading-6 text-gray-900">Users and Supplier</h3>
+                    <p className="mt-1 max-w-2xl text-sm text-gray-500">A list of all Users and Suppliers in your website including their name, email, country and role</p>
                 </div>
 
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
