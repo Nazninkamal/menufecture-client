@@ -27,6 +27,8 @@ import UserRoute from "./UserRoute";
 import AddMaterial from "../Pages/Supplier/AddMaterial/AddMaterial";
 import MyOrder from "../Pages/MyOrder/MyOrder";
 import DashboardHome from "../Dashboard/DashboardHome";
+import Contact from "../Pages/User/Contact/Contact";
+import Feedback from "../Pages/User/Feedback/Feedback";
 
 
 
@@ -109,6 +111,14 @@ export const routers = createBrowserRouter([
             {
                 path: '/profile/OrderReviewQuote/:id',
                 element: <UserRoute><OrderReviewQuote /></UserRoute>
+            },
+            {
+                path: '/contact',
+                element: <UserRoute><Contact /></UserRoute>
+            },
+            {
+                path: '/feedback',
+                element: <UserRoute><Feedback /></UserRoute>
             },
             {
                 path: "/profile",

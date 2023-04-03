@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Getting Started with Manufacturing-Client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Note : Before run your client site code you need to run your server side code.
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+## How to run this project on localhost. Follow bellow steps:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 1. Unziped this folder
+### 2. Open it on your Visual Studio Code
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Open terminal and run
+### 3. npm i
 
-### `npm test`
+### 4. npm start
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## what next
 
-### `npm run build`
+1. Now go to localhost and register. After that you can login and land on user dashboard. 
+2. Profile: Here you can edit your profile, password and apply for supplier to admin.
+3. Dashboard: 
+4. Project: you can create project, then create quote, then go to configure page, after that click "Request For Quote" button. Now suplier can see this and accept request.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ Note: For now you can only use .glb formate for 3d file upload system. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+5. After accept quote you can go to Review Quote page and download pdf
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+Note: Please register using 3-deffirent email. One for user. one for supplier. One for Admin.
+✔ At first step everyone is a user. 
+✔ You need to go your mongooDB. 
+✔ Click "Connect" button.
+✔ Click Manufecturing
+✔ Click users.
+  For Admin: You need to change "role:user" to "role:admin" here.
+  For Supplier: You need to change "role:user" to "role:supplier" here.
+  For user: No need to change anything
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+6. Now using different email, you can change your dashboard.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+If any quires, please Knock me on Upwork or mail me at najninkamalrimi@gmail.com
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
