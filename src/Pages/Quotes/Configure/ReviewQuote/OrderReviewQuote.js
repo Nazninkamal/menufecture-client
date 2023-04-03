@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { downloadPDF } from '../../../../Redux/Features/quotes/quotesSlice';
@@ -13,7 +13,7 @@ const OrderReviewQuote = () => {
 
 
     const { id } = useParams()
-    const { isLoading, isError, error } = useSelector((state) => state.quote);
+    const { isLoading,isSuccess, isError, error } = useSelector((state) => state.quote);
     const { data: quote } = useGetMySingleQuotesQuery({ id });
 
 
@@ -21,6 +21,7 @@ const OrderReviewQuote = () => {
     const dispatch = useDispatch();
     const handleDownload = () => {
         dispatch(downloadPDF({ id }))
+            
     }
 
 
@@ -32,10 +33,13 @@ const OrderReviewQuote = () => {
         if (isLoading) {
             toast.loading("Downloading...", { id: "pdf" })
         }
+        if(isSuccess){
+            toast.success("Download Success", { id: "pdf" })
+        }
         if (isError) {
             toast.error(error, { id: "pdf" })
         }
-    }, [isLoading, isError, error])
+    }, [isLoading, isError, error,isSuccess])
 
     return (
         <div className=' h-screen overflow-y-auto'>
@@ -131,7 +135,7 @@ const OrderReviewQuote = () => {
                     </div>
                     <div className=' flex justify-center shadow py-3 mt-3'>
 
-                        <button disabled={quote?.result?.status !== "approved" && true} className='flex items-center justify-center w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r active:bg-gradient-to-l from-cyan-500 to-blue-500 rounded-md active:ring-2 active:ring-offset-1 text-sm ' onClick={handleDownload}>PDF Download</button>
+                        <button disabled={quote?.result?.status === "pending" && true} className={`flex items-center justify-center w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r  ${quote?.result?.status === "pending"?'from-gray-500 to-gray-200' :"from-cyan-500 to-blue-500  active:bg-gradient-to-l"} from-cyan-500 to-blue-500 rounded-md active:ring-2 active:ring-offset-1 text-sm `} onClick={handleDownload}>PDF Download</button>
 
                         <button className='flex items-center justify-center w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r active:bg-gradient-to-l from-yellow-400 to-red-500 rounded-md active:ring-2 active:ring-offset-1 text-sm '>
                             Checkout Now

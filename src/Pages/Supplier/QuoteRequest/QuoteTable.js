@@ -1,14 +1,17 @@
 import React from 'react';
 
-const QuoteTable = ({ data, handleUpdateStatus }) => {
+const QuoteTable = ({ data, handleUpdateStatus, handleDeliveryDate }) => {
 
+    const handleDateChange = (date, id) => {
 
-    const handleChange = async (status) => {
-        await handleUpdateStatus(data?._id, status)
-
+        handleDeliveryDate(date, id)
     }
 
+    const handleStatusChange = (status) => {
 
+        handleUpdateStatus(data?._id, status)
+
+    }
 
 
     return (
@@ -36,8 +39,12 @@ const QuoteTable = ({ data, handleUpdateStatus }) => {
             <td className="px-6 py-4">
                 {data?.price}
             </td>
+            <td className="px-6 py-4 text-center">
+
+                <input type="date" onChange={(e) => handleDateChange(e.target.value, data?._id)} defaultValue={data?.deliveryDate} name="" id="" />
+            </td>
             <td className="px-6 py-4 text-right">
-                <select defaultValue={data?.status} onChange={(e) => handleChange(e.target.value)}
+                <select defaultValue={data?.status} onChange={(e) => handleStatusChange(e.target.value)}
                     className={`
                 ${data?.status === "pending" && "bg-yellow-400 "}
                 ${data?.status === "approved" && "bg-green-400 "}
@@ -45,9 +52,9 @@ const QuoteTable = ({ data, handleUpdateStatus }) => {
                 
                 py-1 px-5 rounded-full text-white  font-bold `}
                 >
-                    <option  value="pending">Pending</option>
-                    <option  value="approved">Approved</option>
-                    <option  value="rejected">Rejected</option>
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="rejected">Rejected</option>
                 </select>
             </td>
         </tr>

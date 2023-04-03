@@ -13,14 +13,24 @@ const QuoteRequest = () => {
     const { data: allOrderQuotes } = useGetAllOrderQuotesQuery();
 
 
-    const [updateStatus, { isLoading, isError, isSuccess, error }] = useUpdateMySingleQuotesMutation();
+    const [updateQuote, { isLoading, isError, isSuccess, error }] = useUpdateMySingleQuotesMutation();
 
 
 
     const handleUpdateStatus = async (id, status) => {
         const configure = { status };
-        await updateStatus({ id, configure })
+        await updateQuote({ id, configure })
     }
+
+
+
+    const handleDeliveryDate = async (deliveryDate, id) => {
+        const configure = { deliveryDate };
+        await updateQuote({ id, configure })
+    }
+
+
+
 
     useEffect(() => {
         if (isLoading) {
@@ -30,7 +40,7 @@ const QuoteRequest = () => {
             toast.error(error, { id: "quote" })
         }
         if (isSuccess) {
-            toast.success('Update Status is Success', { id: "quote" })
+            toast.success('Success', { id: "quote" })
         }
 
     }, [isLoading, isError, error, isSuccess]);
@@ -38,7 +48,7 @@ const QuoteRequest = () => {
 
     return (
         <div className=' h-screen overflow-y-auto'>
-            <SharedBar pageName="All Order" />
+            <SharedBar pageName="Manage Quote Request" />
 
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-2">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -66,6 +76,9 @@ const QuoteRequest = () => {
                             Total Price
                         </th>
                         <th scope="col" className="px-6 py-3 text-center">
+                            Delivery Date
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-center">
                             Status
                         </th>
                     </tr>
@@ -73,7 +86,7 @@ const QuoteRequest = () => {
                 <tbody>
                     {
                         allOrderQuotes?.result?.map((data => (
-                            <QuoteTable key={data?._id} data={data} handleUpdateStatus={handleUpdateStatus} />
+                            <QuoteTable key={data?._id} data={data} handleUpdateStatus={handleUpdateStatus} handleDeliveryDate={handleDeliveryDate} />
                         )))
                     }
 

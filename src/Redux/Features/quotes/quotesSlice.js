@@ -6,6 +6,7 @@ import { token } from '../../../Utility/Token/token';
 const initialState = {
     isLoading: false,
     isError: false,
+    isSuccess: false,
     error: '',
 
 }
@@ -66,8 +67,10 @@ const createQuoteSlice = createSlice({
     name: 'quote',
     initialState,
     reducers: {
-
+       
     },
+
+
     extraReducers: (builder) => {
         builder
             .addCase(createQuote.pending, (state) => {
@@ -94,6 +97,7 @@ const createQuoteSlice = createSlice({
 
             }).addCase(downloadPDF.fulfilled, (state, { payload }) => {
                 state.isLoading = false;
+                state.isSuccess=true;
                 state.isError = false;
                 state.error = "";
 
@@ -106,5 +110,5 @@ const createQuoteSlice = createSlice({
             })
     }
 })
-// export const {  } = authSlice.actions
+// export const { downloadPDFLoading } = createQuoteSlice.actions
 export default createQuoteSlice.reducer;
