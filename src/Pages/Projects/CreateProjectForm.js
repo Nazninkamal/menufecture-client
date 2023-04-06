@@ -5,6 +5,7 @@ import { useCreateProjectMutation } from '../../Redux/Features/projects/projects
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import BackButton from '../../Components/Buttons/BackButton';
+import { toast } from 'react-hot-toast';
 
 
 const CreateProjectSchema = yup.object().shape({
@@ -24,16 +25,23 @@ const CreateProjectForm = () => {
         resolver: yupResolver(CreateProjectSchema)
     });
 
-    const [createProject, { data, isSuccess }] = useCreateProjectMutation();
+    const [createProject, { data, isSuccess, isLoading, isError, error }] = useCreateProjectMutation();
 
-  
+
 
     useEffect(() => {
         if (isSuccess) {
+            toast.success("Success", { id: "project" })
             history(`/quotes/${data?.result?._id}`)
             reset()
         }
-    }, [isSuccess, history, data?.result?._id,reset])
+        if (isError) {
+            toast.error(error, { id: "project" })
+        }
+        if (isLoading) {
+            toast.loading("Loading...", { id: "project" })
+        }
+    }, [isSuccess, history, data?.result?._id, reset, isError, error, isLoading])
 
     const handleCreateProject = ({ projectName }) => {
         createProject({ projectName })

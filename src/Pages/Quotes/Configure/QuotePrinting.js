@@ -7,7 +7,7 @@ const QuotePrinting = () => {
     const { id } = useParams();
     const { data, isLoading } = useGetMySingleQuotesQuery({ id });
 
-   
+
     return (
         <div className="w-full rounded-lg shadow-md lg:max-w-100 xl:w-100 p-5 flex flex-col justify-between" >
 
@@ -18,7 +18,7 @@ const QuotePrinting = () => {
 
                     <div className='col-span-6 sm:col-span-6 md:col-span-6 lg:col-span-3  flex justify-center'>
                         {
-                            isLoading ? null : <ViewThreeDFile  file={data?.result?.threeDFile?.fileURL} />
+                            isLoading ? null : <ViewThreeDFile file={data?.result?.threeDFile?.fileURL} />
                         }
                     </div>
 
@@ -35,10 +35,10 @@ const QuotePrinting = () => {
                             <hr />
                             <h1>Quantity: {data?.result?.quantity} {isLoading && "Loading..."}</h1>
                             <hr />
-                            <h1>Price: {data?.result?.price} {isLoading && "Loading..."}</h1>
+                            <h1>Price: {data?.result?.price || "N/A"} {isLoading && "Loading..."}</h1>
                             <hr />
                             <h1> {data?.result?.updatedAt ? "Last Updated" : "Crating date"}: {
-                                new Date(data?.result?.updatedAt || data?.result?.createdAt).toLocaleDateString()} {isLoading && "Loading..."}</h1>
+                                new Date(data?.result?.updatedAt || data?.result?.createdAt).toLocaleDateString()} </h1>
                             <hr />
                             <p>Update Status: <span className=' uppercase  text-yellow-600'> {data?.result?.status || 'Request for quote'}</span></p>
                         </div>
@@ -49,13 +49,14 @@ const QuotePrinting = () => {
 
 
             <div className='  lg:flex justify-around border p-6 gap-5'>
-                {data?.result?.status ? <button
-
-                    type='button'
-                    className='flex items-center justify-center w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r  from-zinc-500 to-slate-300-500 rounded-md  text-sm '>Already Requested this quote</button> : <button
-
-                        type='submit'
-                        className='flex items-center justify-center w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r active:bg-gradient-to-l from-cyan-500 to-blue-500 rounded-md active:ring-2 active:ring-offset-1 text-sm '>Request for Quote</button>}
+                {data?.result?.status === "pending" &&
+                    <button
+                        type='button'
+                        className='flex items-center justify-center w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r  from-zinc-500 to-slate-300-500 rounded-md  text-sm '>Already Requested this quote</button>}
+                {data?.result?.status === "approved" &&
+                    <button
+                        type='button'
+                        className='flex items-center justify-center w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r  from-green-500 to-slate-300-500 rounded-md  text-sm '>Quoted</button>}
 
 
                 <NavLink to={`/profile/OrderReviewQuote/${id}`} className='flex items-center justify-center  w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md active:ring-2 active:ring-offset-1   text-sm active:bg-gradient-to-l'>Review Quote

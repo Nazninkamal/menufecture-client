@@ -4,7 +4,7 @@ import { useGetAllUsersQuery } from '../../../Redux/Features/User/userApi';
 
 const UserSupplierInfo = () => {
     const { data: users } = useGetAllUsersQuery();
-
+console.log(users);
     return (
         <div className=' h-screen overflow-y-auto'>
        
@@ -26,14 +26,20 @@ const UserSupplierInfo = () => {
                                 Email
                             </th>
                             <th scope="col" className="px-6 py-3">
+                            Phone Number
+                            </th>
+                        <th scope="col" className="px-6 py-3">
                                 Country
+                            </th>
+                        <th scope="col" className="px-6 py-3">
+                        Language
                             </th>
                             <th scope="col" className="px-6 py-3">
                                 Role
                             </th>
-                            <th scope="col" className="px-6 py-3">
+                           {/*  <th scope="col" className="px-6 py-3">
                                 Action
-                            </th>
+                            </th> */}
                         </tr>
                     </thead>
                     <tbody>
@@ -48,14 +54,20 @@ const UserSupplierInfo = () => {
                                         {user?.email}
                                     </td>
                                     <td className="px-6 py-4">
+                                        {user?.phoneNumber}
+                                    </td>
+                                    <td className="px-6 py-4">
                                         {user.country}
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        {user.language}
                                     </td>
                                     <td className="px-6 py-4">
                                         {user.role}
                                     </td>
-                                    <td className="px-6 py-4">
+                                  {/*   <td className="px-6 py-4">
                                         <a href="#/" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                    </td>
+                                    </td> */}
                                 </tr>
                             ))
                         }

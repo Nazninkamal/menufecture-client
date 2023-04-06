@@ -21,6 +21,8 @@ export const quotesApi = createApi({
             }),
             providesTags: ['quotes']
         }),
+
+        
         getAllOrderQuotes: builder.query({
             query: () => ({
                 url: `/get-all-order-quotes`,

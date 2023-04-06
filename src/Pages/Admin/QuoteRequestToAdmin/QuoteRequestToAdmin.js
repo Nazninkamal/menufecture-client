@@ -1,19 +1,17 @@
 import React, { useEffect } from 'react';
 import { toast } from 'react-hot-toast';
-
 import SharedBar from '../../../Components/SharedBar/SharedBar';
 import { useGetAllOrderQuotesQuery, useUpdateMySingleQuotesMutation } from '../../../Redux/Features/quotes/quotesApi';
-
-import QuoteTable from './QuoteTable';
-
+import QuoteTableAdmin from './QuoteTableAdmin';
 
 
-const QuoteRequest = () => {
+const QuoteRequestToAdmin = () => {
 
-    const { data: allOrderQuotes } = useGetAllOrderQuotesQuery();
-
-
+    const { data: Quotes } = useGetAllOrderQuotesQuery();
     const [updateQuote, { isLoading, isError, isSuccess, error }] = useUpdateMySingleQuotesMutation();
+
+
+   
 
 
 
@@ -24,13 +22,18 @@ const QuoteRequest = () => {
 
 
 
-    const handleDeliveryDate = async (deliveryDate, id) => {
-        const configure = { deliveryDate };
-        await updateQuote({ id, configure })
-    }
+    /*  const handleDeliveryDate = async (deliveryDate, id) => {
+         const configure = { deliveryDate };
+         await updateQuote({ id, configure })
+     }
+ 
+     const handleSentToSupplier = async (id) => {
+         const configure = { SendToSupplier: 'sended' };
+         await updateQuote({ id, configure })
+     } */
 
 
-
+  
 
     useEffect(() => {
         if (isLoading) {
@@ -45,12 +48,11 @@ const QuoteRequest = () => {
 
     }, [isLoading, isError, error, isSuccess]);
 
-
     return (
         <div className=' h-screen overflow-y-auto'>
             <SharedBar pageName="Manage Quote Request" />
 
-            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-2">
+            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-2 overflow-x-auto">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" className="px-6 py-3">
@@ -79,14 +81,22 @@ const QuoteRequest = () => {
                             Delivery Date
                         </th>
                         <th scope="col" className="px-6 py-3 text-center">
+                            Send to Supplier
+
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-center">
                             Status
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        allOrderQuotes?.result?.map((data => (
-                            <QuoteTable key={data?._id} data={data} handleUpdateStatus={handleUpdateStatus} handleDeliveryDate={handleDeliveryDate} />
+                        Quotes?.result?.filter(data => data?.sendToAdmin === 'sended')?.map((data => (
+                            <QuoteTableAdmin
+                                key={data?._id}
+                                data={data}
+                                handleUpdateStatus={handleUpdateStatus}
+                            />
                         )))
                     }
 
@@ -96,4 +106,4 @@ const QuoteRequest = () => {
     );
 };
 
-export default QuoteRequest;
+export default QuoteRequestToAdmin;

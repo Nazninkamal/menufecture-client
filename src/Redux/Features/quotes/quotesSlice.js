@@ -67,7 +67,7 @@ const createQuoteSlice = createSlice({
     name: 'quote',
     initialState,
     reducers: {
-       
+
     },
 
 
@@ -80,6 +80,7 @@ const createQuoteSlice = createSlice({
 
             }).addCase(createQuote.fulfilled, (state, { payload }) => {
                 state.isLoading = false;
+                state.isSuccess = true
                 state.isError = false;
                 state.error = "";
 
@@ -97,7 +98,7 @@ const createQuoteSlice = createSlice({
 
             }).addCase(downloadPDF.fulfilled, (state, { payload }) => {
                 state.isLoading = false;
-                state.isSuccess=true;
+                state.isSuccess = true;
                 state.isError = false;
                 state.error = "";
 

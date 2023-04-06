@@ -75,7 +75,6 @@ const Configure = () => {
                 const configure = {
                     material: singleSLA?.material || data?.result?.material || material,
                     resolution: singleSLA?.material ? singleResolution?.title : resolution,
-                    price: singleSLA?.material ? parseInt(Number(singleResolution?.price)) * quantity : null,
                     orientation: singleSLA?.material ? orientation : '',
                     finish: singleSLA?.material ? finish : '',
                     quantity: singleSLA?.material ? quantity : 1,
@@ -85,7 +84,7 @@ const Configure = () => {
                 await updateQuote({ id, configure })
             }
         },
-        [updateQuote, finish, id, orientation, quantity, singleResolution?.price, singleResolution?.title, singleSLA?.material, data?.result?.material, isDirty, material,resolution],
+        [updateQuote, finish, id, orientation, quantity, singleResolution?.title, singleSLA?.material, data?.result?.material, isDirty, material,resolution],
     );
 
 
@@ -109,7 +108,7 @@ const Configure = () => {
     // submit for Request handler -----------------------
 
     const onSubmit = (data) => {
-        const configure = { status: 'pending', orderStatus: 'order' }
+        const configure = { status: 'pending', sendToAdmin: 'sended' }
         updateQuote({ id, configure })
 
     }

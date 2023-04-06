@@ -14,12 +14,8 @@ import ProfileUpdateForm from "../Pages/User/Profile/ProfileUpdateForm";
 import NoteFoundPage from "../Utility/404/NoteFoundPage";
 import PrivateRoute from "./PrivateRoute";
 import ApplyForSupplierFrom from "../Pages/User/Profile/ApplyForSupplier";
-// import UserDashboardPage from "../Pages/User/UserHomePage/UserHomePage";
-// import SupplierHomePage from "../Pages/Supplier/SupplierHomePage/SupplierHomePage";
-// import AdminHomePage from "../Pages/Admin/AdminHomePage/AdminHomePage";
 import OrderReviewQuote from "../Pages/Quotes/Configure/ReviewQuote/OrderReviewQuote";
 import SupplierRequest from "../Pages/Admin/SupplierRequest/SupplierRequest";
-import QuoteRequest from "../Pages/Supplier/QuoteRequest/QuoteRequest";
 import AllOrder from "../Pages/Supplier/Order/AllOrder";
 import AdminRoute from "./AdminRoute";
 import SupplierRoute from "./SupplierRoute";
@@ -29,6 +25,8 @@ import MyOrder from "../Pages/MyOrder/MyOrder";
 import DashboardHome from "../Dashboard/DashboardHome";
 import Contact from "../Pages/User/Contact/Contact";
 import Feedback from "../Pages/User/Feedback/Feedback";
+import QuoteRequestToAdmin from "../Pages/Admin/QuoteRequestToAdmin/QuoteRequestToAdmin";
+import QuoteRequestToSupplier from "../Pages/Supplier/QuoteRequest/QuoteRequestToSupplier";
 
 
 
@@ -42,16 +40,6 @@ export const routers = createBrowserRouter([
                 element: <DashboardHome />,
 
             },
-            /* {
-                path: "/supplierDashboard",
-                element: <SupplierHomePage />,
-
-            },
-            {
-                path: "/adminDashboard",
-                element: <AdminRoute><AdminHomePage /></AdminRoute>,
-
-            }, */
 
             {
                 path: "/supplierRequest",
@@ -59,8 +47,13 @@ export const routers = createBrowserRouter([
 
             },
             {
-                path: "/quoteRequest",
-                element: <SupplierRoute><QuoteRequest /></SupplierRoute>,
+                path: "/quoteRequestToAdmin",
+                element: <AdminRoute><QuoteRequestToAdmin /></AdminRoute>,
+
+            },
+            {
+                path: "/quoteRequestToSupplier",
+                element: <SupplierRoute><QuoteRequestToSupplier /></SupplierRoute>,
 
             },
             {

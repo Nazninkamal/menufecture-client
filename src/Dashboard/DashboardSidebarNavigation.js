@@ -15,12 +15,13 @@ export const userMenus = [
 ];
 export const adminMenus = [
     { name: "Dashboard", link: "/", icon: MdOutlineDashboard },
+    { name: "Quote Request", link: "/quoteRequestToAdmin", icon: TbReportAnalytics },
     { name: "Supplier Request", link: "/supplierRequest", icon: TbReportAnalytics },
 
 ];
 export const supplierMenus = [
     { name: "Dashboard", link: "/", icon: MdOutlineDashboard },
-    { name: "Quote Request", link: "/quoteRequest", icon: TbReportAnalytics },
+    { name: "Quote Request", link: "/quoteRequestToSupplier", icon: TbReportAnalytics },
     { name: "All Order", link: "/allOrder", icon: TbReportAnalytics },
     { name: "Add Material", link: "/addMaterial", icon: SiMaterialdesignicons },
 

@@ -73,13 +73,6 @@ const AddMaterial = () => {
                                                             <div className="px-3 py-2 flex justify-start">
                                                                 <p>{res?.title}</p>
                                                             </div>
-                                                            <div className="px-3 py-2 flex justify-start ">
-                                                                <p>Price</p>
-                                                            </div>
-                                                            <div className="px-3 py-2">
-                                                                <p className="dark:text-gray-400">${res?.price}</p>
-                                                            </div>
-
 
                                                         </td>
                                                     ))

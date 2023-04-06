@@ -4,6 +4,7 @@ import { BsFillCloudUploadFill } from "react-icons/bs";
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { createQuote } from '../../Redux/Features/quotes/quotesSlice';
+import { toast } from 'react-hot-toast';
 
 
 const DragAndDropFileUploader = () => {
@@ -14,7 +15,7 @@ const DragAndDropFileUploader = () => {
     const history = useNavigate();
 
     const dispatch = useDispatch();
-    const { isLoading} = useSelector(state => state?.quote);
+    const { isLoading, isSuccess, isError, error } = useSelector(state => state?.quote);
 
 
 
@@ -58,7 +59,7 @@ const DragAndDropFileUploader = () => {
         formData.append("type", type);
 
 
-        dispatch(createQuote({ formData, id }))
+        await dispatch(createQuote({ formData, id }))
             .then(res => {
 
                 if (res.payload.status === 200) {
@@ -68,11 +69,20 @@ const DragAndDropFileUploader = () => {
             )
     }
 
+
     useEffect(() => {
-        if (isLoading) {
-            <h1>Loading...</h1>
+        if (isSuccess) {
+            toast.success("Success", { id: "quote" })
+
         }
-    }, [isLoading])
+        if (isError) {
+            toast.error(error, { id: "quote" })
+        }
+        if (isLoading) {
+            toast.loading("Loading...", { id: "quote" })
+        }
+    }, [isSuccess, isError, error, isLoading])
+
 
 
     return (
