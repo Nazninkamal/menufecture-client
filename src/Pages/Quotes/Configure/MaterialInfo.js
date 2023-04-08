@@ -13,13 +13,13 @@ const MaterialInfo = ({ register, watch, errors, reset, id, setQuantity, quantit
   const { data } = useGetMySingleQuotesQuery({ id });
 
 
+  console.log(data?.result);
+  useEffect(() => {
+    reset(data?.result)
+    setQuantity(data?.result?.quantity)
+  }, [data?.result, reset, setQuantity])
 
-useEffect(() => {
-   reset(data?.result)
-   setQuantity(data?.result?.quantity)
-}, [data?.result,reset,setQuantity])
- 
-
+  // console.log(singleSLA);
   return (
 
 
@@ -78,20 +78,23 @@ useEffect(() => {
 
             <select
               {...register("resolution", { required: true })}
-              disabled={!singleSLA && !watch("input-a")}
+              disabled={!SLA && !watch("input-a")}
               className="block w-56 px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 text-sm  ">
 
               <option value=""
 
               >No selected</option>
-              {
-                singleSLA?.resolution?.map((rsl, i) =>
-                  rsl?.title && <option key={i} defaultValue={rsl?.title} value={rsl?.title}
-                    className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                  >{rsl?.title}</option>
+              {/* {
+                singleSLA?.resolution?.map((rsl, i) => */}
+              <option value={singleSLA?.resolutionHighRes}
+                className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              >{singleSLA?.resolutionHighRes}</option>
+              <option value={singleSLA?.resolutionNormal}
+                className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              >{singleSLA?.resolutionNormal}</option>
 
-                )
-              }
+              {/*      )
+              } */}
 
 
             </select>
@@ -117,12 +120,15 @@ useEffect(() => {
               <option value=""
 
               >No selected</option>
-              {
-                singleSLA?.finish?.map((f, i) =>
-                  <option key={i} value={f?.title}
-                  >{f?.title}</option>
-                )
-              }
+              {/* {
+                singleSLA?.finish?.map((f, i) => */}
+              <option value={singleSLA?.finishStandard}
+              >{singleSLA?.finishStandard}</option>
+
+              <option value={singleSLA?.finishNormal}
+              >{singleSLA?.finishNormal}</option>
+              {/* )
+              } */}
             </select>
             <p className="text-red-500">{errors.finish?.message}</p>
           </div>
@@ -137,15 +143,17 @@ useEffect(() => {
               {...register("orientation", { required: true })}
               disabled={!singleSLA && !watch("input-a")}
               className="block w-56 px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 text-sm  ">
-              <option value=""
-
+              <option
+                value=''
               >No selected</option>
-              {
-                singleSLA?.orientation?.map((o, i) =>
-                  <option key={i} value="Let Us Decide"
-                  >{o?.title}</option>
-                )
-              }
+              {/*    {
+                singleSLA?.orientation?.map((o, i) => */}
+              <option value={singleSLA?.orientationLetUsDecide}
+              >{singleSLA?.orientationLetUsDecide}</option>
+              <option value={singleSLA?.orientationCustom}
+              >{singleSLA?.orientationCustom}</option>
+              {/*  )
+              } */}
 
             </select>
             <p className="text-red-500">{errors.orientation?.message}</p>

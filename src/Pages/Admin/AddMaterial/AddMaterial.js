@@ -32,7 +32,7 @@ const AddMaterial = () => {
         }
     }, [isLoading, isError, error, isSuccess]);
 
-
+    console.log(data);
     return (
         <div className=' h-screen overflow-y-auto'>
             <SharedBar pageName="Add Material" />
@@ -53,7 +53,7 @@ const AddMaterial = () => {
                                     <th className="p-3">Resolution</th>
                                     <th className="p-3">Finish</th>
                                     <th className="p-3">Orientation</th>
-                                    <th className="p-3">Edit</th>
+                                    <th className="p-3">Action</th>
 
                                 </tr>
                             </thead>
@@ -67,27 +67,24 @@ const AddMaterial = () => {
                                                 <p>{data?.material}</p>
                                             </td>
                                             <td className="px-3 py-2">
-                                                {
-                                                    data?.resolution?.map((res) => (
-                                                        <td key={res?._id} className='flex  justify-between   bg-teal-100 my-1'>
-                                                            <div className="px-3 py-2 flex justify-start">
-                                                                <p>{res?.title}</p>
-                                                            </div>
-
-                                                        </td>
-                                                    ))
-                                                }
+                                                <div className="px-3 py-2 ">
+                                                    <p>{data?.resolutionHighRes} ,</p>
+                                                   
+                                                    <p>{data?.resolutionNormal}</p>
+                                                </div>
 
                                             </td>
                                             <td className="px-3 py-2">
-                                                {data?.finish?.map((finish) => (
-                                                    <p key={finish?._id}>{finish?.title}</p>
-                                                ))}
+                                                <div className="px-3 py-2 ">
+                                                    <p>{data?.finishStandard} ,</p>
+                                                    <p>{data?.finishNormal}</p>
+                                                </div>
                                             </td>
                                             <td className="px-3 py-2">
-                                                {data?.orientation?.map((ori, i) => (
-                                                    <p key={ori?._id}>{ori?.title}</p>
-                                                ))}
+                                                <div className="px-3 py-2 ">
+                                                    <p>{data?.orientationLetUsDecide} ,</p>
+                                                    <p>{data?.orientationCustom}</p>
+                                                </div>
 
                                             </td>
 

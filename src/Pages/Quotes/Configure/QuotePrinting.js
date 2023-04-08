@@ -58,7 +58,9 @@ const QuotePrinting = () => {
                         type='button'
                         className='flex items-center justify-center w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r  from-green-500 to-slate-300-500 rounded-md  text-sm '>Quoted</button>}
 
-
+                {!data?.result?.status && <button
+                    type='submit'
+                    className='flex items-center justify-center  w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md active:ring-2 active:ring-offset-1   text-sm active:bg-gradient-to-l'>Request now</button>}
                 <NavLink to={`/profile/OrderReviewQuote/${id}`} className='flex items-center justify-center  w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md active:ring-2 active:ring-offset-1   text-sm active:bg-gradient-to-l'>Review Quote
                 </NavLink>
 

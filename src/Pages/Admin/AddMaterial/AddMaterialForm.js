@@ -11,36 +11,19 @@ import { toast } from 'react-hot-toast';
 
 const AddMaterialForm = () => {
     let [isOpen, setIsOpen] = useState(false);
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register,reset, handleSubmit, formState: { errors } } = useForm();
 
     const [createMaterial, { isLoading, isSuccess, isError, error }] = useCreateMaterialsMutation();
 
     const onSubmit = data => {
         const material = {
             material: data.material,
-
-            resolution: [
-                {
-                    title: "High Res",
-                    price: data.highResPrice
-                },
-                {
-                    title: "Normal Res",
-                    price: data.normalResPrice
-                }
-            ]
-            ,
-            finish: [
-                {
-                    title: data.finish,
-                }
-            ],
-            orientation: [
-                {
-                    title: data.orientation,
-                }
-            ]
-
+            resolutionHighRes: "High Res",
+            resolutionNormal: "Normal Res",
+            finishStandard: "Standard",
+            finishNormal: "Normal Res",
+            orientationLetUsDecide: "Let Us Decide",
+            orientationCustom: "Custom"
         }
 
         createMaterial({ material });
@@ -58,10 +41,11 @@ const AddMaterialForm = () => {
         }
         if (isSuccess) {
             toast.success('Post is Success', { id: "material" })
-            setIsOpen(false)
+            setIsOpen(false);
+            reset();
         }
 
-    }, [isLoading, isError, error, isSuccess]);
+    }, [isLoading, isError, error, isSuccess,reset]);
 
 
     return (
@@ -93,10 +77,10 @@ const AddMaterialForm = () => {
                     {/* --------------------------------------------------------------------- */}
 
 
-                    <div className=''>
-                        <div className=' '>
-                            {/* --------------------------------------------------------------------- */}
-                            <div className=" ">
+                    {/* <div className=''> */}
+                    {/* <div className=' '> */}
+                    {/* --------------------------------------------------------------------- */}
+                    {/*  <div className=" ">
                                 <span className=' text-xs' >High Res (Price)</span>
                                 <Combobox >
                                     <div className=" mt-1">
@@ -111,9 +95,9 @@ const AddMaterialForm = () => {
                                     </div>
                                 </Combobox>
                                 {errors.highResPrice && <span className='text-xs text-red-500'>High ResPrice field is required</span>}
-                            </div>
-                            {/* --------------------------------------------------------------------- */}
-                            <div className="">
+                            </div> */}
+                    {/* --------------------------------------------------------------------- */}
+                    {/* <div className="">
                                 <span className=' text-xs' >Normal res (Price)</span>
                                 <Combobox >
                                     <div className=" mt-1">
@@ -128,13 +112,13 @@ const AddMaterialForm = () => {
                                     </div>
                                 </Combobox>
                                 {errors.normalResPrice && <span className='text-xs text-red-500'>Normal ResPrice field is required</span>}
-                            </div>
-                        </div>
-                    </div>
+                            </div> */}
+                    {/* </div> */}
+                    {/* </div> */}
 
-                    <div className=' '>
-                        {/* ---------------------------------------------------------------------------- */}
-                        <div className=" ">
+                    {/* <div className=' '> */}
+                    {/* ---------------------------------------------------------------------------- */}
+                    {/*  <div className=" ">
                             <span className=' text-xs' >finish</span>
                             <Combobox >
                                 <div className=" w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
@@ -148,10 +132,10 @@ const AddMaterialForm = () => {
                             </Combobox>
                             {errors.finish && <span className='text-xs text-red-500'>finish  field is required</span>}
                         </div>
+ */}
 
-
-                        {/* ------------------------------------------------------ ---------------------*/}
-                        <div className="  ">
+                    {/* ------------------------------------------------------ ---------------------*/}
+                    {/*   <div className="  ">
                             <span className=' text-xs' >Orientation</span>
                             <Combobox >
                                 <div className=" w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
@@ -165,7 +149,7 @@ const AddMaterialForm = () => {
                             </Combobox>
                             {errors.orientation && <span className='text-xs text-red-500'>Orientation  field is required</span>}
                         </div>
-                    </div>
+                    </div> */}
                     <div className=' flex justify-end'>
                         <button type='submit' className='flex items-center justify-center  w-full md:w-60 text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r active:bg-gradient-to-l from-cyan-500 to-blue-500 rounded-md active:ring-2 active:ring-offset-1 text-sm  mt-5'>Submit</button>
                     </div>

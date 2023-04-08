@@ -20,13 +20,13 @@ import AllOrder from "../Pages/Supplier/Order/AllOrder";
 import AdminRoute from "./AdminRoute";
 import SupplierRoute from "./SupplierRoute";
 import UserRoute from "./UserRoute";
-import AddMaterial from "../Pages/Supplier/AddMaterial/AddMaterial";
 import MyOrder from "../Pages/MyOrder/MyOrder";
 import DashboardHome from "../Dashboard/DashboardHome";
 import Contact from "../Pages/User/Contact/Contact";
 import Feedback from "../Pages/User/Feedback/Feedback";
 import QuoteRequestToAdmin from "../Pages/Admin/QuoteRequestToAdmin/QuoteRequestToAdmin";
 import QuoteRequestToSupplier from "../Pages/Supplier/QuoteRequest/QuoteRequestToSupplier";
+import AddMaterial from "../Pages/Admin/AddMaterial/AddMaterial";
 
 
 
@@ -52,6 +52,11 @@ export const routers = createBrowserRouter([
 
             },
             {
+                path: "/addMaterial",
+                element: <AdminRoute><AddMaterial /></AdminRoute>,
+
+            },
+            {
                 path: "/quoteRequestToSupplier",
                 element: <SupplierRoute><QuoteRequestToSupplier /></SupplierRoute>,
 
@@ -61,11 +66,7 @@ export const routers = createBrowserRouter([
                 element: <SupplierRoute><AllOrder /></SupplierRoute>,
 
             },
-            {
-                path: "/addMaterial",
-                element: <SupplierRoute><AddMaterial /></SupplierRoute>,
 
-            },
 
             {
                 path: "/projects",

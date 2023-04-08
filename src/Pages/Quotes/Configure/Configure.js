@@ -7,8 +7,6 @@ import QuotePrinting from './QuotePrinting';
 import * as yup from "yup";
 import { useParams } from 'react-router-dom';
 import { useGetMySingleQuotesQuery, useUpdateMySingleQuotesMutation } from '../../../Redux/Features/quotes/quotesApi';
-
-// import { SLA } from './MaterialsData/MaterialsData';
 import { useGetMaterialsQuery } from '../../../Redux/Features/Material/matarialAPI';
 
 const Configure = () => {
@@ -31,12 +29,12 @@ const Configure = () => {
     } = useForm({
         resolver: yupResolver(SignupSchema)
     });
-    
+
     const { id } = useParams();
-    
+
     const { data } = useGetMySingleQuotesQuery({ id });
-    
-    const [quantity, setQuantity] = useState(data?.result?.quantity)||1;
+
+    const [quantity, setQuantity] = useState(data?.result?.quantity) || 1;
 
 
 
@@ -45,7 +43,7 @@ const Configure = () => {
 
 
     const [updateQuote, { isLoading: isLoadingUpdateQuote }] = useUpdateMySingleQuotesMutation();
-    const [singleResolution, setSingleResolution] = useState({});
+    // const [singleResolution, setSingleResolution] = useState({});
     const [singleSLA, setSingleSLA] = useState({});
     const [material, resolution, orientation, finish] = watch(['material', 'resolution', 'orientation', 'finish']);
 
@@ -53,11 +51,17 @@ const Configure = () => {
     const SLA = materials?.result;
 
     const setMaterialCallBack = useCallback(async () => {
+
+
         const singleSLA = await SLA?.find(s => s?.material === material);
-        const singleResolution = await singleSLA?.resolution?.find(s => s?.title === resolution);
+
+        // const singleResolution = await singleSLA?.resolution?.find(s => s?.title === resolution);
+
         setSingleSLA(singleSLA);
-        setSingleResolution(singleResolution);
-    }, [material, resolution, SLA])
+
+        // setSingleResolution(singleResolution);
+
+    }, [material, SLA])
 
     useEffect(() => {
 
@@ -65,26 +69,41 @@ const Configure = () => {
     }, [setMaterialCallBack]);
 
 
-
+ 
     // handle on change for state --------------------
 
     const handleOnchange = useCallback(
         async () => {
 
-            if (quantity || isDirty) {
+
+            if (material === '') {
                 const configure = {
-                    material: singleSLA?.material || data?.result?.material || material,
-                    resolution: singleSLA?.material ? singleResolution?.title : resolution,
-                    orientation: singleSLA?.material ? orientation : '',
-                    finish: singleSLA?.material ? finish : '',
-                    quantity: singleSLA?.material ? quantity : 1,
+                    material: '',
+                    resolution: '',
+                    orientation: '',
+                    finish: '',
+                    quantity: '',
+                    price:''
+                    
+                };
+                await updateQuote({ id, configure })
+            }
+            if (material) {
+                if (quantity || isDirty) {
+                    const configure = {
+                        material: material,
+                        resolution: resolution,
+                        orientation: orientation,
+                        finish: finish,
+                        quantity: singleSLA?.material ? quantity : 1,
+                    }
+                    await updateQuote({ id, configure })
                 }
 
 
-                await updateQuote({ id, configure })
             }
         },
-        [updateQuote, finish, id, orientation, quantity, singleResolution?.title, singleSLA?.material, data?.result?.material, isDirty, material,resolution],
+        [updateQuote, finish, id, orientation, quantity, singleSLA?.material, isDirty, material, resolution],
     );
 
 
@@ -108,6 +127,8 @@ const Configure = () => {
     // submit for Request handler -----------------------
 
     const onSubmit = (data) => {
+
+        console.log(data);
         const configure = { status: 'pending', sendToAdmin: 'sended' }
         updateQuote({ id, configure })
 

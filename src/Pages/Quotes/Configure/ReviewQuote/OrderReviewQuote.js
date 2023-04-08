@@ -55,6 +55,7 @@ const OrderReviewQuote = () => {
                             <div className='h-full'>
                                 <ViewThreeDFile file={quote?.result?.threeDFile?.fileURL} />
                             </div>
+                           
                         </div>
                         <div className=' md:col-span-6 sm:col-span-12 col-span-12 p-10'>
                             <div>
@@ -63,7 +64,7 @@ const OrderReviewQuote = () => {
                                 <h6 className=' text-sm text-slate-600 py-2'>{quote?.result?.resolution} </h6>
                                 <h6 className=' text-sm text-slate-600 py-2'>{quote?.result?.orientation}</h6>
                                 <h6 className=' text-sm text-slate-600 py-2'>{quote?.result?.finish} </h6>
-
+                            
                             </div>
                         </div>
 
@@ -79,8 +80,8 @@ const OrderReviewQuote = () => {
                     <div className=' md:col-span-3 sm:col-span-12 col-span-12 p-10 '>
                         <div className=' shadow p-8 flex flex-col justify-between h-full bg-slate-100'>
                             <div className=' flex justify-between'>
-                                <h1 className=' text-slate-600 text-base'>{quote?.result?.quantity} Part = ${quote?.result?.price}</h1>
-                                <h1 className=' text-slate-600 text-base'>${quote?.result?.price}</h1>
+                                <h1 className=' text-slate-600 text-base'>Part ={quote?.result?.quantity}</h1>
+                                <h1 className=' text-slate-600 text-base'>${quote?.result?.price?quote?.result?.price:'N/A'}</h1>
 
                             </div>
                             <div className=' py-6 border-b' />
@@ -88,7 +89,7 @@ const OrderReviewQuote = () => {
 
                             <div className=' flex justify-between '>
                                 <h1>Total:</h1>
-                                <h1>${quote?.result?.price}</h1>
+                                <h1>${quote?.result?.price?quote?.result?.price:'N/A'}</h1>
                             </div>
                         </div>
                     </div>
@@ -135,7 +136,7 @@ const OrderReviewQuote = () => {
                     </div>
                     <div className=' flex justify-center shadow py-3 mt-3'>
 
-                        <button className={`flex items-center justify-center w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r  ${quote?.result?.status === "pending" ? 'from-gray-500 to-gray-200' : "from-cyan-500 to-blue-500  active:bg-gradient-to-l"} from-cyan-500 to-blue-500 rounded-md active:ring-2 active:ring-offset-1 text-sm `} onClick={handleDownload}>PDF Download</button>
+                        <button className={`flex items-center justify-center  w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md active:ring-2 active:ring-offset-1   text-sm active:bg-gradient-to-l`} onClick={handleDownload}>PDF Download</button>
 
                         <button className='flex items-center justify-center w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r active:bg-gradient-to-l from-yellow-400 to-red-500 rounded-md active:ring-2 active:ring-offset-1 text-sm '>
                             Checkout Now

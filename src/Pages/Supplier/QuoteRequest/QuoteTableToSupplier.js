@@ -61,14 +61,15 @@ const QuoteTableToSupplier = ({ data, handleUpdateStatus }) => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <span>Delivery  date </span>
                     <input
+
                         {...register("deliveryDate", {
                             required: true
                         })}
-                        type="date"
+                        type='number'
                         defaultValue={data?.deliveryDate}
-                        className='w-full   text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40'
+                        className=' w-full  text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40'
                     />
-                    {errors.deliveryDate && <span className=' text-xs text-red-500'>This field is required</span>}
+                    {errors.deliveryDate && <span className=' text-xs text-red-500 block'>This field is required</span>}
                     < br /> <br />
 
                     <span>Set Price </span>
@@ -79,7 +80,7 @@ const QuoteTableToSupplier = ({ data, handleUpdateStatus }) => {
                         placeholder='Price'
                         className=' w-full   text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40'
                     />
-                    {errors.price && <span className=' text-xs text-red-500'>This field is required</span>}
+                    {errors.price && <span className=' block text-xs text-red-500'>This field is required</span>}
                     < br /> <br />
                     <button
                         type='submit'
@@ -88,20 +89,7 @@ const QuoteTableToSupplier = ({ data, handleUpdateStatus }) => {
             </td>
 
 
-          {/*   <td className="px-6 py-4 text-right">
-                <select defaultValue={data?.status} onChange={(e) => handleStatusChange(e.target.value)}
-                    className={`
-                ${data?.status === "pending" && "bg-yellow-400 "}
-                ${data?.status === "approved" && "bg-green-400 "}
-                ${data?.status === "rejected" && "bg-red-400 "}
-                
-                py-1 px-5 rounded-full text-white  font-bold `}
-                >
-                    <option value="pending">Pending</option>
-                    <option value="approved">Approved</option>
-                    <option value="rejected">Rejected</option>
-                </select>
-            </td> */}
+
         </tr>
     );
 };

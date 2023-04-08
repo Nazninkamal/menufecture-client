@@ -66,16 +66,17 @@ const QuoteTableAdmin = ({ data, handleUpdateStatus, handleDeliveryDate }) => {
             </td>
             <td className="px-6 py-4 text-center">
 
-                <input type="date" disabled={user?.role !== "supplier"} onChange={(e) => handleDateChange(e.target.value, data?._id)} defaultValue={data?.deliveryDate} name="" id="" />
+                {data?.deliveryDate ? <span>{data?.deliveryDate} Days</span> : "N/A"}
             </td>
 
 
 
             <td className="px-6 py-4 text-center">
                 {data?.sendToSupplier === 'sended' ?
-                    <div>
+                    <div className=' text-left'>
                         <p className=' text-xs'>Already sended with <br />{data?.supplier?.fullName} <br />
                             <a href={`mailto:${data?.supplier?.email}`}>{data?.supplier?.email}</a></p>
+                        <p>{data?.supplier?.company}</p>
                     </div> :
 
 
@@ -94,7 +95,7 @@ const QuoteTableAdmin = ({ data, handleUpdateStatus, handleDeliveryDate }) => {
                             {
                                 getSupplier?.result?.supplier?.filter(sup => sup?.role === 'supplier')?.map((data, i) =>
 
-                                    <option key={i} value={data?._id}>{data?.email}</option>
+                                    <option key={i} value={data?._id}>{data?.company}</option>
 
                                 )
                             }
@@ -107,7 +108,10 @@ const QuoteTableAdmin = ({ data, handleUpdateStatus, handleDeliveryDate }) => {
             </td>
 
             <td className="px-6 py-4 text-right">
-                <select defaultValue={data?.status} onChange={(e) => handleStatusChange(e.target.value)}
+                <select
+                    disabled={!data?.price && true}
+                    defaultValue={data?.status}
+                    onChange={(e) => handleStatusChange(e.target.value)}
                     className={`
                 ${data?.status === "pending" && "bg-yellow-400 "}
                 ${data?.status === "approved" && "bg-green-400 "}
