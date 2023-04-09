@@ -71,19 +71,6 @@ const Register = () => {
 
     };
 
-    /*  useEffect(() => {
-         if (isSuccess) {
-             toast.success("Signup is Successfully, Please check your email for conform your register.", { id: "register" })
-             reset()
-         }
-         if (isError) {
-             toast.error(error, { id: "register" })
-         }
-         if (isLoading) {
-             toast.loading("Loading...", { id: "register" })
-         }
-     }, [isSuccess, isError, error, isLoading, reset])
-  */
 
 
 

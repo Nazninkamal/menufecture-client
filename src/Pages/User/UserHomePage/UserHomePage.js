@@ -1,6 +1,5 @@
 import React from 'react';
 import Cards from './Cards';
-import Table from './Table';
 import Services from './Services';
 import SharedBar from '../../../Components/SharedBar/SharedBar';
 
