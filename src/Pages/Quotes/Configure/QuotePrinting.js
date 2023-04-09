@@ -17,9 +17,20 @@ const QuotePrinting = () => {
                 <div className='grid grid-cols-6 gap-4 '>
 
                     <div className='col-span-6 sm:col-span-6 md:col-span-6 lg:col-span-3  flex justify-center'>
-                        {
-                            isLoading ? null : <ViewThreeDFile file={data?.result?.threeDFile?.fileURL} />
-                        }
+                        <div>
+                            <div>
+                                {
+                                    isLoading ? null : <ViewThreeDFile file={data?.result?.threeDFile?.fileURL} />
+                                }
+                            </div>
+                            <div className=' flex justify-center'>
+                                <NavLink to={`/quotes/viewAnalysis/${id}`}
+                                    className='flex items-center justify-center  w-32 py-1  text-slate-700 font-extrabold latter tracking-wider first-letter:border bg-gradient-to-r from-slate-200 to-slate-100 rounded-md active:ring-2 active:ring-offset-1   text-sm active:bg-gradient-to-l'
+                                >
+                                    View Analysis
+                                </NavLink>
+                            </div>
+                        </div>
                     </div>
 
 
@@ -35,7 +46,7 @@ const QuotePrinting = () => {
                             <hr />
                             <h1>Quantity: {data?.result?.quantity} {isLoading && "Loading..."}</h1>
                             <hr />
-                            <h1>Price: {data?.result?.price || "N/A"} {isLoading && "Loading..."}</h1>
+                            <h1>Price: {data?.result?.price && data?.result?.status === "approved" ? data?.result?.price : "N/A"} {isLoading && "Loading..."}</h1>
                             <hr />
                             <h1> {data?.result?.updatedAt ? "Last Updated" : "Crating date"}: {
                                 new Date(data?.result?.updatedAt || data?.result?.createdAt).toLocaleDateString()} </h1>

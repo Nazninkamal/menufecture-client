@@ -109,7 +109,7 @@ const QuoteTableAdmin = ({ data, handleUpdateStatus, handleDeliveryDate }) => {
 
             <td className="px-6 py-4 text-right">
                 <select
-                    disabled={!data?.price && true}
+                    disabled={!data?.price && !data?.deliveryDate && true}
                     defaultValue={data?.status}
                     onChange={(e) => handleStatusChange(e.target.value)}
                     className={`

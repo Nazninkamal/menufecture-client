@@ -27,6 +27,7 @@ import Feedback from "../Pages/User/Feedback/Feedback";
 import QuoteRequestToAdmin from "../Pages/Admin/QuoteRequestToAdmin/QuoteRequestToAdmin";
 import QuoteRequestToSupplier from "../Pages/Supplier/QuoteRequest/QuoteRequestToSupplier";
 import AddMaterial from "../Pages/Admin/AddMaterial/AddMaterial";
+import ViewAnalysis from "../Pages/Quotes/Quotes/ViewAnalysis";
 
 
 
@@ -107,6 +108,10 @@ export const routers = createBrowserRouter([
                 element: <UserRoute><OrderReviewQuote /></UserRoute>
             },
             {
+                path: '/quotes/viewAnalysis/:id',
+                element: <ViewAnalysis />
+            },
+            {
                 path: '/contact',
                 element: <UserRoute><Contact /></UserRoute>
             },
@@ -114,6 +119,7 @@ export const routers = createBrowserRouter([
                 path: '/feedback',
                 element: <UserRoute><Feedback /></UserRoute>
             },
+            
             {
                 path: "/profile",
                 element: <Profile />,

@@ -55,7 +55,7 @@ const OrderReviewQuote = () => {
                             <div className='h-full'>
                                 <ViewThreeDFile file={quote?.result?.threeDFile?.fileURL} />
                             </div>
-                           
+
                         </div>
                         <div className=' md:col-span-6 sm:col-span-12 col-span-12 p-10'>
                             <div>
@@ -64,7 +64,7 @@ const OrderReviewQuote = () => {
                                 <h6 className=' text-sm text-slate-600 py-2'>{quote?.result?.resolution} </h6>
                                 <h6 className=' text-sm text-slate-600 py-2'>{quote?.result?.orientation}</h6>
                                 <h6 className=' text-sm text-slate-600 py-2'>{quote?.result?.finish} </h6>
-                            
+
                             </div>
                         </div>
 
@@ -81,7 +81,7 @@ const OrderReviewQuote = () => {
                         <div className=' shadow p-8 flex flex-col justify-between h-full bg-slate-100'>
                             <div className=' flex justify-between'>
                                 <h1 className=' text-slate-600 text-base'>Part ={quote?.result?.quantity}</h1>
-                                <h1 className=' text-slate-600 text-base'>${quote?.result?.price?quote?.result?.price:'N/A'}</h1>
+                                <h1 className=' text-slate-600 text-base'>${quote?.result?.price && quote?.result?.status === "approved" ? quote?.result?.price : "N/A"}</h1>
 
                             </div>
                             <div className=' py-6 border-b' />
@@ -89,7 +89,7 @@ const OrderReviewQuote = () => {
 
                             <div className=' flex justify-between '>
                                 <h1>Total:</h1>
-                                <h1>${quote?.result?.price?quote?.result?.price:'N/A'}</h1>
+                                <h1>${quote?.result?.price && quote?.result?.status === "approved" ? quote?.result?.price : "N/A"}</h1>
                             </div>
                         </div>
                     </div>
@@ -120,7 +120,7 @@ const OrderReviewQuote = () => {
 
                     <div className=' flex justify-between'>
                         <h3 className=' text-base  py-1'>Subtotal: </h3>
-                        <h3 className=' text-base  py-1'> ${quote?.result?.price}</h3>
+                        <h3 className=' text-base  py-1'> ${quote?.result?.price && quote?.result?.status === "approved" ? quote?.result?.price : "N/A"}</h3>
                     </div>
                     <div className=' flex justify-between'>
                         <h3 className=' text-base  py-1'>Shipping : </h3>
@@ -132,7 +132,7 @@ const OrderReviewQuote = () => {
                     </div>
                     <div className=' flex justify-between'>
                         <h3>Total: </h3>
-                        <h3> ${quote?.result?.price}</h3>
+                        <h3> ${quote?.result?.price && quote?.result?.status === "approved" ? quote?.result?.price : "N/A"}</h3>
                     </div>
                     <div className=' flex justify-center shadow py-3 mt-3'>
 

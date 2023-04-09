@@ -6,13 +6,25 @@ import { toast } from 'react-hot-toast';
 
 const QuoteTableToSupplier = ({ data, handleUpdateStatus }) => {
     const [updateQuote, { isLoading, isError, isSuccess, error }] = useUpdateMySingleQuotesMutation();
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm();
 
 
 
     const onSubmit = async (d) => {
         await updateQuote({ id: data?._id, configure: d })
     };
+    const { price, deliveryDate } = watch()
+    console.log(price, deliveryDate);
+
+
+    useEffect(() => {
+        if (deliveryDate < 1) {
+            setValue('deliveryDate', 1, { shouldValidate: true })
+        }
+        if (price < 1) {
+            setValue('price', 1, { shouldValidate: true })
+        }
+    }, [setValue, deliveryDate, price])
 
 
 
