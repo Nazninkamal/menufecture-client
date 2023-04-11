@@ -65,7 +65,7 @@ const QuoteTableToSupplier = ({ data, handleUpdateStatus }) => {
 
 
             <td className="px-6 py-4">
-                ${data?.price || "N/A"}
+                {data?.price || "N/A"}x{data?.quantity}={data?.price * data?.quantity}$
             </td>
 
             <td className="px-6 py-4">
@@ -73,7 +73,7 @@ const QuoteTableToSupplier = ({ data, handleUpdateStatus }) => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <span>Delivery  date </span>
                     <input
-
+                        disabled={data?.deliveryDate && true}
                         {...register("deliveryDate", {
                             required: true
                         })}
@@ -84,8 +84,9 @@ const QuoteTableToSupplier = ({ data, handleUpdateStatus }) => {
                     {errors.deliveryDate && <span className=' text-xs text-red-500 block'>This field is required</span>}
                     < br /> <br />
 
-                    <span>Set Price </span>
+                    <span>Set per part Price  </span>
                     <input
+                        disabled={data?.price && true}
                         type="number"
                         {...register("price", { required: true })}
                         defaultValue={data?.price}
@@ -94,9 +95,10 @@ const QuoteTableToSupplier = ({ data, handleUpdateStatus }) => {
                     />
                     {errors.price && <span className=' block text-xs text-red-500'>This field is required</span>}
                     < br /> <br />
-                    <button
-                        type='submit'
-                        className='  px-2 py-1 rounded-full text-white bg-gradient-to-r active:bg-gradient-to-l from-sky-600 from-10% via-sky-500 via-30% to-emerald-500 to-90% w-full'>Submit</button>
+                    {!data?.deliveryDate &&
+                        <button
+                            type='submit'
+                            className='  px-2 py-1 rounded-full text-white bg-gradient-to-r active:bg-gradient-to-l from-sky-600 from-10% via-sky-500 via-30% to-emerald-500 to-90% w-full'>Submit</button>}
                 </form>
             </td>
 

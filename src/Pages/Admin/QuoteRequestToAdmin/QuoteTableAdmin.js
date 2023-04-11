@@ -1,20 +1,18 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { useForm } from "react-hook-form";
 import { useUpdateMySingleQuotesMutation } from '../../../Redux/Features/quotes/quotesApi';
 import { useGetApplyForSupplierQuery } from '../../../Redux/Features/User/userApi';
 
 import { toast } from 'react-hot-toast';
-const QuoteTableAdmin = ({ data, handleUpdateStatus, handleDeliveryDate }) => {
+import { Link } from 'react-router-dom';
+const QuoteTableAdmin = ({ data, handleUpdateStatus }) => {
     const [updateQuote, { isLoading, isError, isSuccess, error }] = useUpdateMySingleQuotesMutation();
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register: registerProfit, handleSubmit: handleSubmitProfit } = useForm();
     const { data: getSupplier } = useGetApplyForSupplierQuery();
-    const { user } = useSelector(state => state.auth);
 
 
-    const handleDateChange = (date, id) => {
-        handleDeliveryDate(date, id)
-    }
+
 
     const handleStatusChange = (status) => {
         handleUpdateStatus(data?._id, status)
@@ -26,6 +24,16 @@ const QuoteTableAdmin = ({ data, handleUpdateStatus, handleDeliveryDate }) => {
         await updateQuote({ id: data?._id, configure })
     };
 
+
+    const handleAddProfit = async ({ profit }) => {
+
+        const configure = { profit: Number(profit) };
+        await updateQuote({ id: data?._id, configure })
+
+
+
+
+    }
 
     useEffect(() => {
         if (isLoading) {
@@ -42,7 +50,9 @@ const QuoteTableAdmin = ({ data, handleUpdateStatus, handleDeliveryDate }) => {
     return (
         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 ">
             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {data?.material}
+                <p>{data?.material}</p>
+                <Link to={`/quotes/viewAnalysis/${data._id}`} className='px-5 py-1   text-blue-500 underline hover:text-indigo-400 hover:font-bold font-serif'>View Analysis</Link>
+
             </th>
             <td className="px-6 py-4">
                 {data?.type}
@@ -61,9 +71,43 @@ const QuoteTableAdmin = ({ data, handleUpdateStatus, handleDeliveryDate }) => {
             <td className="px-6 py-4">
                 {data?.quantity}
             </td>
-            <td className="px-6 py-4">
-                ${data?.price || "N/A"}
+
+            <td className="px-1 py-4">
+                Price: {data?.price || "N/A"} $
+                <hr />
+                Quantity: {data?.quantity || "N/A"}
+                <hr />
+                {data?.profit &&
+                    <div>
+                        <p> Profit: {data?.profit} $</p>
+                        <hr />
+                    </div>
+                }
+                {data?.profit &&
+                    <div>
+                        <p> Total: {data?.price * data?.quantity + data?.profit} $</p>
+                        <hr />
+                    </div>
+                }
             </td>
+            <td className="px-6 py-4">
+                <form onSubmit={handleSubmitProfit(handleAddProfit)}>
+                    <input
+                        defaultValue={data?.profit}
+                        {...registerProfit("profit", { required: true })}
+                        disabled={data?.profit && true}
+                        type="number"
+                        placeholder='Profit Price'
+                        className=' w-24 text-xs'
+                    />
+                    {!data?.profit && <button type='submit'
+                        disabled={data?.profit && true}
+                        className='flex items-center justify-center  w-full text-slate-50 font-extrabold latter tracking-wider  mt-2 border bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md   active:ring-2 active:ring-offset-1   text-sm active:bg-gradient-to-l no-underline'
+                    >Submit</button>}
+                </form>
+            </td>
+
+
             <td className="px-6 py-4 text-center">
 
                 {data?.deliveryDate ? <span>{data?.deliveryDate} Days</span> : "N/A"}

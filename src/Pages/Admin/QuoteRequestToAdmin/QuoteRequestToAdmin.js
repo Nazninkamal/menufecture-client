@@ -11,7 +11,7 @@ const QuoteRequestToAdmin = () => {
     const [updateQuote, { isLoading, isError, isSuccess, error }] = useUpdateMySingleQuotesMutation();
 
 
-   
+
 
 
 
@@ -22,18 +22,7 @@ const QuoteRequestToAdmin = () => {
 
 
 
-    /*  const handleDeliveryDate = async (deliveryDate, id) => {
-         const configure = { deliveryDate };
-         await updateQuote({ id, configure })
-     }
- 
-     const handleSentToSupplier = async (id) => {
-         const configure = { SendToSupplier: 'sended' };
-         await updateQuote({ id, configure })
-     } */
 
-
-  
 
     useEffect(() => {
         if (isLoading) {
@@ -75,11 +64,15 @@ const QuoteRequestToAdmin = () => {
                             Quantity
                         </th>
                         <th scope="col" className="px-6 py-3">
-                            Total Price
+                            Product Price
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-center">
+                            Profit Price
                         </th>
                         <th scope="col" className="px-6 py-3 text-center">
                             Delivery Date
                         </th>
+
                         <th scope="col" className="px-6 py-3 text-center">
                             Send to Supplier
 
