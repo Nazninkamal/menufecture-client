@@ -28,6 +28,8 @@ import QuoteRequestToAdmin from "../Pages/Admin/QuoteRequestToAdmin/QuoteRequest
 import QuoteRequestToSupplier from "../Pages/Supplier/QuoteRequest/QuoteRequestToSupplier";
 import AddMaterial from "../Pages/Admin/AddMaterial/AddMaterial";
 import ViewAnalysis from "../Pages/Quotes/Quotes/ViewAnalysis";
+import OrdersAdmin from "../Pages/Admin/Orders/OrdersAdmin";
+
 
 
 
@@ -50,6 +52,11 @@ export const routers = createBrowserRouter([
             {
                 path: "/quoteRequestToAdmin",
                 element: <AdminRoute><QuoteRequestToAdmin /></AdminRoute>,
+
+            },
+            {
+                path: "/orders",
+                element: <AdminRoute><OrdersAdmin /></AdminRoute>,
 
             },
             {
@@ -119,7 +126,7 @@ export const routers = createBrowserRouter([
                 path: '/feedback',
                 element: <UserRoute><Feedback /></UserRoute>
             },
-            
+
             {
                 path: "/profile",
                 element: <Profile />,

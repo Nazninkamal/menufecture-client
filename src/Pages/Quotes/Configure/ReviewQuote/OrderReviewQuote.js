@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { downloadPDF } from '../../../../Redux/Features/quotes/quotesSlice';
 import SharedBar from '../../../../Components/SharedBar/SharedBar';
 import { toast } from 'react-hot-toast';
-import { useGetMySingleQuotesQuery } from '../../../../Redux/Features/quotes/quotesApi';
+import { useGetMySingleQuotesQuery, useUpdateMySingleQuotesMutation } from '../../../../Redux/Features/quotes/quotesApi';
 import ViewThreeDFile from '../../Quotes/ViewThreeDFile';
 
 
@@ -23,9 +23,37 @@ const OrderReviewQuote = () => {
         dispatch(downloadPDF({ id }))
 
     }
+    const [updateQuote, { isLoading: isLoadingOrder, isError: isErrorOrder, isSuccess: isSuccessOrder, error: errorOrder }] = useUpdateMySingleQuotesMutation();
+
+
+    const handleOrder = async () => {
+        if (quote?.result?.orderStatus) {
+            return toast.error("Already ordered this quote ", { id: "order" })
+        }
+        if (quote?.result?.price && quote?.result?.profit && quote?.result?.status === "approved") {
+
+            await updateQuote({ id: quote?.result?._id, configure: { orderStatus: "order" } })
+        }
+
+        else {
+            toast.error("Please wait for approve your request!", { id: "order" })
+        }
+    }
 
 
 
+
+    useEffect(() => {
+        if (isLoadingOrder) {
+            toast.loading("Loading...", { id: "order" })
+        }
+        if (isSuccessOrder) {
+            toast.success("Order Success", { id: "order" })
+        }
+        if (isErrorOrder) {
+            toast.error(errorOrder, { id: "order" })
+        }
+    }, [isLoadingOrder, isSuccessOrder, isErrorOrder, errorOrder])
 
 
 
@@ -81,7 +109,7 @@ const OrderReviewQuote = () => {
                         <div className=' shadow p-8 flex flex-col justify-between h-full bg-slate-100'>
                             <div className=' flex justify-between'>
                                 <h1 className=' text-slate-600 text-base'>Part ={quote?.result?.quantity}</h1>
-                                <h1 className=' text-slate-600 text-base'>{quote?.result?.price && quote?.result?.status === "approved" ? quote?.result?.price  +  quote?.result?.profit : "N/A"}$</h1>
+                                <h1 className=' text-slate-600 text-base'>{quote?.result?.price && quote?.result?.profit && quote?.result?.status === "approved" ? quote?.result?.price + quote?.result?.profit : "N/A"}$</h1>
 
                             </div>
                             <div className=' py-6 border-b' />
@@ -89,7 +117,7 @@ const OrderReviewQuote = () => {
 
                             <div className=' flex justify-between '>
                                 <h1>Total:</h1>
-                                <h1>{quote?.result?.price && quote?.result?.status === "approved" ? quote?.result?.price * quote?.result?.quantity + quote?.result?.profit : "N/A"}$</h1>
+                                <h1>{quote?.result?.price && quote?.result?.profit && quote?.result?.status === "approved" ? quote?.result?.price * quote?.result?.quantity + quote?.result?.profit : "N/A"}$</h1>
                             </div>
                         </div>
                     </div>
@@ -120,7 +148,7 @@ const OrderReviewQuote = () => {
 
                     <div className=' flex justify-between'>
                         <h3 className=' text-base  py-1'>Total: </h3>
-                        <h3 className=' text-base  py-1'> {quote?.result?.price && quote?.result?.status === "approved" ? quote?.result?.price * quote?.result?.quantity + quote?.result?.profit : "N/A"}$</h3>
+                        <h3 className=' text-base  py-1'> {quote?.result?.price && quote?.result?.profit && quote?.result?.status === "approved" ? quote?.result?.price * quote?.result?.quantity + quote?.result?.profit : "N/A"}$</h3>
                     </div>
                     <div className=' flex justify-between'>
                         <h3 className=' text-base  py-1'>Shipping : </h3>
@@ -135,7 +163,7 @@ const OrderReviewQuote = () => {
                         <h3> {
 
 
-                            quote?.result?.price && quote?.result?.status === "approved" ?
+                            quote?.result?.price && quote?.result?.profit && quote?.result?.status === "approved" ?
 
                                 (quote?.result?.price * quote?.result?.quantity + quote?.result?.profit)
 
@@ -146,11 +174,19 @@ const OrderReviewQuote = () => {
                     <div className=' flex justify-center shadow py-3 mt-3'>
 
                         <button className={`flex items-center justify-center  w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md active:ring-2 active:ring-offset-1   text-sm active:bg-gradient-to-l`} onClick={handleDownload}>PDF Download</button>
-
-                        <button className='flex items-center justify-center w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r active:bg-gradient-to-l from-yellow-400 to-red-500 rounded-md active:ring-2 active:ring-offset-1 text-sm '>
+                        {/* 
+                        {quote?.result?.orderStatus === "approved" && <button className='flex items-center justify-center w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r active:bg-gradient-to-l from-yellow-400 to-red-500 rounded-md active:ring-2 active:ring-offset-1 text-sm '>
                             Checkout Now
-                        </button>
+                        </button>} */}
+                        {
+                            quote?.result?.price && quote?.result?.status === "approved" &&
 
+                            <button
+                                onClick={handleOrder}
+                                className='flex items-center justify-center w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r active:bg-gradient-to-l from-green-300 to-green-500 rounded-md active:ring-2 active:ring-offset-1 text-sm '>
+                                Order Now
+                            </button>
+                        }
 
                     </div>
                 </div>

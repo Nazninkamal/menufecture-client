@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { useUpdateMySingleQuotesMutation } from '../../../Redux/Features/quotes/quotesApi';
 import { useGetApplyForSupplierQuery } from '../../../Redux/Features/User/userApi';
-
 import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+
+
 const QuoteTableAdmin = ({ data, handleUpdateStatus }) => {
     const [updateQuote, { isLoading, isError, isSuccess, error }] = useUpdateMySingleQuotesMutation();
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -29,9 +30,6 @@ const QuoteTableAdmin = ({ data, handleUpdateStatus }) => {
 
         const configure = { profit: Number(profit) };
         await updateQuote({ id: data?._id, configure })
-
-
-
 
     }
 

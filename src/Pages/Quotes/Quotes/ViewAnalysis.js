@@ -32,12 +32,18 @@ const ViewAnalysis = () => {
 
     }, [isLoadingPDF, errorPDF, isErrorPDF, isSuccessPDF]);
 
+
+
+    console.log(data);
+
     return (
         <div className='  h-screen overflow-y-auto'>
             <SharedBar pageName="View Analysis" />
-            <div className='grid grid-cols-12 p-5 gap-5'>
-                <div className=' col-span-12 sm:col-span-12 md:col-span-4 lg:col-span-4  border p-3 flex flex-col justify-between '>
-                    <div className=' text-base '>
+            <div className='grid grid-cols-12 md:p-5 gap-5'>
+
+                <div className=' col-span-12 sm:col-span-12 md:col-span-4 lg:col-span-4  border md:p-3 flex flex-col justify-between '>
+                <h1 className=' text-sm text-white bg-gradient-to-l from-indigo-400 from-10% via-sky-400 via-30% to-emerald-400 to-90% px-1 py-2'>Product info</h1>
+                    <div className=' text-sm border p-2'>
                         <h1>Material: {data?.result?.material} {isLoading && "Loading..."}</h1>
                         <hr />
                         <h1>Resolution: {data?.result?.resolution} {isLoading && "Loading..."}</h1>
@@ -67,18 +73,38 @@ const ViewAnalysis = () => {
                         <p>Update Status: <span className=' uppercase  text-yellow-600'> {data?.result?.status || 'Request for quote'}</span></p>
                     </div>
 
-                    <div className=' grid grid-cols-6 gap-5'>
+                    {/* customer info ------------------------- */}
+
+                    <h1 className='text-sm mt-9 text-white bg-gradient-to-l from-indigo-400 from-10% via-sky-400 via-30% to-emerald-400 to-90% px-1 py-2'>Customer info</h1>
+                    <div className=' text-sm border p-2'>
+                        <h1>Name: {data?.result?.user?.fullName}</h1>
+                        <hr />
+                        <h1>Email: {data?.result?.user?.email}</h1>
+                        <hr />
+                        <h1>Phone: {data?.result?.user?.phoneNumber}</h1>
+                        <hr />
+                        <h1>Company: {data?.result?.user?.company}</h1>
+                        <hr />
+                        <h1>Country: {data?.result?.user?.country}</h1>
+                        <h1>Postal Code: ({data?.result?.user?.postalCode})</h1>
+
+
+                    </div>
+
+                    <div className=' grid grid-cols-6 gap-5 px-1 md:px-0'>
                         <a href={data?.result?.threeDFile?.fileURL} download
-                            className='col-span-6 md:col-span-3 flex items-center justify-center  w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md mt-10  active:ring-2 active:ring-offset-1   text-sm active:bg-gradient-to-l no-underline'
+                            className='col-span-6 md:col-span-3 text-xs flex items-center justify-center  w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md mt-10  active:ring-2 active:ring-offset-1   active:bg-gradient-to-l no-underline'
                         >Download file</a>
 
                         <button
                             onClick={handleDownload}
-                            className='col-span-6 md:col-span-3 flex items-center justify-center  w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md mt-10  active:ring-2 active:ring-offset-1   text-sm active:bg-gradient-to-l no-underline'>Download Info</button>
+                            className='col-span-6 md:col-span-3 flex items-center justify-center  w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md md:mt-10  active:ring-2 active:ring-offset-1   text-xs active:bg-gradient-to-l no-underline'>Download Info</button>
                     </div>
                 </div>
+
+
                 <div className='   col-span-12 sm:col-span-12 md:col-span-8 lg:col-span-8  '>
-                    <div className=' overflow-y-auto border h-96 md:h-full'>
+                    <div className=' overflow-y-auto border h-96 md:h-full bg-gradient-to-tr from-indigo-400 from-10% via-sky-400 via-30% to-emerald-400 to-90%'>
                         {data?.result?.threeDFile?.fileURL && <ViewThreeDFile file={data?.result?.threeDFile?.fileURL} OrbitControl="OrbitControl" />}
                     </div>
                 </div>

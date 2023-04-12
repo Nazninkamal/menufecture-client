@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useUpdateMySingleQuotesMutation } from '../../../Redux/Features/quotes/quotesApi';
 import { toast } from 'react-hot-toast';
-
+import { Link } from 'react-router-dom';
 
 const QuoteTableToSupplier = ({ data, handleUpdateStatus }) => {
     const [updateQuote, { isLoading, isError, isSuccess, error }] = useUpdateMySingleQuotesMutation();
@@ -14,7 +14,7 @@ const QuoteTableToSupplier = ({ data, handleUpdateStatus }) => {
         await updateQuote({ id: data?._id, configure: d })
     };
     const { price, deliveryDate } = watch()
-    console.log(price, deliveryDate);
+
 
 
     useEffect(() => {
@@ -43,7 +43,8 @@ const QuoteTableToSupplier = ({ data, handleUpdateStatus }) => {
     return (
         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {data?.material}
+                <p>{data?.material}</p>
+                <Link to={`/quotes/viewAnalysis/${data._id}`} className='px-5 py-1   text-blue-500 underline hover:text-indigo-400 hover:font-bold font-serif'>View Analysis</Link>
             </th>
             <td className="px-6 py-4">
                 {data?.type}
@@ -68,10 +69,11 @@ const QuoteTableToSupplier = ({ data, handleUpdateStatus }) => {
                 {data?.price || "N/A"}x{data?.quantity}={data?.price * data?.quantity}$
             </td>
 
+
             <td className="px-6 py-4">
 
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <span>Delivery  date </span>
+                    <p>Delivery  date </p>
                     <input
                         disabled={data?.deliveryDate && true}
                         {...register("deliveryDate", {
@@ -79,21 +81,21 @@ const QuoteTableToSupplier = ({ data, handleUpdateStatus }) => {
                         })}
                         type='number'
                         defaultValue={data?.deliveryDate}
-                        className=' w-full  text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40'
+                        className='  text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40'
                     />
-                    {errors.deliveryDate && <span className=' text-xs text-red-500 block'>This field is required</span>}
+                    {errors.deliveryDate && <p className=' text-xs text-red-500 block'>This field is required</p>}
                     < br /> <br />
 
-                    <span>Set per part Price  </span>
+                    <p>Set per part Price  </p>
                     <input
                         disabled={data?.price && true}
                         type="number"
                         {...register("price", { required: true })}
                         defaultValue={data?.price}
                         placeholder='Price'
-                        className=' w-full   text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40'
+                        className='   text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40'
                     />
-                    {errors.price && <span className=' block text-xs text-red-500'>This field is required</span>}
+                    {errors.price && <p className=' block text-xs text-red-500'>This field is required</p>}
                     < br /> <br />
                     {!data?.deliveryDate &&
                         <button
@@ -102,7 +104,11 @@ const QuoteTableToSupplier = ({ data, handleUpdateStatus }) => {
                 </form>
             </td>
 
-
+            <td className="px-6 py-4 text-center">
+                <p> {
+                    data?.orderStatus || data?.status || "N/A"
+                }</p>
+            </td>
 
         </tr>
     );
