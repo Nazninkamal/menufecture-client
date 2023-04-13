@@ -1,10 +1,9 @@
 import React from 'react';
-import SharedBar from '../../../Components/SharedBar/SharedBar';
 import { useGetAllUsersQuery } from '../../../Redux/Features/User/userApi';
 
 const UserSupplierInfo = () => {
     const { data: users } = useGetAllUsersQuery();
-console.log(users);
+
     return (
         <div className=' h-screen overflow-y-auto'>
        
