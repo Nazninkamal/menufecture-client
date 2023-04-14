@@ -12,6 +12,7 @@ const ViewAnalysis = () => {
     const { data, isLoading } = useGetMySingleQuotesQuery({ id });
 
     const { isLoading: isLoadingPDF, isSuccess: isSuccessPDF, isError: isErrorPDF, error: errorPDF } = useSelector((state) => state.quote);
+    const { user } = useSelector(state => state.auth)
 
     const dispatch = useDispatch();
     const handleDownload = () => {
@@ -34,7 +35,7 @@ const ViewAnalysis = () => {
 
 
 
-    console.log(data);
+
 
     return (
         <div className='  h-screen overflow-y-auto'>
@@ -42,7 +43,7 @@ const ViewAnalysis = () => {
             <div className='grid grid-cols-12 md:p-5 gap-5'>
 
                 <div className=' col-span-12 sm:col-span-12 md:col-span-4 lg:col-span-4  border md:p-3 flex flex-col justify-between '>
-                <h1 className=' text-sm text-white bg-gradient-to-l from-indigo-400 from-10% via-sky-400 via-30% to-emerald-400 to-90% px-1 py-2'>Product info</h1>
+                    <h1 className=' text-sm text-white bg-gradient-to-l from-indigo-400 from-10% via-sky-400 via-30% to-emerald-400 to-90% px-1 py-2'>Product info</h1>
                     <div className=' text-sm border p-2'>
                         <h1>Material: {data?.result?.material} {isLoading && "Loading..."}</h1>
                         <hr />
@@ -54,18 +55,17 @@ const ViewAnalysis = () => {
                         <hr />
                         <h1>Quantity: {data?.result?.quantity} {isLoading && "Loading..."}</h1>
                         <hr />
-                        <h1>Price: {data?.result?.price + data?.result?.profit || "N/A"} {isLoading && "Loading..."}$</h1>
+                        <h1>Price: {data?.result?.price + data?.result?.profit || "N/A"} {isLoading && "Loading..."}€</h1>
                         <hr />
-                        <h1>Total: {data?.result?.price * data?.result?.quantity + data?.result?.profit || "N/A"} {isLoading && "Loading..."}$</h1>
-                        <hr />
+
                         <h1>Tex:20% {isLoading && "Loading..."}</h1>
                         <hr />
-                        <h1>Sipping:30  {isLoading && "Loading..."}$</h1>
+                        <h1>Sipping:30  {isLoading && "Loading..."}€ </h1>
                         <hr />
-                        <h1>SubTotal: {
-                            (data?.result?.price * data?.result?.quantity + data?.result?.profit)
-                            + (data?.result?.price * data?.result?.quantity + data?.result?.profit)
-                            * (20 / 100) + 30 || "N/A"} {isLoading && "Loading..."}$</h1>
+                        <h1>Total: {
+                            (data?.result?.price + data?.result?.profit)
+                            + (data?.result?.price + data?.result?.profit)
+                            * (20 / 100) + 30 || "N/A"} {isLoading && "Loading..."}€ </h1>
                         <hr />
                         <h1> {data?.result?.updatedAt ? "Last Updated" : "Crating date"}: {
                             new Date(data?.result?.updatedAt || data?.result?.createdAt).toLocaleDateString()} </h1>
@@ -75,21 +75,25 @@ const ViewAnalysis = () => {
 
                     {/* customer info ------------------------- */}
 
-                    <h1 className='text-sm mt-9 text-white bg-gradient-to-l from-indigo-400 from-10% via-sky-400 via-30% to-emerald-400 to-90% px-1 py-2'>Customer info</h1>
-                    <div className=' text-sm border p-2'>
-                        <h1>Name: {data?.result?.user?.fullName}</h1>
-                        <hr />
-                        <h1>Email: {data?.result?.user?.email}</h1>
-                        <hr />
-                        <h1>Phone: {data?.result?.user?.phoneNumber}</h1>
-                        <hr />
-                        <h1>Company: {data?.result?.user?.company}</h1>
-                        <hr />
-                        <h1>Country: {data?.result?.user?.country}</h1>
-                        <h1>Postal Code: ({data?.result?.user?.postalCode})</h1>
+                    {
+                        user?.role === "admin" &&
+                        <div>
+                            <h1 className='text-sm mt-9 text-white bg-gradient-to-l from-indigo-400 from-10% via-sky-400 via-30% to-emerald-400 to-90% px-1 py-2'>Customer info</h1>
+                            <div className=' text-sm border p-2'>
+                                <h1>Name: {data?.result?.user?.fullName}</h1>
+                                <hr />
+                                <h1>Email: {data?.result?.user?.email}</h1>
+                                <hr />
+                                <h1>Phone: {data?.result?.user?.phoneNumber}</h1>
+                                <hr />
+                                <h1>Company: {data?.result?.user?.company}</h1>
+                                <hr />
+                                <h1>Country: {data?.result?.user?.country}</h1>
+                                <h1>Postal Code: ({data?.result?.user?.postalCode})</h1>
 
 
-                    </div>
+                            </div>
+                        </div>}
 
                     <div className=' grid grid-cols-6 gap-5 px-1 md:px-0'>
                         <a href={data?.result?.threeDFile?.fileURL} download
@@ -103,10 +107,10 @@ const ViewAnalysis = () => {
                 </div>
 
 
-                <div className='   col-span-12 sm:col-span-12 md:col-span-8 lg:col-span-8  '>
-                    <div className=' overflow-y-auto border h-96 md:h-full bg-gradient-to-tr from-indigo-400 from-10% via-sky-400 via-30% to-emerald-400 to-90%'>
-                        {data?.result?.threeDFile?.fileURL && <ViewThreeDFile file={data?.result?.threeDFile?.fileURL} OrbitControl="OrbitControl" />}
-                    </div>
+                <div className='   col-span-12 sm:col-span-12 md:col-span-8 lg:col-span-8    overflow-y-auto border  md:h-full bg-gradient-to-tr from-indigo-400 from-10% via-sky-400 via-30% to-emerald-400 to-90%'>
+
+                    {data?.result?.threeDFile?.fileURL && <ViewThreeDFile file={data?.result?.threeDFile?.fileURL} OrbitControl="OrbitControl" />}
+
                 </div>
             </div>
 

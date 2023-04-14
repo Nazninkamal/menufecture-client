@@ -68,7 +68,7 @@ const MyOrder = () => {
                                     {data?.quantity}
                                 </td>
                                 <td className="px-6 py-4">
-                                    {data?.price}
+                                    {data?.profit ? data?.price + data?.profit:"N/A"}€
                                 </td>
                                 <td className="px-6 py-4">
                                     <div className={`
@@ -76,7 +76,7 @@ const MyOrder = () => {
                 ${data?.orderStatus === "approved" && "bg-green-400 "}
                 
                 
-                py-1 px-5 rounded-full text-white  font-bold uppercase text-center `}> <span>{data?.orderStatus?data?.orderStatus + 'ed':"N/A"}</span></div>
+                py-1 px-5 rounded-full  font-bold uppercase text-center `}> <span>{data?.orderStatus ? data?.orderStatus : "N/A"}</span></div>
                                 </td>
                             </tr>
                         )))

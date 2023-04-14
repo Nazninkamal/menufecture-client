@@ -46,7 +46,7 @@ const QuotePrinting = () => {
                             <hr />
                             <h1>Quantity: {data?.result?.quantity} {isLoading && "Loading..."}</h1>
                             <hr />
-                            <h1>Price: {data?.result?.price && data?.result?.status === "approved" ? data?.result?.price : "N/A"} {isLoading && "Loading..."}</h1>
+                            <h1>Price: {data?.result?.price && data?.result?.profit && data?.result?.status === "approved" ? data?.result?.price + data?.result?.profit : "N/A"} {isLoading && "Loading..."}</h1>
                             <hr />
                             <h1> {data?.result?.updatedAt ? "Last Updated" : "Crating date"}: {
                                 new Date(data?.result?.updatedAt || data?.result?.createdAt).toLocaleDateString()} </h1>

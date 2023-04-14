@@ -36,13 +36,13 @@ const SupplierHomePage = () => {
       <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-10 mt-10">
         <div style={{ width: "100%" }}>
           <p className="mb-5 text-center">Order Gained(last 5 years)</p>
-          <BarChart chartData={userData} />
+          {/* <BarChart chartData={userData} /> */}
         </div>
 
         <div className="w-100 bg-white ">
           <p className="mb-5 text-center">Total Earnings</p>
 
-          <LineChart chartData={userData} />
+          {/* <LineChart chartData={userData} /> */}
         </div>
 
         {/* <div className="w-100 lg:m-auto  bg-white px-20 py-5" >

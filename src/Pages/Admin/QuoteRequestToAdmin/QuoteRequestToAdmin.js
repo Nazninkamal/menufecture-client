@@ -70,7 +70,7 @@ const QuoteRequestToAdmin = () => {
                             Profit Price
                         </th>
                         <th scope="col" className="px-6 py-3 text-center">
-                            Delivery Date
+                            Delivery Days
                         </th>
 
                         <th scope="col" className="px-6 py-3 text-center">

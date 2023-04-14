@@ -66,14 +66,14 @@ const QuoteTableToSupplier = ({ data, handleUpdateStatus }) => {
 
 
             <td className="px-6 py-4">
-                {data?.price || "N/A"}x{data?.quantity}={data?.price * data?.quantity}$
+                {data?.price }€ 
             </td>
 
 
             <td className="px-6 py-4">
 
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <p>Delivery  date </p>
+                    <p>Delivery  Days </p>
                     <input
                         disabled={data?.deliveryDate && true}
                         {...register("deliveryDate", {
@@ -86,7 +86,7 @@ const QuoteTableToSupplier = ({ data, handleUpdateStatus }) => {
                     {errors.deliveryDate && <p className=' text-xs text-red-500 block'>This field is required</p>}
                     < br /> <br />
 
-                    <p>Set per part Price  </p>
+                    <p>Set Price  </p>
                     <input
                         disabled={data?.price && true}
                         type="number"

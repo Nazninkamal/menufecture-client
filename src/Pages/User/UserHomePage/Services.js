@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { UserData } from "../../Carts/Data";
-import LineChart from "../../Carts/LineChart";
-import PieChart from "../../Carts/PieChart";
+// import LineChart from "../../Carts/LineChart";
+// import PieChart from "../../Carts/PieChart";
 
 
 function Services() {
   const [userData] = useState({
-    labels: UserData.map((data) => data.year),
+    labels: UserData.map((data) => data?.year),
     datasets: [
       {
         label: "Users Gained",
-        data: UserData.map((data) => data.userGain),
+        data: UserData?.map((data) => data?.userGain),
         backgroundColor: [
           "rgba(75,192,192,1)",
           "#ecf0f1",
@@ -35,12 +35,12 @@ function Services() {
       <div className="w-100 bg-white ">
       <p className="mb-5 text-center">User Gained(last 4 years)</p>
 
-        <LineChart chartData={userData} />
+        {/* <LineChart chartData={userData} /> */}
       </div>
 
     <div className="w-100 lg:m-auto  bg-white lg:px-20 py-5" >
     <p className="mb-5 text-center">Carbon Dioxide Increase</p>
-        <PieChart chartData={userData} />
+        {/* <PieChart chartData={userData} /> */}
       </div>
     </div>
   );

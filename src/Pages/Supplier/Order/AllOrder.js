@@ -79,11 +79,9 @@ const Order = () => {
                                         {data?.quantity}
                                     </td>
                                     <td className="px-6 py-4">
-                                        {(data?.price * data?.quantity + data?.profit)
-
-                                            + (data?.price * data?.quantity + data?.profit)
-
-                                            * (20 / 100) + 30}
+                                        {(data?.price + data?.profit)
+                                            + (data?.price + data?.profit)
+                                            * (20 / 100) + 30}€ 
                                     </td>
                                     <td className="px-6 py-4 text-center">
                                         <select

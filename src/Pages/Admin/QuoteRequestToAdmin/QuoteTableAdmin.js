@@ -83,7 +83,7 @@ const QuoteTableAdmin = ({ data, handleUpdateStatus }) => {
                 }
                 {data?.profit &&
                     <div>
-                        <p> Total: {data?.price * data?.quantity + data?.profit} $</p>
+                        <p> Total: {data?.price  + data?.profit} $</p>
                         <hr />
                     </div>
                 }
@@ -114,7 +114,9 @@ const QuoteTableAdmin = ({ data, handleUpdateStatus }) => {
 
 
             <td className="px-6 py-4 text-center">
-                {data?.sendToSupplier === 'sended' ?
+                {
+                
+                data?.sendToSupplier === 'sended' ?
                     <div className=' text-left'>
                         <p className=' text-xs'>Already sended with <br />{data?.supplier?.fullName} <br />
                             <a href={`mailto:${data?.supplier?.email}`}>{data?.supplier?.email}</a></p>

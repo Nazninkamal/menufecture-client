@@ -12,7 +12,7 @@ const UserDashboardPage = () => {
                 <Cards />
                 {/* <div className='grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-10 mt-10'> */}
                 <div>
-                    {/* <Table /> */}
+                   {/*  <Table /> */}
                     <Services />
                 </div>
             </div>

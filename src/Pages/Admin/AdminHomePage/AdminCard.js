@@ -51,7 +51,7 @@ const AdminCard = () => {
 
             <div>
                <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">Earnings</p>
-               <p className="mb-3 font-extrabold">$ 570</p>
+               <p className="mb-3 font-extrabold">570€ </p>
             </div>
          </div>
 

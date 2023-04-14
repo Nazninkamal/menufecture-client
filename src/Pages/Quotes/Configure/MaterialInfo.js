@@ -13,7 +13,7 @@ const MaterialInfo = ({ register, watch, errors, reset, id, setQuantity, quantit
   const { data } = useGetMySingleQuotesQuery({ id });
 
 
-  console.log(data?.result);
+
   useEffect(() => {
     reset(data?.result)
     setQuantity(data?.result?.quantity)
