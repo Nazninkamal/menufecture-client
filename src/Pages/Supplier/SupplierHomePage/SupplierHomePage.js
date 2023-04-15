@@ -5,24 +5,23 @@ import LineChart from '../../Carts/LineChart';
 import BarChart from "../../Carts/BarChart";
 import { UserData } from "../../Carts/Data";
 import SupplierCards from './SupplierCards';
+import PieChart from '../../Carts/PieChart';
 
 
 const SupplierHomePage = () => {
   const [userData] = useState({
-    labels: UserData.map((data) => data.year),
+    labels: UserData.map((data) => data.name),
     datasets: [
       {
-        label: "Users Gained",
-        data: UserData.map((data) => data.userGain),
+        label: "Per Month : Percentage",
+        data: UserData.map((data) => data.percentage ),
         backgroundColor: [
-          "rgba(75,192,192,1)",
-          "#2a71d0",
-          "#50AF95",
-          "green",
-          "#505e70",
+          'green',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)'
+         
         ],
-        borderColor: "black",
-        borderWidth: 2,
+        hoverOffset: 4
       },
     ],
   });
@@ -36,19 +35,19 @@ const SupplierHomePage = () => {
       <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-10 mt-10">
         <div style={{ width: "100%" }}>
           <p className="mb-5 text-center">Order Gained(last 5 years)</p>
-          {/* <BarChart chartData={userData} /> */}
+         <BarChart chartData={userData} /> 
         </div>
 
         <div className="w-100 bg-white ">
           <p className="mb-5 text-center">Total Earnings</p>
 
-          {/* <LineChart chartData={userData} /> */}
+        <LineChart chartData={userData} /> 
         </div>
 
-        {/* <div className="w-100 lg:m-auto  bg-white px-20 py-5" >
+      <div className="w-100 lg:m-auto  bg-white px-20 py-5" >
     <p className="mb-5 text-center">Carbon Dioxide Increase</p>
         <PieChart chartData={userData} />
-      </div> */}
+      </div> 
       </div>
     </div>
   );

@@ -1,25 +1,23 @@
 import { useState } from "react";
 import { UserData } from "../../Carts/Data";
-// import LineChart from "../../Carts/LineChart";
-// import PieChart from "../../Carts/PieChart";
+import LineChart from "../../Carts/LineChart";
+import PieChart from "../../Carts/PieChart";
 
 
 function Services() {
   const [userData] = useState({
-    labels: UserData.map((data) => data?.year),
+    labels: UserData.map((data) => data.name),
     datasets: [
       {
-        label: "Users Gained",
-        data: UserData?.map((data) => data?.userGain),
+        label: "Per Month : Percentage",
+        data: UserData.map((data) => data.percentage ),
         backgroundColor: [
-          "rgba(75,192,192,1)",
-          "#ecf0f1",
-          "#50AF95",
-          "#f3ba2f",
-          "#2a71d0",
+          'green',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)'
+         
         ],
-        borderColor: "black",
-        borderWidth: 2,
+        hoverOffset: 4
       },
     ],
   });
@@ -35,12 +33,12 @@ function Services() {
       <div className="w-100 bg-white ">
       <p className="mb-5 text-center">User Gained(last 4 years)</p>
 
-        {/* <LineChart chartData={userData} /> */}
+        <LineChart chartData={userData} />
       </div>
 
     <div className="w-100 lg:m-auto  bg-white lg:px-20 py-5" >
-    <p className="mb-5 text-center">Carbon Dioxide Increase</p>
-        {/* <PieChart chartData={userData} /> */}
+    <p className="mb-5 text-center">Environmental Impact</p>
+        <PieChart chartData={userData} />
       </div>
     </div>
   );
