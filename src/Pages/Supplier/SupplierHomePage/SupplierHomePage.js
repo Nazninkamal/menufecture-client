@@ -3,18 +3,35 @@ import { useState } from "react";
 import SharedBar from '../../../Components/SharedBar/SharedBar';
 import LineChart from '../../Carts/LineChart';
 import BarChart from "../../Carts/BarChart";
-import { UserData } from "../../Carts/Data";
+import { EarningData } from "../../Carts/EarningData";
+import { OrderData } from "../../Carts/OrderData";
 import SupplierCards from './SupplierCards';
-import PieChart from '../../Carts/PieChart';
 
 
 const SupplierHomePage = () => {
-  const [userData] = useState({
-    labels: UserData.map((data) => data.name),
+  const [earningData] = useState({
+    labels: EarningData.map((data) => data.month),
     datasets: [
       {
-        label: "Per Month : Percentage",
-        data: UserData.map((data) => data.percentage ),
+        label: "Per Month :Total Earning",
+        data: EarningData.map((data) => data.earning ),
+        backgroundColor: [
+          'green',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)'
+         
+        ],
+        hoverOffset: 4
+      },
+    ],
+  });
+
+  const [orderData] = useState({
+    labels:OrderData.map((data) => data.month),
+    datasets: [
+      {
+        label: "Per Month :Total Order",
+        data: OrderData.map((data) => data.order),
         backgroundColor: [
           'green',
           'rgb(54, 162, 235)',
@@ -35,19 +52,15 @@ const SupplierHomePage = () => {
       <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-10 mt-10">
         <div style={{ width: "100%" }}>
           <p className="mb-5 text-center">Order Gained(last 5 years)</p>
-         <BarChart chartData={userData} /> 
+         <BarChart chartData={orderData} /> 
         </div>
 
         <div className="w-100 bg-white ">
           <p className="mb-5 text-center">Total Earnings</p>
 
-        <LineChart chartData={userData} /> 
+        <LineChart chartData={earningData} /> 
         </div>
 
-      <div className="w-100 lg:m-auto  bg-white px-20 py-5" >
-    <p className="mb-5 text-center">Carbon Dioxide Increase</p>
-        <PieChart chartData={userData} />
-      </div> 
       </div>
     </div>
   );

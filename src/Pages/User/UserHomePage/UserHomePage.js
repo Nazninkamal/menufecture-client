@@ -10,9 +10,9 @@ const UserDashboardPage = () => {
             <SharedBar pageName={"User Dashboard"} />
             <div className='my-5'>
                 <Cards />
-                {/* <div className='grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-10 mt-10'> */}
+               
                 <div>
-                   {/*  <Table /> */}
+                 
                     <Services />
                 </div>
             </div>
