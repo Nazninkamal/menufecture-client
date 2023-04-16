@@ -12,14 +12,21 @@ const MaterialInfo = ({ register, watch, errors, reset, id, setQuantity, quantit
 
   const { data } = useGetMySingleQuotesQuery({ id });
 
+  console.log(data);
 
 
+  const quote = data?.result;
+
+  console.log(quote);
   useEffect(() => {
     reset(data?.result)
     setQuantity(data?.result?.quantity)
   }, [data?.result, reset, setQuantity])
 
-  // console.log(singleSLA);
+
+
+ 
+
   return (
 
 
@@ -27,13 +34,13 @@ const MaterialInfo = ({ register, watch, errors, reset, id, setQuantity, quantit
       <h1>1. Material and Finish.</h1>
       <p className='text-sm'>3D Printing selections for: 1 Part</p>
 
-      <div className='flex  justify-between mt-5  text-sm'>
+      <div className='flex  justify-between mt-5  text-sm '>
         <p className='text-base mt-3'>Material</p>
 
         <div className='relative flex justify-center items-center gap-5 md:ml-5 lg:ml-10 mt-2 '>
 
           {/*************************** Material ***************************/}
-          <div className="mb-2">
+          <div disabled className="mb-2">
 
             <select
               {...register("material", { required: true })}
@@ -78,7 +85,7 @@ const MaterialInfo = ({ register, watch, errors, reset, id, setQuantity, quantit
 
             <select
               {...register("resolution", { required: true })}
-              disabled={!SLA && !watch("input-a")}
+              disabled={ !SLA && !watch("input-a")}
               className="block w-56 px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 text-sm  ">
 
               <option value=""
@@ -180,7 +187,7 @@ const MaterialInfo = ({ register, watch, errors, reset, id, setQuantity, quantit
             </button>
             <div>
               <p
-                className='block  select-none text-center  w-24  px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40' >{quantity}</p>
+                className='block  select-none text-center  w-24  px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40' >{quantity || 0}</p>
 
             </div>
             <button

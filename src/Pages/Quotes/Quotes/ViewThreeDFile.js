@@ -6,6 +6,12 @@ import { Loading } from '../../../Components/Buttons/LoadingButton';
 
 
 const ViewThreeDFile = ({ file, OrbitControl }) => {
+
+
+  if(!file){
+    return <h1>Loading...</h1>
+  }
+
   function Scene() {
     const gltf = useLoader(GLTFLoader, file);
     return (

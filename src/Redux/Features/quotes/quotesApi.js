@@ -2,6 +2,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { token } from '../../../Utility/Token/token';
 
 
+
+
 export const quotesApi = createApi({
     reducerPath: 'quotesApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api/v1/quotes' }),
@@ -10,7 +12,7 @@ export const quotesApi = createApi({
         getMyQuotes: builder.query({
             query: ({ id, page }) => ({
                 url: `/get-my-quotes/${id}?page=${page}&limit=10`,
-                headers: { 'Authorization': token },
+                headers: { 'Authorization': `Bearer ${localStorage?.getItem("token")}` },
             }),
             providesTags: ['quotes']
         }),
@@ -22,7 +24,7 @@ export const quotesApi = createApi({
             providesTags: ['quotes']
         }),
 
-        
+
         getAllOrderQuotes: builder.query({
             query: () => ({
                 url: `/get-all-order-quotes`,
@@ -81,4 +83,4 @@ export const quotesApi = createApi({
     })
 })
 
-export const { useGetMyQuotesQuery, useGetMySingleQuotesQuery, useUpdateMySingleQuotesMutation, useDeleteMySingleQuotesMutation, useCreateQuotesMutation,useGetMyAllQuotesQuery,useGetAllOrderQuotesQuery } = quotesApi;
+export const { useGetMyQuotesQuery, useGetMySingleQuotesQuery, useUpdateMySingleQuotesMutation, useDeleteMySingleQuotesMutation, useCreateQuotesMutation, useGetMyAllQuotesQuery, useGetAllOrderQuotesQuery } = quotesApi;

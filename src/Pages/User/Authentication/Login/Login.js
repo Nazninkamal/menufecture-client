@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from "react-router-dom";
-import { login } from '../../../../Redux/Features/User/AuthSlice';
+import { login, loginStatus } from '../../../../Redux/Features/User/AuthSlice';
 import { toast } from 'react-hot-toast';
 
 const SignupSchema = yup.object().shape({
@@ -59,10 +59,13 @@ const Login = () => {
         if (user.isError) {
             toast.error(user.error, { id: "login" })
         }
-        if (user?.user?.email) {
+        if (!user.isLoading && !user.isError && user?.isSuccess) {
             toast.success("Login Success", { id: "login" })
+            dispatch(loginStatus())
+           
+
         }
-    }, [user.isLoading, user.isError, user?.user?.email, user.error])
+    }, [user.isLoading, user.isError, user?.user?.email, user.error, dispatch, user?.isSuccess])
 
 
 

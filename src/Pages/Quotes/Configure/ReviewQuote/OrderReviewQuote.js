@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { downloadPDF } from '../../../../Redux/Features/quotes/quotesSlice';
+import { downloadPDF, handlePDFDownloadStatusFalse } from '../../../../Redux/Features/quotes/quotesSlice';
 import SharedBar from '../../../../Components/SharedBar/SharedBar';
 import { toast } from 'react-hot-toast';
 import { useGetMySingleQuotesQuery, useUpdateMySingleQuotesMutation } from '../../../../Redux/Features/quotes/quotesApi';
@@ -53,7 +53,7 @@ const OrderReviewQuote = () => {
         if (isErrorOrder) {
             toast.error(errorOrder, { id: "order" })
         }
-    }, [isLoadingOrder, isSuccessOrder, isErrorOrder, errorOrder])
+    }, [isLoadingOrder, isSuccessOrder, isErrorOrder, errorOrder, dispatch])
 
 
 
@@ -63,11 +63,12 @@ const OrderReviewQuote = () => {
         }
         if (isSuccess) {
             toast.success("Download Success", { id: "pdf" })
+            dispatch(handlePDFDownloadStatusFalse())
         }
         if (isError) {
             toast.error(error, { id: "pdf" })
         }
-    }, [isLoading, isError, error, isSuccess])
+    }, [isLoading, isError, error, isSuccess,dispatch])
 
     return (
         <div className=' h-screen overflow-y-auto'>
@@ -117,7 +118,7 @@ const OrderReviewQuote = () => {
 
                             <div className=' flex justify-between '>
                                 <h1>Total:</h1>
-                                <h1>{quote?.result?.price && quote?.result?.profit && quote?.result?.status === "approved" ? quote?.result?.price  + quote?.result?.profit : "N/A"}€</h1>
+                                <h1>{quote?.result?.price && quote?.result?.profit && quote?.result?.status === "approved" ? quote?.result?.price + quote?.result?.profit : "N/A"}€</h1>
                             </div>
                         </div>
                     </div>
@@ -165,9 +166,9 @@ const OrderReviewQuote = () => {
 
                             quote?.result?.price && quote?.result?.profit && quote?.result?.status === "approved" ?
 
-                                (quote?.result?.price  + quote?.result?.profit)
+                                (quote?.result?.price + quote?.result?.profit)
 
-                                + (quote?.result?.price  + quote?.result?.profit)
+                                + (quote?.result?.price + quote?.result?.profit)
 
                                 * (20 / 100) + 30 : "N/A"}€</h3>
                     </div>

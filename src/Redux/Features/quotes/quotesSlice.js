@@ -12,6 +12,8 @@ const initialState = {
 }
 
 
+
+console.log(token);
 export const createQuote = createAsyncThunk(
     "quote/createQuote",
     async ({ formData, id }) => {
@@ -67,7 +69,12 @@ const createQuoteSlice = createSlice({
     name: 'quote',
     initialState,
     reducers: {
-
+        handlePDFDownloadStatusFalse: (state) => {
+            state.isSuccess = false;
+            state.error = '';
+            state.isLoading = false;
+            state.isError = false
+        }
     },
 
 
@@ -111,5 +118,5 @@ const createQuoteSlice = createSlice({
             })
     }
 })
-// export const { downloadPDFLoading } = createQuoteSlice.actions
+export const { handlePDFDownloadStatusFalse } = createQuoteSlice.actions
 export default createQuoteSlice.reducer;

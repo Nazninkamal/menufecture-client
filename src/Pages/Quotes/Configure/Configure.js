@@ -25,6 +25,7 @@ const Configure = () => {
         handleSubmit,
         watch,
         reset,
+
         formState: { isDirty, errors }
     } = useForm({
         resolver: yupResolver(SignupSchema)
@@ -43,23 +44,18 @@ const Configure = () => {
 
 
     const [updateQuote, { isLoading: isLoadingUpdateQuote }] = useUpdateMySingleQuotesMutation();
-    // const [singleResolution, setSingleResolution] = useState({});
+
     const [singleSLA, setSingleSLA] = useState({});
     const [material, resolution, orientation, finish] = watch(['material', 'resolution', 'orientation', 'finish']);
 
     const { data: materials } = useGetMaterialsQuery()
     const SLA = materials?.result;
-
     const setMaterialCallBack = useCallback(async () => {
 
 
         const singleSLA = await SLA?.find(s => s?.material === material);
 
-        // const singleResolution = await singleSLA?.resolution?.find(s => s?.title === resolution);
-
         setSingleSLA(singleSLA);
-
-        // setSingleResolution(singleResolution);
 
     }, [material, SLA])
 
@@ -69,7 +65,7 @@ const Configure = () => {
     }, [setMaterialCallBack]);
 
 
- 
+
     // handle on change for state --------------------
 
     const handleOnchange = useCallback(
@@ -83,8 +79,8 @@ const Configure = () => {
                     orientation: '',
                     finish: '',
                     quantity: '',
-                    price:''
-                    
+                    price: ''
+
                 };
                 await updateQuote({ id, configure })
             }

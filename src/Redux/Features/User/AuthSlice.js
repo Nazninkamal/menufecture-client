@@ -3,6 +3,7 @@ import axios from 'axios';
 const initialState = {
     user: null,
     isLoading: true,
+    isSuccess: false,
     isError: false,
     error: '',
 
@@ -56,6 +57,14 @@ const authSlice = createSlice({
         loading: (state) => {
             state.isLoading = false;
         },
+        loginStatus: (state) => {
+            state.isSuccess = false
+            state.error = '';
+            state.isError = false;
+            state.isLoading = false
+
+
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(registration.pending, (state) => {
@@ -81,6 +90,7 @@ const authSlice = createSlice({
 
         }).addCase(login.fulfilled, (state, { payload }) => {
             state.isLoading = false;
+            state.isSuccess = true
             state.user = payload?.data?.result?.user;
             state.isError = false;
             state.error = "";
@@ -108,5 +118,5 @@ const authSlice = createSlice({
         })
     }
 })
-export const { logout, loading } = authSlice.actions
+export const { logout, loading, loginStatus } = authSlice.actions
 export default authSlice.reducer;
