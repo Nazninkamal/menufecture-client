@@ -9,14 +9,14 @@ const AuthLayout = () => {
     return (
         <div className="relative flex flex-col justify-center  h-screen overflow-y-auto">
             <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl lg:max-w-xl">
-                {!isToggle ? <Login /> :
-                    <Register />}
+                {!isToggle ? <Register /> :
+                <Login />}
 
                 <div className="mt-8 text-xs font-light text-center text-gray-800 flex justify-center items-center gap-3">
 
                     {
-                        !isToggle ? " Already Have An Account? Please Login" :
-                            " No Have An Account? Please Register"
+                        !isToggle ?  " Already have an account? Please sign in" :
+                        " Don’t have an account? Please sign up" 
                     }
                     <label
                         className="relative inline-flex items-center mr-5 cursor-pointer">

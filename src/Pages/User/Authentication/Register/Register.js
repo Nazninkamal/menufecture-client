@@ -12,15 +12,17 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 
 const SignupSchema = yup.object().shape({
-    fullName: yup.string().required('Name is a required field'),
+    firstName: yup.string().required('First name is a required field'),
+    lastName: yup.string().required('Last name is a required field'),
+
     email: yup.string().required(),
     password: yup.string().required(),
     confirmPassword: yup.string().required(),
     company: yup.string().required(),
     country: yup.string().required('Phone Number is a required field'),
-    phoneNumber: yup.string().required(),
+    // phoneNumber: yup.string().required(),
     postalCode: yup.string().required('Postal Code is a required field'),
-    language: yup.string().required(),
+    // language: yup.string().required(),
 });
 
 
@@ -55,9 +57,10 @@ const Register = () => {
 
 
     const onSubmit = (data) => {
+        const fullName = data.firstName +" "+ data.lastName;
 
 
-        dispatch(registration(data))
+        dispatch(registration({...data, fullName}))
             .then(res => {
                 if (res.payload.status === 200) {
                     toast.success(res.payload.data.message, { id: "register" })
@@ -85,23 +88,40 @@ const Register = () => {
             <h1 className="text-3xl font-semibold text-center text-gray-800 uppercase">
                 Sign Up
             </h1>
-            <p className="text-center text-gray-800">We need some basic info about you. <span className="text-blue-500">Learn why we ask.</span> </p>
+            {/* <p className="text-center text-gray-800">We need some basic info about you. <span className="text-blue-500">Learn why we ask.</span> </p> */}
             <form className="mt-6" onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-2">
                     <label
 
                         className="block text-sm font-semibold text-gray-800"
                     >
-                        Name
+                        First Name
                     </label>
                     <input
 
-                        {...register("fullName")}
-                        type="name"
-                        placeholder='Your full Name'
+                        {...register("firstName")}
+                        type="fname"
+                        placeholder='Your Firstt Name'
                         className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
-                    <p className="text-red-500">{errors.fullName?.message}</p>
+                    <p className="text-red-500">{errors.firstName?.message}</p>
+                </div>
+
+                <div className="mb-2">
+                    <label
+
+                        className="block text-sm font-semibold text-gray-800"
+                    >
+                        Last Name
+                    </label>
+                    <input
+
+                        {...register("lastName")}
+                        type="lname"
+                        placeholder='Your Last Name'
+                        className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                    />
+                    <p className="text-red-500">{errors.lastName?.message}</p>
                 </div>
 
                 <div className="mb-2">
@@ -161,7 +181,7 @@ const Register = () => {
                     </select>
                     <p className="text-red-500 text-sm">{errors.country?.message}</p>
                 </div>
-                <div className="mb-2">
+                {/* <div className="mb-2">
                     <label
 
                         className="block text-sm font-semibold text-gray-800"
@@ -176,7 +196,7 @@ const Register = () => {
                         className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                     <p className="text-red-500 text-sm">{errors.phoneNumber?.message}</p>
-                </div>
+                </div> */}
 
                 <div className="mb-2">
                     <label
@@ -196,7 +216,7 @@ const Register = () => {
                 </div>
 
 
-                <div className="mb-2">
+                {/* <div className="mb-2">
                     <label
 
                         className="block text-sm font-semibold text-gray-800"
@@ -215,7 +235,7 @@ const Register = () => {
 
                     </select>
                     <p className="text-red-500 text-sm">{errors.language?.message}</p>
-                </div>
+                </div> */}
 
 
                 <div className="mb-2">

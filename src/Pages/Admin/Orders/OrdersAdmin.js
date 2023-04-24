@@ -82,7 +82,7 @@ const OrdersAdmin = () => {
 
                                         + (data?.price * data?.quantity + data?.profit)
 
-                                        * (20 / 100) + 30}€ 
+                                        * (22 / 100) + 30}€ 
                                 </td>
                                 <td className="px-6 py-4">
                                     <select

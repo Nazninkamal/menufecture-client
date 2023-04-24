@@ -75,7 +75,7 @@ const Login = () => {
                 Login
             </h1>
 
-            <p className="text-center text-gray-800">We need some basic info about you. <span className="text-blue-500">Learn why we ask.</span> </p>
+            {/* <p className="text-center text-gray-800">We need some basic info about you. <span className="text-blue-500">Learn why we ask.</span> </p> */}
             <form onSubmit={handleSubmit(onSubmit)} className="mt-6" >
 
                 <div className="mb-2">

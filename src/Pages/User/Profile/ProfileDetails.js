@@ -1,6 +1,8 @@
 import React from 'react';
 import { Loading } from '../../../Components/Buttons/LoadingButton';
 import { useGetMeQuery } from '../../../Redux/Features/User/userApi';
+import Address from "./Address";
+import Rating from './Rating';
 
 const ProfileDetails = () => {
 
@@ -8,10 +10,10 @@ const ProfileDetails = () => {
 
   const user = userData?.result;
 
-
+console.log(user)
 
   return (
-    <div className='pt-16  '>
+    <div className='pt-16  grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-10 '>
       {
         isLoading ? <Loading /> :
           <div className=" bg-white shadow sm:rounded-lg w-full">
@@ -61,6 +63,22 @@ const ProfileDetails = () => {
             </div>
           </div>
       }
+
+     <div>
+ 
+     {
+      user?.role === "admin" &&  <Rating />
+
+     }
+
+     {
+      user?.role === "user" &&  <Address/>
+
+     }
+      
+
+     </div>
+  
     </div>
   )
 };

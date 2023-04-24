@@ -71,19 +71,19 @@ const QuoteTableAdmin = ({ data, handleUpdateStatus }) => {
             </td>
 
             <td className="px-1 py-4">
-                Price: {data?.price || "N/A"} $
+                Price: {data?.price || "N/A"} €
                 <hr />
                 Quantity: {data?.quantity || "N/A"}
                 <hr />
                 {data?.profit &&
                     <div>
-                        <p> Profit: {data?.profit} $</p>
+                        <p> Profit: {data?.profit} €</p>
                         <hr />
                     </div>
                 }
                 {data?.profit &&
                     <div>
-                        <p> Total: {data?.price  + data?.profit} $</p>
+                        <p> Total: {data?.price  + data?.profit} €</p>
                         <hr />
                     </div>
                 }

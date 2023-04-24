@@ -58,14 +58,14 @@ const ViewAnalysis = () => {
                         <h1>Price: {data?.result?.price + data?.result?.profit || "N/A"} {isLoading && "Loading..."}€</h1>
                         <hr />
 
-                        <h1>Tax:20% {isLoading && "Loading..."}</h1>
+                        <h1>Tax:22% {isLoading && "Loading..."}</h1>
                         <hr />
                         <h1>Shipping:30  {isLoading && "Loading..."}€ </h1>
                         <hr />
                         <h1>Total: {
                             (data?.result?.price + data?.result?.profit)
                             + (data?.result?.price + data?.result?.profit)
-                            * (20 / 100) + 30 || "N/A"} {isLoading && "Loading..."}€ </h1>
+                            * (22 / 100) + 30 || "N/A"} {isLoading && "Loading..."}€ </h1>
                         <hr />
                         <h1> {data?.result?.updatedAt ? "Last Updated" : "Crating date"}: {
                             new Date(data?.result?.updatedAt || data?.result?.createdAt).toLocaleDateString()} </h1>

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { downloadPDF, handlePDFDownloadStatusFalse } from '../../../../Redux/Features/quotes/quotesSlice';
 import SharedBar from '../../../../Components/SharedBar/SharedBar';
@@ -11,6 +11,7 @@ import ViewThreeDFile from '../../Quotes/ViewThreeDFile';
 
 const OrderReviewQuote = () => {
 
+    const navigate = useNavigate();
 
     const { id } = useParams()
     const { isLoading, isSuccess, isError, error } = useSelector((state) => state.quote);
@@ -48,12 +49,13 @@ const OrderReviewQuote = () => {
             toast.loading("Loading...", { id: "order" })
         }
         if (isSuccessOrder) {
-            toast.success("Order Success", { id: "order" })
+            toast.success("Thank you, your order is being processed", { id: "order" })
+            navigate("/quotes/my-oder")
         }
         if (isErrorOrder) {
             toast.error(errorOrder, { id: "order" })
         }
-    }, [isLoadingOrder, isSuccessOrder, isErrorOrder, errorOrder, dispatch])
+    }, [isLoadingOrder, isSuccessOrder, isErrorOrder, errorOrder, dispatch, navigate])
 
 
 
@@ -157,7 +159,7 @@ const OrderReviewQuote = () => {
                     </div>
                     <div className=' flex justify-between'>
                         <h3 className=' text-base  py-1'>Estimated Tax: </h3>
-                        <h3 className=' text-base  py-1'>20%</h3>
+                        <h3 className=' text-base  py-1'>22%</h3>
                     </div>
                     <div className=' flex justify-between'>
                         <h3>Subtotal: </h3>
@@ -170,7 +172,7 @@ const OrderReviewQuote = () => {
 
                                 + (quote?.result?.price + quote?.result?.profit)
 
-                                * (20 / 100) + 30 : "N/A"}€</h3>
+                                * (22 / 100) + 30 : "N/A"}€</h3>
                     </div>
                     <div className=' flex justify-center shadow py-3 mt-3'>
 

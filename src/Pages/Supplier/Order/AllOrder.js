@@ -49,7 +49,7 @@ const Order = () => {
                                 Total Price
                             </th>
                             <th scope="col" className="px-6 py-3 text-center">
-                                Delivery Status
+                            Order Status
                             </th>
                         </tr>
                     </thead>
@@ -81,7 +81,7 @@ const Order = () => {
                                     <td className="px-6 py-4">
                                         {(data?.price + data?.profit)
                                             + (data?.price + data?.profit)
-                                            * (20 / 100) + 30}€ 
+                                            * (22 / 100) + 30}€ 
                                     </td>
                                     <td className="px-6 py-4 text-center">
                                         <select
@@ -96,10 +96,10 @@ const Order = () => {
                 py-1 px-5 rounded-full text-white  font-bold `}
                                         >
 
-                                            {data?.orderStatus === "approved" && <option value="approved">Approved</option>}
-                                            <option value="continue">Continue</option>
-                                            <option value="completed">Completed</option>
-                                            <option value="rejected">Rejected</option>
+                                            {data?.orderStatus === "approved" && <option value="approved">In production</option>}
+                                            {/* <option value="continue">Continue</option> */}
+                                            <option value="completed">Shipped</option>
+                                            {/* <option value="rejected">Rejected</option> */}
                                         </select>
                                     </td>
                                 </tr>
