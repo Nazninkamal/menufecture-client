@@ -31,6 +31,7 @@
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
     "react-to-print": "^2.14.12",
+    "stars-rating": "^1.1.0",
     "styled-components": "^5.3.6",
     "three": "^0.150.1",
     "three-stdlib": "^2.21.8",

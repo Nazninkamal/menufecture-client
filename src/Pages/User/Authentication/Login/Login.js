@@ -62,7 +62,7 @@ const Login = () => {
         if (!user.isLoading && !user.isError && user?.isSuccess) {
             toast.success("Login Success", { id: "login" })
             dispatch(loginStatus())
-           
+
 
         }
     }, [user.isLoading, user.isError, user?.user?.email, user.error, dispatch, user?.isSuccess])
@@ -87,6 +87,7 @@ const Login = () => {
                     </label>
                     <input
                         required
+                        placeholder='Email'
                         type="email"
                         {...register("email")}
                         className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
@@ -102,6 +103,7 @@ const Login = () => {
                     </label>
                     <input
                         required
+                        placeholder='Password'
                         type="password"
                         {...register("password")}
                         className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"

@@ -80,7 +80,6 @@ const Configure = () => {
                     finish: '',
                     quantity: '',
                     price: '',
-                    additional: ''
 
                 };
                 await updateQuote({ id, configure })
