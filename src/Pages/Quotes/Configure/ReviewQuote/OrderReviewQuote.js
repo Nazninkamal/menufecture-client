@@ -1,21 +1,26 @@
-import React, { useEffect } from 'react';
-import { Link, useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { downloadPDF, handlePDFDownloadStatusFalse } from '../../../../Redux/Features/quotes/quotesSlice';
 import SharedBar from '../../../../Components/SharedBar/SharedBar';
 import { toast } from 'react-hot-toast';
 import { useGetMySingleQuotesQuery, useUpdateMySingleQuotesMutation } from '../../../../Redux/Features/quotes/quotesApi';
 import ViewThreeDFile from '../../Quotes/ViewThreeDFile';
+import SippingAddress from './SippingAddress';
+import { useGetMeQuery } from '../../../../Redux/Features/User/userApi';
 
 
 
 const OrderReviewQuote = () => {
-
+    const [isModal, setModal] = useState(false);
     const navigate = useNavigate();
 
     const { id } = useParams()
     const { isLoading, isSuccess, isError, error } = useSelector((state) => state.quote);
     const { data: quote } = useGetMySingleQuotesQuery({ id });
+    const { data: userData } = useGetMeQuery();
+
+    const user = userData?.result;
 
 
 
@@ -70,7 +75,7 @@ const OrderReviewQuote = () => {
         if (isError) {
             toast.error(error, { id: "pdf" })
         }
-    }, [isLoading, isError, error, isSuccess,dispatch])
+    }, [isLoading, isError, error, isSuccess, dispatch])
 
     return (
         <div className=' h-screen overflow-y-auto'>
@@ -136,12 +141,28 @@ const OrderReviewQuote = () => {
                     <div className='grid grid-cols-12 gap-3'>
 
                         <div className=' col-span-6'>
-                            <h1 className=' text-base'> Shipping To: <Link className=' text-violet-500'>(Change)</Link></h1>
+                            <h1 className=' text-base'> Shipping To:
+                                <button onClick={() =>
+                                    setModal(!isModal)}
+                                    className=' text-violet-500'>(Change)</button></h1>
+                           {
+                            user?.address? <div>
+                            <p className='text-sm'>{user?.address} </p>
+                            <p className='text-sm'>{user?.phoneNumber} </p>
+                        </div>:
+                         <p className='text-sm'>{user?.postalCode} </p>
+                           }
+
+                            <SippingAddress isModal={isModal} setModal={setModal} />
+
+
+
+
                         </div>
-                        <div className=' col-span-6'>
+                        {/*   <div className=' col-span-6'>
                             <h1 className='text-base'>Shipping Options</h1>
                             <h1 className='text-base'>No carrier account <Link className=' text-violet-500'>(Add account)</Link></h1>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className=' col-span-4 shadow p-5'>

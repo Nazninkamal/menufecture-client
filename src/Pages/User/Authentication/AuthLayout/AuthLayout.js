@@ -3,7 +3,7 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 
 const AuthLayout = () => {
-    const [isToggle, setIsToggle] = useState(false);
+    const [isToggle, setIsToggle] = useState(true);
 
 
     return (

@@ -4,7 +4,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useSelector } from 'react-redux';
 import { useChangeProfileDetailsMutation } from '../../../Redux/Features/User/userApi';
-import { languages_list } from '../../../Utility/CountryList/Languagelist';
 import { countryListAllIsoData } from '../../../Utility/CountryList/CountryList';
 
 
@@ -43,8 +42,8 @@ const ProfileUpdateForm = () => {
 
 
 
-    const onSubmit = async ({ fullName, company, country, phoneNumber, postalCode, language }) => {
-        const data = { fullName, company, country, phoneNumber, postalCode, language };
+    const onSubmit = async ({ fullName, company, country, phoneNumber, postalCode }) => {
+        const data = { fullName, company, country, phoneNumber, postalCode };
         updateProfileDetails(data)
 
             .then(res => {
@@ -186,30 +185,7 @@ const ProfileUpdateForm = () => {
                         </div>
 
 
-                        <div className="mb-2">
-                            <label
-
-                                className="block text-sm font-semibold text-gray-800"
-                            >
-                                Language
-                            </label>
-                            <select  {...register("language")}
-                                disabled={isUpdate && !watch("input-a")}
-                                className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 text-sm">
-                                <option value=""
-                                    className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                                >No select language</option>
-
-
-                                {languages_list?.map((data, i) => (
-                                    <option key={i} value={data?.name}
-                                        className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                                    >{data?.name}</option>
-                                ))}
-
-                            </select>
-                            <p className="text-red-500 text-sm">{errors.language?.message}</p>
-                        </div>
+                      
 
                         <div className="mt-6 flex justify-end">
                             <button

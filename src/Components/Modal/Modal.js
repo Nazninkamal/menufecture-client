@@ -7,12 +7,10 @@ const Modal = ({ isModal, setModal, children }) => {
     <AnimatePresence>
       {isModal && (
         <BounceInDownDiv
-        className="bg-slate-50 border border-purple-500"
+        className="bg-slate-50 border border-purple-500 p-2"
           style={{
             position: 'fixed',
             background: '',
-            width: '500px',
-            height: '300px',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -27,6 +25,7 @@ const Modal = ({ isModal, setModal, children }) => {
               position: 'absolute',
               top: 10,
               right: 10,
+              color:'red'
             }}
             onClick={() => setModal(false)}
           >

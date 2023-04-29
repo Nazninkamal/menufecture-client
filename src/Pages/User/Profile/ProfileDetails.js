@@ -1,19 +1,16 @@
 import React from 'react';
 import { Loading } from '../../../Components/Buttons/LoadingButton';
 import { useGetMeQuery } from '../../../Redux/Features/User/userApi';
-import Address from "./Address";
-import Rating from './Rating';
-
 const ProfileDetails = () => {
 
   const { data: userData, isLoading } = useGetMeQuery();
 
   const user = userData?.result;
 
-console.log(user)
+
 
   return (
-    <div className='pt-16  grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-10 '>
+    <div className='pt-16'>
       {
         isLoading ? <Loading /> :
           <div className=" bg-white shadow sm:rounded-lg w-full">
@@ -42,7 +39,7 @@ console.log(user)
                 <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-medium text-gray-500">Company Address</dt>
                   <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                    {user?.companyAddress || "N/A"}
+                    {user?.address || "N/A"}
                   </dd>
                 </div>
                 <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -65,17 +62,10 @@ console.log(user)
       }
 
      <div>
- 
+ {/* 
      {
       user?.role === "admin" &&  <Rating />
-
-     }
-
-     {
-      user?.role === "user" &&  <Address/>
-
-     }
-      
+     }   */}
 
      </div>
   

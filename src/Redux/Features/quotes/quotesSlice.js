@@ -13,7 +13,7 @@ const initialState = {
 
 
 
-console.log(token);
+
 export const createQuote = createAsyncThunk(
     "quote/createQuote",
     async ({ formData, id }) => {

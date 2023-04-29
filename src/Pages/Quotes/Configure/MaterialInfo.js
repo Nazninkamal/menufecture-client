@@ -7,17 +7,13 @@ import { useGetMySingleQuotesQuery } from '../../../Redux/Features/quotes/quotes
 
 
 
-const MaterialInfo = ({ register, watch, errors, reset, id, setQuantity, quantity, singleSLA, SLA }) => {
+const MaterialInfo = ({ register, watch, errors, reset, id, setQuantity, quantity, singleSLA, SLA,additional }) => {
 
 
   const { data } = useGetMySingleQuotesQuery({ id });
 
-  console.log(data);
 
 
-  const quote = data?.result;
-
-  console.log(quote);
   useEffect(() => {
     reset(data?.result)
     setQuantity(data?.result?.quantity)
@@ -91,8 +87,7 @@ const MaterialInfo = ({ register, watch, errors, reset, id, setQuantity, quantit
               <option value=""
 
               >No selected</option>
-              {/* {
-                singleSLA?.resolution?.map((rsl, i) => */}
+        
               <option value={singleSLA?.resolutionHighRes}
                 className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
               >{singleSLA?.resolutionHighRes}</option>
@@ -100,8 +95,7 @@ const MaterialInfo = ({ register, watch, errors, reset, id, setQuantity, quantit
                 className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
               >{singleSLA?.resolutionNormal}</option>
 
-              {/*      )
-              } */}
+            
 
 
             </select>
@@ -168,6 +162,7 @@ const MaterialInfo = ({ register, watch, errors, reset, id, setQuantity, quantit
         </div>
 
       </div>
+    
       <div className='flex  justify-between mt-5'>
         <p className='text-base mt-3'>Quentity</p>
         <div className='relative flex justify-center items-center gap-5 md:ml-5 lg:ml-10 mt-2 '>
@@ -204,7 +199,24 @@ const MaterialInfo = ({ register, watch, errors, reset, id, setQuantity, quantit
           </div>
         </div>
       </div>
+      <div className='flex  justify-between mt-5  text-sm'>
+        <p className='text-base mt-3'>Additional Requests (Optional)</p>
+        <div className='relative flex justify-center items-center gap-5 md:ml-5 lg:ml-10 mt-2'>
+          {/*************************** additional    ***************************/}
+          <div className="mb-2">
+            <textarea
+         
+              {...register("additional")}
+              disabled={data?.result?.additional&&true}
+              placeholder='Text box to write or PDF dive Link'
+              className="block w-56 px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 text-sm  ">
+             
+            </textarea>
+            <p className="text-red-500">{errors.additional?.message}</p>
+          </div>
+        </div>
 
+      </div>
     </div>
 
 

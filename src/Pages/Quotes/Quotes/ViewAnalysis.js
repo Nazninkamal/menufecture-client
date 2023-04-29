@@ -55,18 +55,30 @@ const ViewAnalysis = () => {
                         <hr />
                         <h1>Quantity: {data?.result?.quantity} {isLoading && "Loading..."}</h1>
                         <hr />
-                        <h1>Price: {data?.result?.price + data?.result?.profit || "N/A"} {isLoading && "Loading..."}€</h1>
-                        <hr />
 
-                        <h1>Tax:22% {isLoading && "Loading..."}</h1>
-                        <hr />
-                        <h1>Shipping:30  {isLoading && "Loading..."}€ </h1>
-                        <hr />
-                        <h1>Total: {
-                            (data?.result?.price + data?.result?.profit)
-                            + (data?.result?.price + data?.result?.profit)
-                            * (22 / 100) + 30 || "N/A"} {isLoading && "Loading..."}€ </h1>
-                        <hr />
+
+                        {
+                            user.role === "supplier" ? <div>
+                                <h1>Price: {data?.result?.price  || "N/A"} {isLoading && "Loading..."}€</h1>
+                                <hr />
+                            </div> :
+                                <div>
+                                    <h1>Price: {data?.result?.price + data?.result?.profit || "N/A"} {isLoading && "Loading..."}€</h1>
+                                    <hr />
+
+                                    <h1>Tax:22% {isLoading && "Loading..."}</h1>
+                                    <hr />
+                                    <h1>Shipping:30  {isLoading && "Loading..."}€ </h1>
+                                    <hr />
+                                    <h1>Total: {
+                                        (data?.result?.price + data?.result?.profit)
+                                        + (data?.result?.price + data?.result?.profit)
+                                        * (22 / 100) + 30 || "N/A"} {isLoading && "Loading..."}€ </h1>
+                                    <hr />
+                                </div>
+                        }
+
+
                         <h1> {data?.result?.updatedAt ? "Last Updated" : "Crating date"}: {
                             new Date(data?.result?.updatedAt || data?.result?.createdAt).toLocaleDateString()} </h1>
                         <hr />

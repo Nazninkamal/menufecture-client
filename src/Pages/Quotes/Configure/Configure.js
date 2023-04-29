@@ -46,7 +46,7 @@ const Configure = () => {
     const [updateQuote, { isLoading: isLoadingUpdateQuote }] = useUpdateMySingleQuotesMutation();
 
     const [singleSLA, setSingleSLA] = useState({});
-    const [material, resolution, orientation, finish] = watch(['material', 'resolution', 'orientation', 'finish']);
+    const [material, resolution, orientation, finish, additional] = watch(['material', 'resolution', 'orientation', 'finish', 'additional']);
 
     const { data: materials } = useGetMaterialsQuery()
     const SLA = materials?.result;
@@ -79,7 +79,8 @@ const Configure = () => {
                     orientation: '',
                     finish: '',
                     quantity: '',
-                    price: ''
+                    price: '',
+                    additional: ''
 
                 };
                 await updateQuote({ id, configure })
@@ -92,6 +93,7 @@ const Configure = () => {
                         orientation: orientation,
                         finish: finish,
                         quantity: singleSLA?.material ? quantity : 1,
+
                     }
                     await updateQuote({ id, configure })
                 }
@@ -124,14 +126,13 @@ const Configure = () => {
 
     const onSubmit = (data) => {
 
-        console.log(data);
-        const configure = { status: 'pending', sendToAdmin: 'sended' }
+        const configure = { status: 'pending', sendToAdmin: 'sended', additional: data?.additional }
         updateQuote({ id, configure })
 
     }
 
     return (
-        <>
+        <div className=' h-screen overflow-y-auto'>
             <SharedBar pageName={"Configure Part"} />
 
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -148,6 +149,7 @@ const Configure = () => {
                         singleSLA={singleSLA}
                         isLoadingUpdateQuote={isLoadingUpdateQuote}
                         SLA={SLA}
+                        additional={additional}
                     />
 
                     <QuotePrinting
@@ -157,7 +159,7 @@ const Configure = () => {
                 </div>
             </form>
 
-        </>
+        </div>
     );
 };
 
