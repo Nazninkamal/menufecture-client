@@ -76,11 +76,9 @@ export const quotesApi = createApi({
             ,
             invalidatesTags: ['quotes']
         }),
-
-
-
+     
 
     })
 })
 
-export const { useGetMyQuotesQuery, useGetMySingleQuotesQuery, useUpdateMySingleQuotesMutation, useDeleteMySingleQuotesMutation, useCreateQuotesMutation, useGetMyAllQuotesQuery, useGetAllOrderQuotesQuery } = quotesApi;
+export const { useGetMyQuotesQuery, useGetMySingleQuotesQuery, useUpdateMySingleQuotesMutation, useDeleteMySingleQuotesMutation, useCreateQuotesMutation, useGetMyAllQuotesQuery, useGetAllOrderQuotesQuery} = quotesApi;

@@ -31,6 +31,22 @@ export const createQuote = createAsyncThunk(
 
     }
 )
+export const fileUploader = createAsyncThunk(
+    "quote/fileUploader",
+    async ({ formData }) => {
+
+        const response = await axios.post(`http://localhost:5000/api/v1/quotes/fileUploader`, formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+                body: formData
+            }
+        )
+        return response;
+
+    }
+)
 export const downloadPDF = createAsyncThunk(
     "quote/downloadPDF",
     async ({ id }) => {
@@ -98,6 +114,7 @@ const createQuoteSlice = createSlice({
                 state.error = action.error.message;
 
             })
+          
             .addCase(downloadPDF.pending, (state) => {
                 state.isLoading = true;
                 state.isError = false

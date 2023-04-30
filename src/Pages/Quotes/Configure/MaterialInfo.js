@@ -1,30 +1,70 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ImPlus, ImMinus } from 'react-icons/im'
 
 
 
 import { useGetMySingleQuotesQuery } from '../../../Redux/Features/quotes/quotesApi';
+import Modal3 from '../../../Components/Modal/Modal3';
+import { fileUploader } from '../../../Redux/Features/quotes/quotesSlice';
+import { useDispatch } from 'react-redux';
 
 
 
-const MaterialInfo = ({ register, watch, errors, reset, id, setQuantity, quantity, singleSLA, SLA, additional }) => {
+
+
+const MaterialInfo = (
+  {
+    register,
+    watch,
+    errors,
+    reset, id,
+    setQuantity,
+    quantity,
+    singleSLA,
+    SLA, additionalText,
+    additionalFile,
+    setAdditionalFile
+  }
+) => {
 
 
   const { data } = useGetMySingleQuotesQuery({ id });
 
+  const [modalOn, setModalOn] = useState(false);
+  const dispatch = useDispatch();
+
+  const clicked = () => {
+    setModalOn(true)
+  }
+  const handleOKClick = () => {
+    setModalOn(false)
+  }
 
 
   useEffect(() => {
     let newData = { ...data?.result };
-    newData.additional = additional || data?.result?.additional;
-    reset(newData)
+    newData.additionalText = additionalText || data?.result?.additionalText;
+    reset(newData);
     setQuantity(data?.result?.quantity)
-  }, [data?.result, reset, setQuantity, additional])
+  }, [data?.result, reset, setQuantity, additionalText])
 
 
 
 
 
+
+  const handleUpLoadFile = async (e) => {
+    const formData = new FormData();
+    formData.append("file", await e.target.files[0]);
+    await dispatch(fileUploader({ formData }))
+      .then(async res => {
+        const file = res?.payload?.data?.result;
+        setAdditionalFile(file)
+      })
+  }
+
+
+  console.log(additionalFile);
   return (
 
 
@@ -201,24 +241,70 @@ const MaterialInfo = ({ register, watch, errors, reset, id, setQuantity, quantit
           </div>
         </div>
       </div>
-      <div className='flex  justify-between mt-5  text-sm'>
-        <p className='text-base mt-3'>Additional Requests (Optional)</p>
+      <h1 className='pt-24'>2. More Options</h1>
+      <div className='flex  justify-between mt-5  '>
+
+        <p className='text-base mt-3'>
+          Additional Info
+        </p>
         <div className='relative flex justify-center items-center gap-5 md:ml-5 lg:ml-10 mt-2'>
           {/*************************** additional    ***************************/}
-          <div className="mb-2">
-            <textarea
+          <button onClick={clicked} type='button' className=' text-sm text-blue-400'>Special Instruction</button>
 
-              {...register("additional")}
-              disabled={data?.result?.additional && true}
-              placeholder='Text box to write or PDF dive Link'
-              className="block w-56 px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 text-sm  ">
-
-            </textarea>
-            <p className="text-red-500">{errors.additional?.message}</p>
-          </div>
         </div>
 
       </div>
+      {modalOn && <Modal3 >
+
+        <div className=' grid grid-cols-12 gap-3'>
+          <div className=' md:col-span-6'>
+
+            <h1 className=' py-4 text-2xll'>Special Instructions</h1>
+            <p className=' text-xs'>Special requests can impact pricing and lead times. Adding a note will trigger manual review by Protolabs. This can add turnaround time to our analysis.</p>
+            <div className="mb-2">
+
+
+              <textarea
+
+                {...register("additionalText")}
+                disabled={data?.result?.additionalText && true}
+                placeholder='Text box to write or PDF dive Link'
+                className="block w-full h-28 px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 text-sm  ">
+
+              </textarea>
+              <p className="text-red-500">{errors.additionalText?.message}</p>
+            </div>
+            <div className="mb-2">
+
+              <div className="mb-2">
+
+
+                <input
+                  onChange={handleUpLoadFile}
+                  type='file'
+                  accept="application/pdf,image/png, image/jpeg"
+                  className="block w-full h-28 px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 text-sm  ">
+
+                </input>
+                <p className="text-red-500">{errors.additional?.message}</p>
+              </div>
+            </div>
+
+          </div>
+
+          <div className=' md:col-span-6'>
+
+
+          </div>
+
+        </div>
+        <div className="flex">
+          <button onClick={handleOKClick}  className=" rounded px-4 py-2 text-white  bg-green-400 ">Done</button>
+        </div>
+
+
+
+      </Modal3>}
     </div>
 
 

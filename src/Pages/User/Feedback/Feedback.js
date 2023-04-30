@@ -2,15 +2,20 @@ import React, { useEffect } from 'react';
 
 import StarsRating from 'stars-rating'
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
 import SharedBar from '../../../Components/SharedBar/SharedBar';
+import { useCreateFeedbackMutation, useGetFeedbackQuery } from '../../../Redux/Features/Feedback/feedbackApi';
+import { toast } from 'react-hot-toast';
 
 const FeedbackForm = () => {
+    const [postFeedback, { isSuccess, isLoading, isError, error }] = useCreateFeedbackMutation();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const [rating, setRating] = React.useState(0);
-    const { user } = useSelector(state => state?.auth)
-    /*   const [postFeedback, { isLoading, isSuccess, isError, error }] = usePostFeedbacksMutation(); */
+    const { data } = useGetFeedbackQuery();
+    console.log(data);
+
+
+
 
 
 
@@ -19,27 +24,26 @@ const FeedbackForm = () => {
     }
 
 
-    useEffect(() => {
-        reset({ name: user.name, email: user.email, photoURL: user.photoURL })
-    }, [reset, user.name, user.email, user.photoURL])
+
 
 
     function onSubmit(feedback) {
         const data = { ...feedback, rating };
-        /*   postFeedback({ data }) */
+        postFeedback({ data })
     }
 
-    /*   useEffect(() => {
-          if (isLoading) {
-              <h1>Loading...</h1>
-          }
-          if (isSuccess) {
-              alert('posting successfully')
-          }
-          if (isError) {
-              alert(error)
-          }
-      }, [isSuccess, isError, error, isLoading]) */
+    useEffect(() => {
+        if (isLoading) {
+            toast.loading('Loading...', { id: 'feedback' });
+        }
+        if (isSuccess) {
+            toast.success('Posting successfully', { id: 'feedback' });
+            reset();
+        }
+        if (isError) {
+            alert(error, { id: 'feedback' });
+        }
+    }, [isSuccess, isError, error, isLoading, reset])
 
 
 
