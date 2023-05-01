@@ -49,7 +49,7 @@ export default function DashboardSidebar() {
                     style={{ transitionDelay: `${1}00ms`, }}
                     className={`whitespace-pre duration-500 ${!open && "opacity-0 translate-x-28 overflow-hidden"}`}>
                     {user?.fullName ? user?.fullName : 'User'}
-                    <p className=" text-xs capitalize">(  {user?.role} )</p>
+                    {/* <p className=" text-xs capitalize">(  {user?.role} )</p> */}
                 </h2>
 
                 <h2
