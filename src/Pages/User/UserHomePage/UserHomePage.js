@@ -8,13 +8,12 @@ const UserDashboardPage = () => {
     return (
         <div className=' h-screen overflow-y-auto'>
             <SharedBar pageName={"User Dashboard"} />
-            <div className='my-5'>
+              <div className='my-5'>
                 <Cards />
                
-                <div>
-                 
+                
                     <Services />
-                </div>
+                
             </div>
 
         </div>

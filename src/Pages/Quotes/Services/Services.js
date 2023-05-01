@@ -49,7 +49,9 @@ const Services = () => {
                                     <svg className='w-24' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 94.4 106.96" ><path fill="#A7A8AA" d="M64.38 10.86v10.05h8.55v2h-8.55v7.29l16.08 8.92v29.5l-16.08 8.91v7.29h8.55v2h-8.55v9.36l28.67-15.74V26.6z"></path><path fill="#E5E7E5" d="M72.93 86.82v-2h-8.55v-7.29l16.08-8.91v-29.5L64.38 30.2v-7.29h8.55v-2h-8.55V10.86L47.2 1.43l-16.93 9.29v10.19h8.26v2h-8.26v7.29l-16.08 8.92v13.7h12.29V41.61L47.26 30.2l20.78 11.41v24.11L47.26 77.13 26.48 65.72v-10.9H14.19v13.8l16.08 8.91v7.29h8.26v2h-8.26v9.5l16.93 9.29 17.18-9.43v-9.36z"></path><path fill="#A7A8AA" d="M30.27 84.82v-7.29l-16.08-8.91v-13.8H1.35v25.62l28.92 15.88v-9.5h8.26v-2zM30.27 20.91V10.72L1.35 26.6v26.22h12.84v-13.7l16.08-8.92v-7.29h8.26v-2z"></path><path fill="#429DCA" d="M68.04 41.61L47.26 30.2 26.48 41.61v11.21H1.35v2h25.13v10.9l20.78 11.41V53.67z"></path><path fill="#343842" d="M47.26 77.13l20.78-11.41V41.61L47.26 53.67z"></path></svg>
                                 </div>
                                 <p className=' text-sm  text-center'>Optimization <br/>(Premium Feature)</p>
-                                <button class="rounded-full ...">Try Now</button>
+                               <div className='flex justify-center'>
+                               <button className="bg-black ">Try Now</button>
+                               </div>
                             </div>
                         </ServicesCard>
                     </div>
