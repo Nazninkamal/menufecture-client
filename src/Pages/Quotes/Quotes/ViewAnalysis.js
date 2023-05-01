@@ -20,6 +20,8 @@ const ViewAnalysis = () => {
 
     }
 
+
+
     useEffect(() => {
         if (isLoadingPDF) {
             toast.loading("Loading...", { id: "quote" })
@@ -33,6 +35,15 @@ const ViewAnalysis = () => {
 
     }, [isLoadingPDF, errorPDF, isErrorPDF, isSuccessPDF]);
 
+
+
+    let additionalFile = data?.result?.additionalFile;
+
+    let file = additionalFile?.mimetype === "application/pdf" ?
+        <a
+            className=' text-sm text-blue-500'
+            target="blank" href={additionalFile?.fileURL} download > Download PDF</a> :
+        <img src={additionalFile?.fileURL} alt="" />
 
 
 
@@ -59,7 +70,7 @@ const ViewAnalysis = () => {
 
                         {
                             user.role === "supplier" ? <div>
-                                <h1>Price: {data?.result?.price  || "N/A"} {isLoading && "Loading..."}€</h1>
+                                <h1>Price: {data?.result?.price || "N/A"} {isLoading && "Loading..."}€</h1>
                                 <hr />
                             </div> :
                                 <div>
@@ -85,6 +96,12 @@ const ViewAnalysis = () => {
                         <p>Update Status: <span className=' uppercase  text-yellow-600'> {data?.result?.status || 'Request for quote'}</span></p>
                     </div>
 
+                    {/* Additional Request */}
+                    <div className=' border p-5 mt-1'>
+                        <p className=' text-base'>Additional Request</p>
+                        <p className='text-sm'>{data?.result?.additionalText}</p>
+                        {file}
+                    </div>
                     {/* customer info ------------------------- */}
 
                     {
@@ -111,7 +128,6 @@ const ViewAnalysis = () => {
                         <a href={data?.result?.threeDFile?.fileURL} download
                             className='col-span-6 md:col-span-3 text-xs flex items-center justify-center  w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md mt-10  active:ring-2 active:ring-offset-1   active:bg-gradient-to-l no-underline'
                         >Download file</a>
-
                         <button
                             onClick={handleDownload}
                             className='col-span-6 md:col-span-3 flex items-center justify-center  w-full text-slate-50 font-extrabold latter tracking-wider p-2 border bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md md:mt-10  active:ring-2 active:ring-offset-1   text-xs active:bg-gradient-to-l no-underline'>Download Info</button>
@@ -120,7 +136,6 @@ const ViewAnalysis = () => {
 
 
                 <div className='   col-span-12 sm:col-span-12 md:col-span-8 lg:col-span-8    overflow-y-auto border  md:h-full bg-gradient-to-tr from-indigo-400 from-10% via-sky-400 via-30% to-emerald-400 to-90%'>
-
                     {data?.result?.threeDFile?.fileURL && <ViewThreeDFile file={data?.result?.threeDFile?.fileURL} OrbitControl="OrbitControl" />}
 
                 </div>

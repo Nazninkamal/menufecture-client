@@ -7,7 +7,7 @@ const Modal3 = ({ children }) => {
 
             <div className="flex h-screen justify-center items-center md:px-60">
 
-                <div className="flex-col justify-center  bg-white  py-2 px-2 border-4 border-sky-500 rounded-xl   w-full ">
+                <div className="flex-col justify-center  bg-white   p-10 border-4 border-sky-500 rounded-xl  ">
 
 
                     {children}

@@ -36,13 +36,13 @@ const Configure = () => {
     const { data } = useGetMySingleQuotesQuery({ id });
 
     const [quantity, setQuantity] = useState(data?.result?.quantity) || 1;
-    const [additionalFile, setAdditionalFile] = useState(undefined);
+
 
 
     const [updateQuote, { isLoading: isLoadingUpdateQuote }] = useUpdateMySingleQuotesMutation();
 
     const [singleSLA, setSingleSLA] = useState({});
-    const [material, resolution, orientation, finish, additionalText] = watch(['material', 'resolution', 'orientation', 'finish', 'additionalText']);
+    const [material, resolution, orientation, finish] = watch(['material', 'resolution', 'orientation', 'finish']);
 
     const { data: materials } = useGetMaterialsQuery()
     const SLA = materials?.result;
@@ -123,9 +123,8 @@ const Configure = () => {
 
         const configure = {
             status: 'pending',
-            sendToAdmin: 'sended',
-            additionalText: data?.additionalText,
-            additionalFile: additionalFile
+            sendToAdmin: 'sended'
+
         }
         updateQuote({ id, configure })
 
@@ -149,9 +148,6 @@ const Configure = () => {
                         singleSLA={singleSLA}
                         isLoadingUpdateQuote={isLoadingUpdateQuote}
                         SLA={SLA}
-                        additionalText={additionalText}
-                        setAdditionalFile={setAdditionalFile}
-                        additionalFile={additionalFile}
                     />
 
                     <QuotePrinting

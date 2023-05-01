@@ -3,7 +3,7 @@ import { ImPlus, ImMinus } from 'react-icons/im'
 
 
 
-import { useGetMySingleQuotesQuery } from '../../../Redux/Features/quotes/quotesApi';
+import { useGetMySingleQuotesQuery, useUpdateMySingleQuotesMutation } from '../../../Redux/Features/quotes/quotesApi';
 import Modal3 from '../../../Components/Modal/Modal3';
 import { fileUploader } from '../../../Redux/Features/quotes/quotesSlice';
 import { useDispatch } from 'react-redux';
@@ -21,32 +21,41 @@ const MaterialInfo = (
     setQuantity,
     quantity,
     singleSLA,
-    SLA, additionalText,
-    additionalFile,
-    setAdditionalFile
+    SLA
+
   }
 ) => {
 
 
   const { data } = useGetMySingleQuotesQuery({ id });
-
+  const [updateQuote] = useUpdateMySingleQuotesMutation();
   const [modalOn, setModalOn] = useState(false);
+  const [additionalFile, setAdditionalFile] = useState(undefined);
+  const [additionalText, setAdditionalText] = useState(undefined);
+
+
   const dispatch = useDispatch();
 
   const clicked = () => {
     setModalOn(true)
   }
-  const handleOKClick = () => {
-    setModalOn(false)
+  const handleOKClick = async () => {
+    const configure = {
+      additionalFile, additionalText
+    }
+    await updateQuote({ id, configure })
+      .then(() => {
+        setModalOn(false)
+      })
   }
 
 
   useEffect(() => {
     let newData = { ...data?.result };
-    newData.additionalText = additionalText || data?.result?.additionalText;
+    // newData.additionalText = additionalText || data?.result?.additionalText;
     reset(newData);
     setQuantity(data?.result?.quantity)
-  }, [data?.result, reset, setQuantity, additionalText])
+  }, [data?.result, reset, setQuantity])
 
 
 
@@ -64,7 +73,7 @@ const MaterialInfo = (
   }
 
 
-  console.log(additionalFile);
+
   return (
 
 
@@ -256,8 +265,8 @@ const MaterialInfo = (
       </div>
       {modalOn && <Modal3 >
 
-        <div className=' grid grid-cols-12 gap-3'>
-          <div className=' md:col-span-6'>
+        <div className=''>
+          <div className=''>
 
             <h1 className=' py-4 text-2xll'>Special Instructions</h1>
             <p className=' text-xs'>Special requests can impact pricing and lead times. Adding a note will trigger manual review by Protolabs. This can add turnaround time to our analysis.</p>
@@ -265,10 +274,9 @@ const MaterialInfo = (
 
 
               <textarea
-
-                {...register("additionalText")}
-                disabled={data?.result?.additionalText && true}
-                placeholder='Text box to write or PDF dive Link'
+                defaultValue={data?.result?.additionalText}
+                onChange={(e) => setAdditionalText(e.target.value)}
+                placeholder='Leave your note here'
                 className="block w-full h-28 px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 text-sm  ">
 
               </textarea>
@@ -276,14 +284,14 @@ const MaterialInfo = (
             </div>
             <div className="mb-2">
 
-              <div className="mb-2">
-
+              <div className="mb-2  border border-dashed p-5">
+                <span className=' text-xs'>We accept , PDF, PNG,jpeg and JPG  formats</span>
 
                 <input
                   onChange={handleUpLoadFile}
                   type='file'
-                  accept="application/pdf,image/png, image/jpeg"
-                  className="block w-full h-28 px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 text-sm  ">
+                  accept="application/pdf,image/png, image/jpeg,image/jpg"
+                  className="block    py-2 mt-2 text-purple-700 bg-white  rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 text-sm  ">
 
                 </input>
                 <p className="text-red-500">{errors.additional?.message}</p>
@@ -292,14 +300,9 @@ const MaterialInfo = (
 
           </div>
 
-          <div className=' md:col-span-6'>
-
-
-          </div>
-
         </div>
         <div className="flex">
-          <button onClick={handleOKClick}  className=" rounded px-4 py-2 text-white  bg-green-400 ">Done</button>
+          <button onClick={handleOKClick} type='button' className=" rounded px-4 py-2 text-white  bg-green-400 ">Done</button>
         </div>
 
 
