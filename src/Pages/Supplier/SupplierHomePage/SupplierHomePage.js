@@ -2,19 +2,19 @@ import React from 'react';
 import { useState } from "react";
 import SharedBar from '../../../Components/SharedBar/SharedBar';
 import LineChart from '../../Carts/LineChart';
-import BarChart from "../../Carts/BarChart";
-import { EarningData } from "../../Carts/EarningData";
+import PiaChart from "../../Carts/PieChart";
+import { SupplierData } from "../../Carts/SupplierData";
 import { OrderData } from "../../Carts/OrderData";
 import SupplierCards from './SupplierCards';
 
 
 const SupplierHomePage = () => {
-  const [earningData] = useState({
-    labels: EarningData.map((data) => data.month),
+  const [supplierData] = useState({
+    labels: SupplierData.map((data) => data.name),
     datasets: [
       {
         label: "Per Month :Total Earning",
-        data: EarningData.map((data) => data.earning ),
+        data: SupplierData.map((data) => data.rating ),
         backgroundColor: [
           'green',
           'rgb(54, 162, 235)',
@@ -50,15 +50,15 @@ const SupplierHomePage = () => {
       </div>
 
       <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-10 mt-10">
-        <div style={{ width: "100%" }}>
+        {/* <div style={{ width: "100%" }}>
           <p className="mb-5 text-center">Order Gained(last 5 years)</p>
          <BarChart chartData={orderData} /> 
-        </div>
+        </div> */}
 
-        <div className="w-100 bg-white ">
+        <div style={{ width: "100%" }} className=" bg-white ">
           <p className="mb-5 text-center">Total Earnings</p>
 
-        <LineChart chartData={earningData} /> 
+        <PiaChart chartData={supplierData} /> 
         </div>
 
       </div>
