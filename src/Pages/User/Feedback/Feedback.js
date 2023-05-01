@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import StarsRating from 'stars-rating'
 import { useForm } from 'react-hook-form';
 import SharedBar from '../../../Components/SharedBar/SharedBar';
-import { useCreateFeedbackMutation, useGetFeedbackQuery } from '../../../Redux/Features/Feedback/feedbackApi';
+import { useCreateFeedbackMutation} from '../../../Redux/Features/Feedback/feedbackApi';
 import { toast } from 'react-hot-toast';
 
 const FeedbackForm = () => {
@@ -11,8 +11,8 @@ const FeedbackForm = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const [rating, setRating] = React.useState(0);
-    const { data } = useGetFeedbackQuery();
-    console.log(data);
+    // const { data } = useGetFeedbackQuery();
+    // console.log(data);
 
 
 
