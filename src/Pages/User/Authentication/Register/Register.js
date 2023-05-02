@@ -2,10 +2,9 @@ import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { registration } from '../../../../Redux/Features/User/AuthSlice';
+import { loading, registration } from '../../../../Redux/Features/User/AuthSlice';
 import { useDispatch, useSelector } from 'react-redux'
 import { countryListAllIsoData } from '../../../../Utility/CountryList/CountryList';
-import { languages_list } from '../../../../Utility/CountryList/Languagelist';
 import { toast } from 'react-hot-toast';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -57,15 +56,17 @@ const Register = () => {
 
 
     const onSubmit = (data) => {
-        const fullName = data.firstName +" "+ data.lastName;
+        const fullName = data.firstName + " " + data.lastName;
 
 
-        dispatch(registration({...data, fullName}))
+        dispatch(registration({ ...data, fullName }))
             .then(res => {
                 if (res.payload.status === 200) {
                     toast.success(res.payload.data.message, { id: "register" })
                     reset();
+                    dispatch(loading())
                     navigate(location?.state?.from || '/login');
+
                 }
                 else {
                     toast.error(user.error, { id: "register" })

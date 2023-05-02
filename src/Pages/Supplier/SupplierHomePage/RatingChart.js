@@ -5,23 +5,7 @@ ChartJs.register(
   Tooltip, Title, ArcElement, Legend
 );
 
-const data = {
-    datasets: [{
-        data: [10, 20, 30],
-        backgroundColor:[
-          'red',
-          'blue',
-          'yellow'
-        ]
-    },
-  ],
-  // These labels appear in the legend and in the tooltips when hovering different arcs
-  labels: [
-      'Red',
-      'Yellow',
-      'Blue'
-  ], 
-};
+
 const RatingChart = () => {
     const [data, setData] = useState({
         datasets: [{
@@ -41,11 +25,13 @@ const RatingChart = () => {
     });
       useEffect(()=> {
         const fetchData = () =>  {
-          fetch('https://jsonplaceholder.typicode.com/users').then((data) => {
+          fetch('https://jsonplaceholder.typicode.com/users',
+          
+          ).then((data) => {
             const res = data.json();
             return res
           }).then((res) => {
-            console.log("resss", res)
+            // console.log("resss", res)
             const label = [];
             const data = [];
             for(var i of res) {

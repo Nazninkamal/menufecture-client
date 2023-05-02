@@ -1,11 +1,11 @@
 import React from 'react';
-import { useGetMyProjectsQuery } from '../../../Redux/Features/projects/projectsApi';
-import { useGetMyAllQuotesQuery } from '../../../Redux/Features/quotes/quotesApi';
+/* import { useGetMyProjectsQuery } from '../../../Redux/Features/projects/projectsApi';
+import { useGetMyAllQuotesQuery } from '../../../Redux/Features/quotes/quotesApi'; */
 
 const Cards = () => {
 
-   const { data: quotes } = useGetMyAllQuotesQuery();
-   const { data: projects } = useGetMyProjectsQuery();
+  /*  const { data: quotes } = useGetMyAllQuotesQuery();
+   const { data: projects } = useGetMyProjectsQuery(); */
 
    ;
 
