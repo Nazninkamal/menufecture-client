@@ -5,7 +5,7 @@ const SupplierCards = () => {
    const { data: order } = useGetAllUsersQuery();
 
    return (
-      <div className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 gap-3">
+      <div className="grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-3">
 
          <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <div className='text-center'>
@@ -32,7 +32,7 @@ const SupplierCards = () => {
             </div>
          </div>
 
-         <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex justify-evenly ">
+         {/* <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex justify-evenly ">
 
             <div className='text-center'>
                <p className="mb-3 font-extrabold text-4xl">90%</p>
@@ -40,7 +40,7 @@ const SupplierCards = () => {
             </div>
 
 
-         </div>
+         </div> */}
 
 
       </div>
