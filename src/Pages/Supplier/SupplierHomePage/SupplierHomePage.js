@@ -14,9 +14,6 @@ const SupplierHomePage = () => {
 
 
 
- /*  if(isLoading){
-    return
-  } */
   const rating5 = data?.result?.filter((data) => data?.rating === 5);
   const rating4 = data?.result?.filter((data) => data?.rating >= 4 && data?.rating < 5);
   const rating3 = data?.result?.filter((data) => data?.rating >= 3 && data?.rating < 4);
@@ -84,7 +81,7 @@ const SupplierHomePage = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess])
 
-console.log(userRating);
+
 
   return (
     <div className=' h-screen overflow-y-auto'>
