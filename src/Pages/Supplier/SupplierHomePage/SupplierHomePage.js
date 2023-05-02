@@ -95,7 +95,7 @@ console.log(userRating);
 
       <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-10 mt-10">
 
-        <div style={{ width: "100%" }} className="w-full bg-white ">
+        <div  className="lg:w-96 sm:w-80 bg-white ">
           <p className="mb-5 text-center">Customer Satisfaction rating </p>
           {!userRating ? <h1>Loading</h1> :
 
